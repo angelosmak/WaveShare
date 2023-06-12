@@ -1,0 +1,2 @@
+class BeachesController < ApplicationController
+end
