@@ -1,6 +1,7 @@
 <%= simple_form_for [@beach, @review] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.input :rating %>
-  <%= f.button :submit, class: "btn btn-primary"%>
+  <%= f.input :title, required: true, placeholder: "Your review title"%>
+  <%= f.input :content, placeholder: "Describe your Experiences"%>
+  <%= f.input :rating, collection: [1, 2, 3, 4, 5] %>
+  <%= f.button :submit, 'Add Review', class: "btn btn-primary"%>
 <% end %>
+<%= link_to "Go back to #{@beach}", beaches_path(@review.beach) %>
