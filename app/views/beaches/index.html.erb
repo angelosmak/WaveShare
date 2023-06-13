@@ -1,1 +1,11 @@
 hello
+
+<% @beaches.each do |beach| %>
+  <%= link_to(beach_path(beach), { class: 'container-beach'}) do %>
+    <div class="beach">
+      <h2><%= beach.name %></h2>
+      <h4><%= beach.description %></h4>
+      <p class="category-index"><%= beach.address %></p>
+    </div>
+  <% end %>
+<% end %>
