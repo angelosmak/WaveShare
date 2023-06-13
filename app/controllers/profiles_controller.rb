@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
-  
+
   def show
-    @profile.user = current_user
+    @profile.user_id = current_user.id
   end
 
   private
