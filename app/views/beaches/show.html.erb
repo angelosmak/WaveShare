@@ -1,10 +1,12 @@
-hello
 <h2><%= @beach.name %></h2>
 <p><%= @beach.description %></p>
 <p><%= @beach.address %></p>
 <%= link_to "Review this Beach", new_beach_review_path(@beach) %>
 
+<h1>Reviews</h1>
 <% @reviews.each do |review| %>
   <h2><%= review.title %></h2>
-  <h2><%= review.content %></h2>
+  <p><%= review.content %></p>
+  <i><%= review.rating %></i>
+  <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
