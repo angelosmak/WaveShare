@@ -6,8 +6,8 @@ class BeachesController < ApplicationController
 
   def show
     @beach = Beach.find_by_id(params[:id])
-    @events = @beach.events
-    @reviews = @beach.reviews
+    # @events = @beach.events
+    # @reviews = @beach.reviews
   end
 
   def new
