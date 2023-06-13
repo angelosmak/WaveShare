@@ -7,7 +7,6 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    if 
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     @profile.save
@@ -17,6 +16,7 @@ class ProfilesController < ApplicationController
   def show
     @user = current_user
   end
+  
   private
 
   def set_profile
