@@ -2,15 +2,16 @@ class ReviewsController < ApplicationController
   before_action :set_beach, only: [:new, :create]
 
   def new
+    @beach = Beach.find(params[:beach_id])
     @review = Review.new
   end
 
   def create
     @review = Review.new(review_params)
     @review.beach = @beach
-    @review.user = current_user
+    @review.user_id = current_user.id
     if @review.save
-      redirect_to user_path(@review.user)
+      redirect_to beach_path(@review.beach)
     else
       render :new, status: :unprocessable_entity
     end
