@@ -1,0 +1,6 @@
+<h2>Add info to your Profile</h2>
+<%= simple_form_for(@profile) do |f| %>
+  <%= f.input :username %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit %>
+<% end %>
