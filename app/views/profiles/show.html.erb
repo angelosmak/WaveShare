@@ -1,4 +1,4 @@
 
-<%= cl_image_tag current_user.profile.photo.key, height: 100, width: 100, crop: :fill %>
+<%= cl_image_tag @profile.photo.key, height: 100, width: 100, crop: :fill %>
 <h2>Username: <%= @profile.username %></h2>
 <p>Email: <%= @user.email %></p>
