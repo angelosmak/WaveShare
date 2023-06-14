@@ -10,3 +10,5 @@
   <i><%= review.rating %></i>
   <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
+
+<%= link_to 'New Event', new_beach_event_path(@beach) %>
