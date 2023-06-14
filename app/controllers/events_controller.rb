@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @beach = Beach.find(params[:beach_id])
-    
+
     @event = Event.new(event_params)
     @event.beach = @beach
     @event.user_id = current_user.id
