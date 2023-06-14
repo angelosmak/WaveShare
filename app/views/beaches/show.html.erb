@@ -7,6 +7,7 @@
 <% @reviews.each do |review| %>
   <h2><%= review.title %></h2>
   <p><%= review.content %></p>
+  <%# displaying star-reviews %>
   <p><% review.rating.times do %>
   <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
   <% end %></p>
@@ -17,7 +18,8 @@
 <% @events.each do |event| %>
   <h2><%= event.title %></h2>
   <p><%= event.date %></p>
-  <i><%= event.description %></i>
-  <%= link_to "Delete", review_path(event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <p><%= event.description %></p>
+  <p><%= event.user.email %></p>
+  <%= link_to "Delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
 <%= link_to 'New Event', new_beach_event_path(@beach) %>

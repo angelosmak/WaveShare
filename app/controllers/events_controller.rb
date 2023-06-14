@@ -2,15 +2,20 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_beach, only: [:new, :create]
   def index
+    @events = policy_scope(Event)
     @events = Event.all
   end
 
   def show
+    # pundit
+    authorize @event
   end
 
   def new
     @beach = Beach.find(params[:beach_id])
     @event = Event.new
+    # pundit
+    authorize @event
   end
 
 
@@ -18,7 +23,8 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.beach = @beach
     @event.user_id = current_user.id
-
+    # pundit
+    authorize @event
     if @event.save
       redirect_to beach_path(@event.beach), notice: 'Event was successfully created.'
     else
@@ -26,7 +32,24 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    # pundit
+    authorize @event
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to beach_path(@event.beach), notice: 'Event was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+    # pundit
+    authorize @event
+  end
+
   def destroy
+    # pundit
+    authorize @event
     @event.destroy
     redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
