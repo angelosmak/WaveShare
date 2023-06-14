@@ -1,22 +1,19 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show]
+  before_action :set_profile, only: [:show, :edit, :update]
 
-  def new
-    @profile = Profile.new
-    @profile.user_id = current_user.id
-  end
-
-  def create
-    if 
-    @profile = Profile.new(profile_params)
-    @profile.user_id = current_user.id
-    @profile.save
-    redirect_to profile_path(@profile)
-  end
 
   def show
     @user = current_user
   end
+
+  def edit
+  end
+
+  def update
+    @profile = Profile.update(profile_params)
+    redirect_to profile_path(@profile)
+  end
+
   private
 
   def set_profile

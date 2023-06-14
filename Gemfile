@@ -20,6 +20,7 @@ gem "jsbundling-rails"
 
 gem "cloudinary"
 
+gem 'faker', '~> 2.18', '>= 2.18.0'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"

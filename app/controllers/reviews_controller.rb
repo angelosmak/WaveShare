@@ -11,10 +11,16 @@ class ReviewsController < ApplicationController
     @review.beach = @beach
     @review.user_id = current_user.id
     if @review.save
-      redirect_to beach_path(@review.beach)
+      redirect_to beach_path(@review.beach), notice: 'Review was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to beach_path(@review.beach)
   end
 
   private
