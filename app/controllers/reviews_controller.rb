@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to beach_path(@review.beach), notice: 'Review was successfully created.'
     else
+      flash[:alert] = "Something went wrong."
       render :new, status: :unprocessable_entity
     end
   end
