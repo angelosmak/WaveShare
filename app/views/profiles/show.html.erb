@@ -1,4 +1,6 @@
-
-<%= cl_image_tag @profile.photo.key, height: 100, width: 100, crop: :fill %>
-<h2>Username: <%= @profile.username %></h2>
-<p>Email: <%= @user.email %></p>
+<div class="container text-center ">
+  <%= cl_image_tag @profile.photo.key, class:"shadow my-5" ,height: 100, width: 100, crop: :fill %>
+  <h2>Username: <%= @profile.username %></h2>
+  <p>Email: <%= @user.email %></p>
+  <%= link_to "Delete Profile", user_registration_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+</div>

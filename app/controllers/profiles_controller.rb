@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
     redirect_to profile_path(@profile)
   end
 
+
   private
 
   def set_profile
