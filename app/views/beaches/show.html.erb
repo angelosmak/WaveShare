@@ -7,12 +7,13 @@
 <% @reviews.each do |review| %>
   <h2><%= review.title %></h2>
   <p><%= review.content %></p>
+  <p><%= review.user.email %></p>
   <%# displaying star-reviews %>
   <p><% review.rating.times do %>
-  <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
-  <% end %></p>
-  <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-<% end %>
+    <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+    <% end %>
+  <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
+  <% end %>
 <%= link_to "Review this Beach", new_beach_review_path(@beach) %>
 
 <% @events.each do |event| %>
@@ -20,6 +21,10 @@
   <p><%= event.date %></p>
   <p><%= event.description %></p>
   <p><%= event.user.email %></p>
-  <%= link_to "Delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-<% end %>
+  <% if policy(event).edit? %>
+  <%= link_to "Edit this event", edit_event_path(event) %> |
+  <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
+  <% end %>
+  <% end %>
+  <%# <%= link_to "Delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <%= link_to 'New Event', new_beach_event_path(@beach) %>

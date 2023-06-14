@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_beach, only: [:new, :create]
+  before_action :set_review, only: [:destroy]
 
   def new
-    @beach = Beach.find(params[:beach_id])
     @review = Review.new
     # pundit
     authorize @review
@@ -25,9 +25,8 @@ class ReviewsController < ApplicationController
   def destroy
     # pundit
     authorize @review
-    @review = Review.find(params[:id])
     @review.destroy
-    redirect_to beach_path(@review.beach)
+    redirect_to beach_path(@review.beach), notice: 'Review was successfully destroyed.'
   end
 
   private
@@ -41,6 +40,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :content, :rating)
+    params.require(:review).permit(:title, :content, :rating, :user_id, :beach_id)
   end
 end

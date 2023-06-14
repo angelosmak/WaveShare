@@ -18,7 +18,6 @@ class EventsController < ApplicationController
     authorize @event
   end
 
-
   def create
     @event = Event.new(event_params)
     @event.beach = @beach
@@ -51,7 +50,7 @@ class EventsController < ApplicationController
     # pundit
     authorize @event
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to beach_path(@event.beach), notice: 'Event was successfully destroyed.'
   end
 
   private
