@@ -1,0 +1,18 @@
+<% if current_user.profile.photo.key %>
+  <%= cl_image_tag current_user.profile.photo.key,class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+<% else %>
+<%# else put another picture from assets %>
+  <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+  </a>
+<% end %>
+
+<h2>My Reviews</h2>
+<% @reviews.each do |review| %>
+  <%= review.title.content %>
+  <%= review.rating %>
+<% end %>
+
+<h2>My events</h2>
+<% @events.each do |event| %>
+
+<% end %>
