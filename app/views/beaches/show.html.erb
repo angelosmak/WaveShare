@@ -3,12 +3,20 @@
 <p><%= @beach.address %></p>
 <%= link_to "Review this Beach", new_beach_review_path(@beach) %>
 
-<h1>Reviews</h1>
+<h1>events</h1>
 <% @reviews.each do |review| %>
   <h2><%= review.title %></h2>
   <p><%= review.content %></p>
   <i><%= review.rating %></i>
   <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
+
+<h1>Reviews</h1>
+<% @events.each do |event| %>
+  <h2><%= event.title %></h2>
+  <p><%= event.date %></p>
+  <i><%= event.description %></i>
+  <%= link_to "Delete", review_path(event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
 
 <%= link_to 'New Event', new_beach_event_path(@beach) %>
