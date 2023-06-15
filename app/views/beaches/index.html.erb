@@ -1,6 +1,11 @@
   <p style="color: green"><%= notice %></p>
 
-<%# Form to search text in the Google Places API and return the json with name address and photo %>
+<%# Display of the Map %>
+<div style="width: 50%; height: 400px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
 
 <%# Display of each Beach instance in a card with a photo and a title and address underneath %>
 <% if @beaches.present? %>
@@ -15,6 +20,7 @@
             <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
             <%= image_tag image_url, class: "card-img-top beach-image" %>
           <% else %>
+
             <!-- Placeholder image if photo_url is not available -->
             <%= image_tag "broken-beach.jpg", class: "card-img-top beach-image" %>
           <% end %>
