@@ -31,11 +31,17 @@ class BeachesController < ApplicationController
 
         if results.present?
           # Create new Beach instances and save them to the database
-          @beaches = results.map do |result|
+          @beaches = results.sample(5).map do |result|
+            if result["photos"].empty?
+              photo = ActionController::Base.helpers.image_url("broken-beach.jpg")
+            else
+              photo = result['photos'].first['photo_reference']
+            end
+
             Beach.create(
               name: result['name'],
               address: result['formatted_address'],
-              photo_url: result['photos'].first['photo_reference']
+              photo_url: photo
             )
           end
 
