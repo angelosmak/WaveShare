@@ -38,10 +38,12 @@ class BeachesController < ApplicationController
               photo = result['photos'].first['photo_reference']
             end
 
-            Beach.create(
+            beach = Beach.create(
               name: result['name'],
               address: result['formatted_address'],
-              photo_url: photo
+              photo_url: photo,
+              latitude: result['geometry']['location']['lat'],
+              longitude: result['geometry']['location']['lng']
             )
           end
 
@@ -52,6 +54,13 @@ class BeachesController < ApplicationController
       end
     else
       @beaches = Beach.all
+      # markers for the map
+    @markers = @beaches.geocoded.map do |beach|
+      {
+        lat: beach.latitude,
+        lng: beach.longitude
+      }
+      end
     end
   end
 
