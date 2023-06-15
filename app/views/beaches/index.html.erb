@@ -1,13 +1,31 @@
-hello
+  <p style="color: green"><%= notice %></p>
 
-<% @beaches.each do |beach| %>
-  <%= link_to(beach_path(beach), { class: 'container-beach'}) do %>
-    <div class="beach">
-      <h2><%= beach.name %></h2>
-      <h4><%= beach.description %></h4>
-      <p class="category-index"><%= beach.address %></p>
-    </div>
-  <% end %>
+<%# Form to search text in the Google Places API and return the json with name address and photo %>
+
+<%# Display of each Beach instance in a card with a photo and a title and address underneath %>
+<% if @beaches.present? %>
+  <div class="row row-cols-4">
+    <% @beaches.each do |beach| %>
+      <div class="col-md-3">
+      <%= link_to(beach_path(beach), { class: 'container-beach text-decoration-none'}) do %>
+        <div class="card beach-card shadow">
+          <% if beach.photo_url.present? %>
+            <% photo_reference = beach.photo_url %>
+            <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
+            <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
+            <%= image_tag image_url, class: "card-img-top beach-image" %>
+          <% else %>
+            <!-- Placeholder image if photo_url is not available -->
+            <%= image_tag "broken-beach.jpg", class: "card-img-top beach-image" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title fw-1"><%= beach.name %></h5>
+            <hr>
+            <p class="card-text"><%= beach.address %></p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-
-<%= link_to 'All Events', events_path, class: 'btn btn-primary m-3' %>
