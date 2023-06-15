@@ -35,3 +35,6 @@
 <% end %>
 <% end %>
 <%= link_to 'New Event', new_beach_event_path(@beach) %>
+
+<div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
+</div>
