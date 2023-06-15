@@ -11,3 +11,4 @@
   <%= button_to "Destroy this event", @event, method: :delete if policy(@event).destroy? %>
 </div>
 <%= link_to 'All Events', events_path, class: 'btn btn-primary mt-2' %>
+<%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary mt-2' %>
