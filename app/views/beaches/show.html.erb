@@ -18,7 +18,13 @@
   <h2><%= event.title %></h2>
   <p><%= event.date %></p>
   <i><%= event.description %></i>
+<% if UserEvent.where(event: event, user: current_user).empty?%>
   <%= link_to "Attend", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+<% end %>
+<% unless event.user_events.empty? %>
+  <% user_event = UserEvent.find_by(user: current_user, event: event) %>
+  <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
   <%= link_to "Delete", review_path(event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
 <%= link_to 'New Event', new_beach_event_path(@beach) %>

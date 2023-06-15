@@ -10,8 +10,10 @@ class UserEventsController < ApplicationController
   end
 
   def destroy
-    current_user.events.delete(@user_event)
-    redirect_to @user_event.event, notice: 'Attendance cancelled successfully.'
+    @attendance = UserEvent.find(params[:id])
+    @event = @attendance.event
+    @attendance.destroy
+    redirect_to @event.beach, notice: 'Attendance cancelled successfully.'
   end
 
   private
