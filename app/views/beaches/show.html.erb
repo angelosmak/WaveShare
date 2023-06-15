@@ -2,7 +2,7 @@
 <p><%= @beach.description %></p>
 <p><%= @beach.address %></p>
 
-<h1>events</h1>
+
 <h1>Reviews</h1>
 <% @reviews.each do |review| %>
   <h2><%= review.title %></h2>
@@ -15,9 +15,9 @@
   <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
   <% end %>
 <%= link_to "Review this Beach", new_beach_review_path(@beach) %>
-
+<h1>events</h1>
 <% @events.each do |event| %>
-  <h2><%= event.title %></h2>
+  <h2><%= link_to event.title, event_path(event) %></h2>
   <p><%= event.date %></p>
   <p><%= event.description %></p>
   <p><%= event.user.email %></p>
