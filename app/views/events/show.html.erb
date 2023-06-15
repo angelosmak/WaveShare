@@ -4,5 +4,11 @@
   <h2><%= @event.title %></h2>
   <h4><%= @event.description %></h4>
   <h4><%= @event.date %></h4>
+  <%# pundit %>
+  <% if policy(@event).edit? %>
+  <%= link_to "Edit this Event", edit_event_path(@event) %> |
+  <% end %>
+  <%= button_to "Destroy this event", @event, method: :delete if policy(@event).destroy? %>
 </div>
 <%= link_to 'All Events', events_path, class: 'btn btn-primary mt-2' %>
+<%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary mt-2' %>
