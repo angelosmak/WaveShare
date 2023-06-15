@@ -11,6 +11,12 @@ class BeachesController < ApplicationController
     if search_query.present?
       # Search the database for matching beaches
       @beaches = Beach.where(sql_subquery, search_query: "%#{params[:search_query]}%")
+      @markers = @beaches.geocoded.map do |beach|
+        {
+          lat: beach.latitude,
+          lng: beach.longitude
+        }
+        end
 
       if @beaches.present?
         # Beaches found in the database, show them in the view
