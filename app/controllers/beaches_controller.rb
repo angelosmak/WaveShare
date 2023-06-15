@@ -11,6 +11,12 @@ class BeachesController < ApplicationController
     if search_query.present?
       # Search the database for matching beaches
       @beaches = Beach.where(sql_subquery, search_query: "%#{params[:search_query]}%")
+      @markers = @beaches.geocoded.map do |beach|
+        {
+          lat: beach.latitude,
+          lng: beach.longitude
+        }
+        end
 
       if @beaches.present?
         # Beaches found in the database, show them in the view
@@ -31,11 +37,19 @@ class BeachesController < ApplicationController
 
         if results.present?
           # Create new Beach instances and save them to the database
-          @beaches = results.map do |result|
-            Beach.create(
+          @beaches = results.sample(5).map do |result|
+            if result["photos"].empty?
+              photo = ActionController::Base.helpers.image_url("broken-beach.jpg")
+            else
+              photo = result['photos'].first['photo_reference']
+            end
+
+            beach = Beach.create(
               name: result['name'],
               address: result['formatted_address'],
-              photo_url: result['photos'].first['photo_reference']
+              photo_url: photo,
+              latitude: result['geometry']['location']['lat'],
+              longitude: result['geometry']['location']['lng']
             )
           end
 
@@ -46,6 +60,13 @@ class BeachesController < ApplicationController
       end
     else
       @beaches = Beach.all
+      # markers for the map
+    @markers = @beaches.geocoded.map do |beach|
+      {
+        lat: beach.latitude,
+        lng: beach.longitude
+      }
+      end
     end
   end
 
