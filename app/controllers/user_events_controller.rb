@@ -7,6 +7,7 @@ class UserEventsController < ApplicationController
     @attendance.user_id = current_user.id
     @attendance.save
     redirect_to @event.beach, notice: 'Attendendance added successfully.'
+    authorize @attendance
   end
 
   def destroy
@@ -14,6 +15,7 @@ class UserEventsController < ApplicationController
     @event = @attendance.event
     @attendance.destroy
     redirect_to @event.beach, notice: 'Attendance cancelled successfully.'
+    authorize @attendance
   end
 
   private
