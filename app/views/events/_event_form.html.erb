@@ -1,0 +1,11 @@
+<%= simple_form_for [@beach, @event] do |f| %>
+  <%= f.input :title, required: true, placeholder: "Add an event Title"%>
+    <%= f.input :date, as: :string,
+                wrapper_html: { class: "mb-4" },
+                label_html: { class: "form-label text-secondary fw-bold" },
+                input_html: { data: { controller: "flatpickr" } } %>
+  <%= f.input :photo ,as: :file%>
+  <%= f.input :description, placeholder: "Give a short description"%>
+  <%= f.button :submit, 'Add', class: "btn btn-primary"%>
+<% end %>
+<%= link_to 'All Events', events_path, class: 'btn btn-primary mt-2' %>

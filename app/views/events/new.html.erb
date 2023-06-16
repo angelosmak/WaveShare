@@ -1,8 +1,4 @@
-<%= simple_form_for [@beach, @event] do |f| %>
-  <%= f.input :title, required: true, placeholder: "Add an event Title"%>
-  <%= f.input :date%>
-  <%= f.input :photo ,as: :file%>
-  <%= f.input :description, placeholder: "Give a short description"%>
-  <%= f.button :submit, 'Add', class: "btn btn-primary"%>
-<% end %>
-<%= link_to 'All Events', events_path, class: 'btn btn-primary mt-2' %>
+<div class="container">
+<h1>Your new event!</h1>
+  <%= render "event_form" %>
+</div>
