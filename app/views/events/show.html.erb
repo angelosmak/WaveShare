@@ -1,6 +1,7 @@
 <h1>Learn more about this event</h1>
 
 <div>
+  <%= cl_image_tag @event.photo.key %>
   <h2><%= @event.title %></h2>
   <h4><%= @event.description %></h4>
   <h4><%= @event.date %></h4>
