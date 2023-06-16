@@ -7,6 +7,9 @@ import { application } from "./application"
 import BeachWeatherController from "./beach_weather_controller"
 application.register("beach-weather", BeachWeatherController)
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import FormSubmitController from "./form_submit_controller"
 application.register("form-submit", FormSubmitController)
 
