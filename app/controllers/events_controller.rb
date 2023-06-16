@@ -64,6 +64,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:beach_id, :user_id, :title, :date, :description)
+    params.require(:event).permit(:beach_id, :user_id, :title, :date, :description, :photo)
   end
 end

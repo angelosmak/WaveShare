@@ -2,8 +2,10 @@
       <div class="event-details">
         <h1>See what's happening:</h1>
 
+
         <div class="event-info">
           <h2><%= @event.title %></h2>
+          <%= cl_image_tag @event.photo.key %>
           <div class="event-description">
             <textarea rows="6" readonly><%= @event.description %></textarea>
           </div>
@@ -24,3 +26,5 @@
     </div>
   </body>
 </html>
+
+
