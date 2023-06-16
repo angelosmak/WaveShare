@@ -60,7 +60,7 @@
   <% end %>
 
     <div class="col-5 ms-5">
-      <div  style="width: 80%; height: 800px;"
+      <div  id="map" style="width: 110%; height: 800px;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
