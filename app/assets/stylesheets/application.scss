@@ -17,3 +17,46 @@
 .beach-image {
   max-height: 200px;
 }
+
+.image-header {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-color: red;
+  background-image: url("broken-beach.jpg");
+
+  p {
+    text-align: center;
+    margin: auto;
+  }
+
+}
+
+.text-header {
+  border: 3px solid black;
+  max-height: 200px;
+
+  .display-1 {
+    font-size: 32px;
+    padding: 8px;
+  }
+
+  .display-2 {
+    font-size: 24px;
+    padding: 8px;
+    margin-top: -35px;
+  }
+}
+
+.text-header-bottom {
+  border: 3px solid black;
+  height: 200px;
+}
+
+.rv {
+  border: 3px solid black;
+}
+
+.text-header2 {
+  border: 3px solid black;
+}
