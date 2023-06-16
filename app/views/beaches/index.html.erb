@@ -5,7 +5,7 @@
   <%# Display of each Beach instance in a card with a photo and a title and address underneath %>
   <% if @beaches.present? %>
       <% @beaches.each do |beach| %>
-        <div class="col-md-5">
+        <div class="col-md-6">
         <%= link_to(beach_path(beach), { class: ' text-decoration-none'}) do %>
           <div class="card beach-card shadow mb-3">
             <% if beach.photo_url.present? %>
@@ -22,6 +22,35 @@
               <h5 class="card-title fw-1"><%= beach.name %></h5>
               <hr>
               <p class="card-text"><%= beach.address %></p>
+              <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
+              <div >
+                <div class="card-product-infos card shadow p-2">
+                  <h5><img data-beach-weather-target="icon"> <strong>Weather Conditions</strong></h5>
+                  <div class="col">
+                    <p data-beach-weather-target="description"></p>
+                  </div>
+                  <hr>
+                  <div class="row d-flex ">
+                  <div class="col">
+                  <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
+                    <p  data-beach-weather-target="Windspeed">
+                      </p>
+                  </div>
+                  <div class="col">
+                  <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i>
+                    <p data-beach-weather-target="temperature">
+                      </p>
+                  </div>
+                  <div class="col">
+                  <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i>
+                    <p  data-beach-weather-target="Winddirection">
+                      </p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <% end %>
             </div>
           </div>
