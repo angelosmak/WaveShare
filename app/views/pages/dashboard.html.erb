@@ -12,9 +12,9 @@
 <div class="container col-3 shadow my-5 mx-auto">
   <h2>My Reviews:</h2>
   <hr>
-  <% @event.user_events.each do |user_event| %>
+  <% @reviews.each do |review| %>
     <div class=" shadow">
-    <h4><%= user_event.date %></h4>
+    <h4><%= review.title %></h4>
     <h5><%= review.content %></h5>
     <p><%= review.rating %></p>
     </div>
@@ -29,6 +29,19 @@
     <h4><%= event.title %></h4>
     <h5><%= event.description %></h5>
     <p><%= event.date%></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="container col-3 shadow my-5 mx-auto">
+  <h2>My Attendances:</h2>
+  <hr>
+  <% @attendances.each do |user_event| %>
+    <div class=" shadow">
+    <%= cl_image_tag user_event.event.photo.key, style: "max-width: 100%; height: auto;" if user_event.event.photo.key %>
+    <h4><%= user_event.event.title %></h4>
+    <h5><%= user_event.event.beach.name %></h5>
+    <p><%= user_event.event.date%></p>
     </div>
   <% end %>
 </div>
