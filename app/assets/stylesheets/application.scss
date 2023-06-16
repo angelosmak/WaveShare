@@ -33,7 +33,10 @@
   top: 0;
 }
 
-div.relative {
+.card-body{
+  height: 370px;
+
+  div.relative {
   position: relative;
   bottom: 200px;
   left: 80px;
