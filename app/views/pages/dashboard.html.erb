@@ -12,9 +12,9 @@
 <div class="container col-3 shadow my-5 mx-auto">
   <h2>My Reviews:</h2>
   <hr>
-  <% @reviews.each do |review| %>
+  <% @event.user_events.each do |user_event| %>
     <div class=" shadow">
-    <h4><%= review.title %></h4>
+    <h4><%= user_event.date %></h4>
     <h5><%= review.content %></h5>
     <p><%= review.rating %></p>
     </div>
