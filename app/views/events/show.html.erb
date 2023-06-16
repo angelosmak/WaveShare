@@ -5,7 +5,11 @@
         <h4 class="event-date"><%= @event.date %></h4>
         <h2 class="event-title"><%= @event.title %></h2>
       </div>
-      <%= cl_image_tag @event.photo.key, class: 'event-image' %>
+
+      <% if @event.photo.present? %>
+        <%= cl_image_tag @event.photo.key, class: 'event-image' %>
+      <% end %>
+
       <div class="event-description">
         <textarea rows="6" readonly><%= @event.description %></textarea>
       </div>
@@ -21,7 +25,8 @@
   </div>
 
   <div class="buttons">
-    <%= link_to 'All Events', events_path, class: 'btn btn-primary mt-2' %>
-    <%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary mt-2' %>
+    <%= link_to 'All Events', events_path, class: 'btn btn-primary m-2' %>
+    <%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary m-2' %>
   </div>
 </div>
+
