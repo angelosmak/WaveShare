@@ -14,9 +14,10 @@ class BeachesController < ApplicationController
       @markers = @beaches.geocoded.map do |beach|
         {
           lat: beach.latitude,
-          lng: beach.longitude
+          lng: beach.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {beach: beach})
         }
-        end
+      end
 
       if @beaches.present?
         # Beaches found in the database, show them in the view
@@ -64,7 +65,8 @@ class BeachesController < ApplicationController
     @markers = @beaches.geocoded.map do |beach|
       {
         lat: beach.latitude,
-        lng: beach.longitude
+        lng: beach.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {beach: beach})
       }
       end
     end
