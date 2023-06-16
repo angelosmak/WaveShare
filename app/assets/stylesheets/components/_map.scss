@@ -1,5 +1,5 @@
 .mapboxgl-popup {
-  max-width: 200px;
+  border-radius: 10px;
   transition: transform 0.3s;
 }
 
@@ -15,8 +15,4 @@
 
 .mapboxgl-popup-content:hover {
   background-color: #e1eaf3;
-}
-
-.mapboxgl-popup.zoom-out {
-  transform: scale(0.8); 
 }
