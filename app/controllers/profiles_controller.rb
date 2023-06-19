@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.update(profile_params)
+    @profile.update(profile_params)
     redirect_to profile_path(@profile)
     authorize @profile
   end
