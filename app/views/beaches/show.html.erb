@@ -17,6 +17,7 @@
         <hr>
         <p><%= @beach.description %></p>
         <div class="shadow">
+        <%# Reviews %>
         <h1>Reviews:</h1>
         <% @reviews.each do |review| %>
           <h2><%= review.title %></h2>
@@ -30,6 +31,7 @@
           <% end %>
         <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
         <hr>
+        <%# Events %>
         <div class="shadow">
         <h1>Events:</h1>
         <% @events.each do |event| %>
@@ -57,7 +59,7 @@
       </div>
     </div>
     <div id="sticky" class="col-4 py-3 ">
-
+<%# Stimulus controller for Weather API %>
   <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
     <div class="card-product">
       <img data-beach-weather-target="icon">

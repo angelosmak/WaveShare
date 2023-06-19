@@ -13,15 +13,31 @@
               <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
               <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
               <%= image_tag image_url, class: "card-img-top beach-image" %>
-            <% else %>
+              <% total_ratings = 0 %>
 
+            <% else %>
               <!-- Placeholder image if photo_url is not available -->
               <%= image_tag "broken-beach.jpg", class: " beach-image" %>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title fw-1"><%= beach.name %></h5>
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title fw-1"><%= beach.name %></h5>
+            <%# average review display %>
+                <% if beach.reviews.present? %>
+               <% beach.reviews.each do |review| %>
+                <% total_ratings += review.rating%>
+                <% end %>
+               <% average_rating = total_ratings.to_f / beach.reviews.count %>
+               <div class= "d-flex">
+               <i class="fa-solid fa-star" style="color: #ffe71e;"></i><p><%= average_rating %></p>
+               </div>
+              <% end %>
+              </div>
               <hr>
-              <p class="card-text"><%= beach.address %></p>
+              <p class="card-text">
+              <%= beach.address %></p>
+
+              <%# Stimuus Controller for Weather API %>
               <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
               <div >
                 <div class="card-product-infos card shadow p-2">
@@ -58,6 +74,7 @@
       <% end %>
     </div>
   <% end %>
+
 
     <div class="col-5 ms-5">
       <div  id="map" style="width: 110%; height: 800px;"
