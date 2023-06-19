@@ -39,6 +39,7 @@
           <p><%= event.date %></p>
           <i><%= event.description %></i>
           <p><%= event.user.email %></p>
+          <p><%= event.user_events.count %> people attending</p>
 
           <% if policy(event).edit? %>
           <%= link_to "Edit this event", edit_event_path(event), class:"btn btn-outline-primary" %> |
