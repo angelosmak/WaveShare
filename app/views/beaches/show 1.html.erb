@@ -1,24 +1,4 @@
-<div class="header-image-container">
-  <div class="header-image">image</div>
-</div>
-
-<div class="header-text-container">
-  <div class="header-text">
-    <div>Title: name of beach</div>
-    <div>description</div>
-    <div>address</div>
-  </div>
-  <div class="header-text-reviews-container">
-    <div>average rating</div>
-    <div>reviews counter/link</div>
-  </div>
-</div>
-<div>beach info</div>
-<div>events</div>
 <div class="container">
-
-<p>OLD BELOW </p>
-
 <% if @beach.photo_url.present? %>
   <% photo_reference = @beach.photo_url %>
   <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
@@ -37,7 +17,6 @@
         <hr>
         <p><%= @beach.description %></p>
         <div class="shadow">
-        <%# Reviews %>
         <h1>Reviews:</h1>
         <% @reviews.each do |review| %>
           <h2><%= review.title %></h2>
@@ -51,36 +30,25 @@
           <% end %>
         <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
         <hr>
-        <%# Events %>
-
         <div class="shadow">
-          <h1>Events:</h1>
-          <% @events.each do |event| %>
-
-            <button class="btn btn-light position-relative">
-              <h2><%= link_to event.title, event_path(event) %></h2>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <%= event.user_events.count %>
-                <span class="visually-hidden">Attendances</span>
-              </span>
-            </button>
-
+        <h1>Events:</h1>
+        <% @events.each do |event| %>
+          <h2><%= link_to event.title, event_path(event) %></h2>
           <p><%= event.date %></p>
           <i><%= event.description %></i>
           <p><%= event.user.email %></p>
-
-        <% event.user_events.each do |attendance| %>
-          <% if attendance.user.profile.photo.key %>
-            <%= cl_image_tag attendance.user.profile.photo.key ,class:"avatar" %>
-          <% else %>
-            <%= image_tag "default-photo.webp",class:"avatar" %>
-          <% end %>
-        <% end %>
 
           <% if policy(event).edit? %>
           <%= link_to "Edit this event", edit_event_path(event), class:"btn btn-outline-primary" %> |
           <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
           <% end %>
+        <% if UserEvent.where(event: event, user: current_user).empty?%>
+          <%= link_to "Attend", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+        <% end %>
+        <% unless event.user_events.empty? %>
+          <% user_event = UserEvent.find_by(user: current_user, event: event) %>
+          <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
+        <% end %>
         <% end %>
         <%= link_to 'New Event', new_beach_event_path(@beach), class:"btn btn-outline-primary"%>
         </div>
@@ -89,7 +57,7 @@
       </div>
     </div>
     <div id="sticky" class="col-4 py-3 ">
-<%# Stimulus controller for Weather API %>
+
   <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
     <div class="card-product">
       <img data-beach-weather-target="icon">

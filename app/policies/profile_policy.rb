@@ -10,11 +10,19 @@ class ProfilePolicy < ApplicationPolicy
     end
 
     def edit?
+<<<<<<< HEAD
+      true
+    end
+
+    def update?
+      true
+=======
       update?
     end
 
     def update?
       record.user == user
+>>>>>>> master
     end
 
     def resolve
