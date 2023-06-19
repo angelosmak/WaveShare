@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-
   def dashboard
     @user = current_user
     @reviews = @user.reviews
