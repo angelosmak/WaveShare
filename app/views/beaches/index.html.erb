@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="function-search">
+<div id="function-search">
   <div class="search-home-container">
     <div class="searchbox-container">
       <div class="searchbox-home">Search</div>
@@ -19,17 +19,34 @@
     </div>
   </div>
 </div>
-
 <div class="function-cardsgrid">
+  <div class="cardsgrid-header-container">
+    <h3 class="cardsgrid-header">Beaches and events near you</h3>
+  </div>
   <div class="cards-home-container">
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
-    <div class="card">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
+    <div class="card-home">card</div>
   </div>
 </div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var functionSearch = document.getElementById("function-search");
+var sticky = functionSearch.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    functionSearch.classList.add("sticky")
+  } else {
+    functionSearch.classList.remove("sticky");
+  }
+}
+</script>
