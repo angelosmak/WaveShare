@@ -1,0 +1,37 @@
+  <p style="color: green"><%= notice %></p>
+
+<%# Display of the Map %>
+<div style="width: 50%; height: 400px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+<%# Display of each Beach instance in a card with a photo and a title and address underneath %>
+<% if @beaches.present? %>
+  <div class="row row-cols-4">
+    <% @beaches.each do |beach| %>
+      <div class="col-md-3">
+      <%= link_to(beach_path(beach), { class: 'container-beach text-decoration-none'}) do %>
+        <div class="card beach-card shadow">
+          <% if beach.photo_url.present? %>
+            <% photo_reference = beach.photo_url %>
+            <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
+            <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
+            <%= image_tag image_url, class: "card-img-top beach-image" %>
+          <% else %>
+
+            <!-- Placeholder image if photo_url is not available -->
+            <%= image_tag "broken-beach.jpg", class: "card-img-top beach-image" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title fw-1"><%= beach.name %></h5>
+            <hr>
+            <p class="card-text"><%= beach.address %></p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
