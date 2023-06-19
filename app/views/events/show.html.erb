@@ -6,7 +6,7 @@
         <h2 class="event-title"><%= @event.title %></h2>
       </div>
 
-      <% if @event.photo.present? %>
+      <% if @event.photo.key %>
         <%= cl_image_tag @event.photo.key, class: 'event-image' %>
       <% end %>
 
@@ -29,4 +29,3 @@
     <%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary m-2' %>
   </div>
 </div>
-
