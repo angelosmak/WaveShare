@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_beach, only: [:new, :create]
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_beach, only: %i[new create]
   def index
     @events = policy_scope(Event)
     @events = Event.all
