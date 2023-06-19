@@ -1,9 +1,0 @@
-<div class="map-home-container">
-  <div class="map-home"></div>
-</div>
-
-<div class="search-container">
-  <div class="searchbox-container">
-    <div></div>
-  </div>
-</div>

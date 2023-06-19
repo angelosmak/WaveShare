@@ -1,0 +1,14 @@
+
+<div class="search-container">
+  <div class="searchbox-container">
+    <div class="searchbox">Search</div>
+  </div>
+  <div class="searchbox-filters-container">
+    <div class="searchbox-filters">filter 1</div>
+    <div class="searchbox-filters">filter 2</div>
+    <div class="searchbox-filters">filter 3</div>
+    <div class="searchbox-filters">filter 4</div>
+    <div class="searchbox-filters">filter 5</div>
+    <div class="searchbox-filters">filter 6</div>
+  </div>
+</div>
