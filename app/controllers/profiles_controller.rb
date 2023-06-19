@@ -4,14 +4,17 @@ class ProfilesController < ApplicationController
 
   def show
     @user = current_user
+    authorize @profile
   end
 
   def edit
+    authorize @profile
   end
 
   def update
-    @profile = Profile.update(profile_params)
+    @profile.update(profile_params)
     redirect_to profile_path(@profile)
+    authorize @profile
   end
 
 
