@@ -1,5 +1,4 @@
-
-<p style="color: green"><%= notice %></p>
+  <p style="color: green"><%= notice %></p>
 <div class="container d-flex">
   <%# Display of the Map %>
   <div class="row row-cols-2">
@@ -14,7 +13,6 @@
               <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
               <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
               <%= image_tag image_url, class: "card-img-top beach-image" %>
-              <% total_ratings = 0 %>
 
             <% else %>
               <!-- Placeholder image if photo_url is not available -->
@@ -25,8 +23,9 @@
                 <h5 class="card-title fw-1"><%= beach.name %></h5>
             <%# average review display %>
                 <% if beach.reviews.present? %>
-               <% beach.reviews.each do |review| %>
-                <% # total_ratings += review.rating%>
+                <% total_ratings = 0 %>
+                <% beach.reviews.each do |review| %>
+                <% total_ratings += review.rating%>
                 <% end %>
                <% average_rating = total_ratings.to_f / beach.reviews.count %>
                <div class= "d-flex">
