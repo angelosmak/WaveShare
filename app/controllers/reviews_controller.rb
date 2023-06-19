@@ -1,6 +1,13 @@
 class ReviewsController < ApplicationController
-  before_action :set_beach, only: [:new, :create]
+  before_action :set_beach, only: [:index, :new, :create]
   before_action :set_review, only: [:destroy]
+
+  def index
+    @reviews = @beach.reviews
+  end
+
+  def show
+  end
 
   def new
     @review = Review.new
