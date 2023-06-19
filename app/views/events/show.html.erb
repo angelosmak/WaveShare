@@ -11,7 +11,20 @@
       <% end %>
 
       <div class="event-description">
-        <textarea rows="6" readonly><%= @event.description %></textarea>
+        <% @event.user_events.each do |attendance| %>
+          <% if attendance.user.profile.photo.key %>
+            <%= cl_image_tag attendance.user.profile.photo.key ,class:"avatar" %>
+          <% else %>
+            <%= image_tag "default-photo.webp",class:"avatar" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+
+
+      <div class="event-description">
+        <textarea rows="6" readonly><%= @event.user_events.count %></textarea>
       </div>
       <div class="actions">
         <% if policy(@event).edit? %>

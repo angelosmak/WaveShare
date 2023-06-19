@@ -10,11 +10,11 @@ class ProfilePolicy < ApplicationPolicy
     end
 
     def edit?
-      true
+      update?
     end
 
     def update?
-      true
+      record.user == user
     end
 
     def resolve
