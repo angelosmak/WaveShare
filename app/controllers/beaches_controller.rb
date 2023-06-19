@@ -14,7 +14,7 @@ class BeachesController < ApplicationController
         {
           lat: beach.latitude,
           lng: beach.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {beach: beach})
+          info_window_html: render_to_string(partial: "info_window", locals: { beach: })
         }
       end
 
@@ -26,8 +26,8 @@ class BeachesController < ApplicationController
         url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
         query = {
           query: {
-            query: search_query + ' beaches',
-            key: ENV['GOOGLE_MAPS_API_KEY']
+            query: "#{search_query} beaches",
+            key: ENV.fetch('GOOGLE_MAPS_API_KEY', nil)
           }
         }
 
@@ -61,12 +61,12 @@ class BeachesController < ApplicationController
     else
       @beaches = Beach.all
       # markers for the map
-    @markers = @beaches.geocoded.map do |beach|
-      {
-        lat: beach.latitude,
-        lng: beach.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {beach: beach})
-      }
+      @markers = @beaches.geocoded.map do |beach|
+        {
+          lat: beach.latitude,
+          lng: beach.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: { beach: })
+        }
       end
     end
   end

@@ -52,26 +52,35 @@
         <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
         <hr>
         <%# Events %>
+
         <div class="shadow">
-        <h1>Events:</h1>
-        <% @events.each do |event| %>
-          <h2><%= link_to event.title, event_path(event) %></h2>
+          <h1>Events:</h1>
+          <% @events.each do |event| %>
+
+            <button class="btn btn-light position-relative">
+              <h2><%= link_to event.title, event_path(event) %></h2>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <%= event.user_events.count %>
+                <span class="visually-hidden">Attendances</span>
+              </span>
+            </button>
+
           <p><%= event.date %></p>
           <i><%= event.description %></i>
           <p><%= event.user.email %></p>
-          <p><%= event.user_events.count %> people attending</p>
+
+        <% event.user_events.each do |attendance| %>
+          <% if attendance.user.profile.photo.key %>
+            <%= cl_image_tag attendance.user.profile.photo.key ,class:"avatar" %>
+          <% else %>
+            <%= image_tag "default-photo.webp",class:"avatar" %>
+          <% end %>
+        <% end %>
 
           <% if policy(event).edit? %>
           <%= link_to "Edit this event", edit_event_path(event), class:"btn btn-outline-primary" %> |
           <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
           <% end %>
-        <% if UserEvent.where(event: event, user: current_user).empty?%>
-          <%= link_to "Attend", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
-        <% end %>
-        <% unless event.user_events.empty? %>
-          <% user_event = UserEvent.find_by(user: current_user, event: event) %>
-          <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
-        <% end %>
         <% end %>
         <%= link_to 'New Event', new_beach_event_path(@beach), class:"btn btn-outline-primary"%>
         </div>

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_beach, only: [:index, :new, :create]
+  before_action :set_beach, only: %i[index new create]
   before_action :set_review, only: [:destroy]
 
   def index

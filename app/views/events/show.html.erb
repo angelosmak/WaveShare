@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div>image</div>
 <div>Title: name of event</div>
 <div>description</div>
@@ -6,7 +5,7 @@
 <div>event info</div>
 <div>event details</div>
 <div>attendees</div>
-=======
+
 <div class="container">
   <div class="event-details">
     <div class="event-info">
@@ -29,8 +28,13 @@
         <% end %>
       </div>
 
-      <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
-
+<% if UserEvent.where(event: @event, user: current_user).empty?%>
+          <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+        <% end %>
+        <% unless @event.user_events.empty? %>
+          <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
+          <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
+        <% end %>
 
       <div class="event-description">
         <textarea rows="6" readonly><%= @event.user_events.count %></textarea>
@@ -51,4 +55,3 @@
     <%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary m-2' %>
   </div>
 </div>
->>>>>>> master
