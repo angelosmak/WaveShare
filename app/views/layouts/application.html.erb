@@ -18,8 +18,8 @@
   <body><%= render "shared/navbar_beaches_show" %>
 <% elsif controller_name == "events" %>
   <body><%= render "shared/navbar_events_show" %>
-<% else %>
-  <body><%= render "shared/navbar" %>
+<% elsif controller_name == "pages" %>
+  <body><%= render "shared/navbar_pages_home" %>
 <% end %>
 
 <%= render "shared/flashes" %>
