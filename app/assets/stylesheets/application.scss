@@ -65,8 +65,19 @@
   border: 3px solid black;
 }
 
-// HOMEPAGE
+// HOMEPAGE (index)
 
+// map
+.function-map {
+  border: 4px solid green;
+}
+.map-home-container {
+  display: flex;
+  background-color: blue;
+  height: 40vh;
+  justify-content: center;
+  align-items: center;
+}
 .map-home {
   // border: 1px solid black;
   background-color: red;
@@ -83,53 +94,69 @@
   // border: 3px solid green;
 }
 
-.map-home-container {
-  background-color: blue;
-  height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// search
+.function-search {
+  border: 4px solid green;
 }
-
-.search-container {
+.search-home-container {
   height: 12vh;
   background-color: green;
 }
-
 .searchbox-container {
-  height: calc(8vh);
-  background-color: red;
-  border: 1px solid black;
   display: flex;
+  background-color: blue;
+  height: calc(8vh);
+  border: 1px solid black;
   justify-content: center;
   align-items: center;
 }
-
-.searchbox {
+.searchbox-home {
   display: flex;
-  background-color: blue;
+  background-color: red;
   flex-grow: 1;
   margin: 4%;
   height: 64%;
+  justify-content: center;
+  align-items: center;
 }
-
 .searchbox-filters-container {
   height: calc(4vh);
-  background-color: red;
+  background-color: blue;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
+  padding: 2%;
 
 }
-
 .searchbox-filters {
   display: flex;
   flex-grow: 1;
-  background-color: blue;
+  background-color: red;
   margin: 2px;
+  justify-content: center;
+  align-items: center;
 }
 
+// grid
+.function-cardsgrid {
+  // display: flex;
+  border: 4px solid green;
+  // flex-grow: 1;
+  // flex-direction: column;
+
+}
+.cards-home-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  background-color: blue;
+}
+.card {
+  flex-basis: calc(50% - 20px);
+  height: 24vh;
+  margin: 10px;
+}
 // BEACH SHOWPAGE
 
 .header-image-container {
