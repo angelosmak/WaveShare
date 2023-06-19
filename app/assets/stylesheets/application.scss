@@ -65,6 +65,8 @@
   border: 3px solid black;
 }
 
+// HOMEPAGE
+
 .map-home {
   // border: 1px solid black;
   background-color: red;
@@ -126,6 +128,28 @@
   flex-grow: 1;
   background-color: blue;
   margin: 2px;
+}
+
+// BEACH SHOWPAGE
+
+.header-image-container {
+  background-color: blue;
+  height: 24vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -16px;
+}
+
+.header-image {
+
+}
+
+.header-text-container {
+  background-color: red;
+  padding: 8px;
+  border-radius: 16px 16px 0px 0px;
+  // box-shadow: -4px 4px 8px rgba(0,0,0,0.2);
 }
 
 .card-img-top {
