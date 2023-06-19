@@ -27,10 +27,10 @@
                 <% beach.reviews.each do |review| %>
                 <% total_ratings += review.rating%>
                 <% end %>
-               <% average_rating = total_ratings.to_f / beach.reviews.count %>
-               <div class= "d-flex">
-               <i class="fa-solid fa-star" style="color: #ffe71e;"></i><p><%= average_rating %></p>
-               </div>
+                <% average_rating = total_ratings.to_f / beach.reviews.count %>
+                <div class= "d-flex">
+                <i class="fa-solid fa-star" style="color: #ffe71e;"></i><p><%= average_rating %></p>
+                </div>
               <% end %>
               </div>
               <hr>
