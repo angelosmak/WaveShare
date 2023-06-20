@@ -1,30 +1,63 @@
 <div class="navbar-home inFront">
     <%# <button class="buttontext"></button> %>
-    <%= link_to "👈", :back, class: "buttontext" %>
+    <%= link_to "👈", :back %>
     <button class="floatright buttontext">❤️</button>
     <button class="floatright buttontext">📤</button>
 </div>
+
 <div id="wrapper">
-    <div id="a" class="panels">
-      <div class="function-imagemap">
-        <div class="imagemap-button-container">
-          <button onclick="hideImage()" class="button">view map</button>
-          <script>
-            function hideImage() {
-              console.log(document.getElementById("hideimage").classList.toggle("hidden"));
-            }
-          </script>
+  <div id="a" class="panels">
+    <div class="function-imagemap">
+      <div class="imagemap-button-container">
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'map')">view map</button>
+          <button class="tablinks" onclick="openCity(event, 'picure')">pictures</button>
         </div>
-        <div class="header-image-container">
-          <div class="header-image" id="hideimage">
-            <% if @event.photo.key %>
-              <%= cl_image_tag @event.photo.key, class: 'event-image-OFF header-image' %>
-            <% end %>
-          </div>
-          <div class="imagemap-map">
-            map
-          </div>
+      </div>
+      <!-- Tab content -->
+      <div id="map" class="tabcontent">
+      <div class="header-image-container" >
+        <div class="header-image" id="hideimage">
+          <% if @event.photo.key %>
+            <%= cl_image_tag @event.photo.key, class: 'event-image-OFF header-image', data: { "tabs-target" => "hideable" } %>
+          <% end %>
         </div>
+      </div>
+    </div>
+    <div id="picure" class="tabcontent">
+      <div class="map-container">
+        <div style="width: 100%; height: 600px; margin: 0 auto;"
+          data-controller="map"
+          data-tabs-target="hideable"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    </div>
+<script>
+  function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
+
+
         <div class="header-footer-links">
           <%# <button class="buttontext"></button> %>
           <% if policy(@event).edit? %>
