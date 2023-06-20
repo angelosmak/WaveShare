@@ -1,0 +1,22 @@
+<div class="searchbox-home">
+  <nav class="nav-bot ">
+    <% if controller_name != "pages" %>
+      <a class="navbar-brand icons" href="/"><i class="fa-solid fa-house"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      </button>
+    <% end %>
+      <a class="navbar-brand icons" href="/dashboard"><i class="fa-solid fa-table-cells-large"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      </button>
+    <% if controller_name != "beaches" %>
+      <a class="navbar-brand icons" href="/beaches"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      </button>
+    <% end %>
+    <a class="navbar-brand icons" href="/profiles/<%= current_user.profile.id %>"><i class="fa-regular fa-id-card"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    </button>
+    </div>
+
+  </nav>
+</div>
