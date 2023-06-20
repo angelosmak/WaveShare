@@ -13,6 +13,15 @@
           <button class="tablinks" onclick="openCity(event, 'map')">pictures</button>
           <button class="tablinks" onclick="openCity(event, 'picure')">view map</button>
         </div>
+        <div class="header-image-container">
+          <div class="header-image" id="hideimage">
+            <% if @event.photo.key %>
+              <%= cl_image_tag @event.photo.key, class: 'event-image-OFF' %>
+            <% end %>
+          </div>
+          <div class="imagemap-map">
+            map
+          </div>
       </div>
       <!-- Tab content -->
       <div id="map" class="tabcontent">
