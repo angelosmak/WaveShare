@@ -30,6 +30,7 @@
 
 .imagemap-map {
   background-color: red;
+  visibility: hidden;
 
 }
 
@@ -115,7 +116,7 @@
   width:100%;
   z-index:1000;
 }
-#a{
+#a  {
   background:#eee;
   position:fixed;
   color:white;
@@ -125,7 +126,7 @@
   min-height:100%;
   z-index:1000;
 }
-#b{
+#b  {
   margin-top: calc(28vh - 24px);
   border-radius: 16px 16px 0px 0px;
   background: white;
@@ -133,6 +134,7 @@
   min-height: 100%;
   z-index: 1000;
 }
+
 
 .buttontext {
   // background-color: #f4511e;
@@ -151,9 +153,6 @@
   padding-top: 2px;
   padding-bottom: 2px;
 }
-
-
-
 .buttontext:hover {opacity: 1}
 
 .navbar-home {
@@ -168,8 +167,48 @@
   z-index: 100000;
 
 }
-
 .floatright {
   float: right;
   margin-left: 8px;
+}
+
+// Tabs in Showpage
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  // display: block;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.dontdisplaycontent {
+  display: none;
 }
