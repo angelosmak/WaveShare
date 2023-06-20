@@ -17,14 +17,20 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
   </head>
+  <body>
 
-<% if controller_name == "beaches" %>
-  <body><%= render "shared/navbar_beaches_show" %>
-<% elsif controller_name == "events" %>
-  <body><%= render "shared/navbar_events_show" %>
-<% elsif controller_name == "pages" %>
-  <body><%= render "shared/navbar_pages_home" %>
-<% end %>
+
+  <%= render "shared/navbar_bottom" %>
+
+<%# Commented out %>
+  <% if controller_name == "beaches" %>
+    <body><%= render "shared/navbar_beaches_show" %>
+  <% elsif controller_name == "events" %>
+    <body><%= render "shared/navbar_events_show" %>
+  <% elsif controller_name == "pages" %>
+    <body><%= render "shared/navbar_pages_home" %>
+  <% end %>
+<%# Commented out %>
 
 <%= render "shared/flashes" %>
 
