@@ -78,3 +78,47 @@
   </div>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="Events" class=" tabcontent dontdisplaycontent">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <div class="card-body py-4 mt-2">
+                <div class="d-flex justify-content-center mb-4">
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <% else %>
+                        <%# else put another picture from assets %>
+                      <%= image_tag "broken-beach.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
+                </div>
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                    <p><%= event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                  <p class="mb-2">
+                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  </p>
+                    <%# displaying star-events %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>

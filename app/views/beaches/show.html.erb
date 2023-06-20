@@ -132,27 +132,48 @@
 </div>
 
           <%# Eventstab %>
-          <div id="Events" class="tabcontent dontdisplaycontent">
-            <% @events.each do |event| %>
-            <h2><%= link_to event.title, event_path(event) %></h2>
-            <p><%= event.date.strftime("%B %d %Y") %></p>
-            <p><%= event.description %></p>
-            <p><%= event.user.email %></p>
-
-            <% if policy(event).edit? %>
-            <%= link_to "Edit this event", edit_event_path(event) %> |
-            <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
-            <% end %>
-            <% if UserEvent.where(event: event, user: current_user).empty?%>
-              <%= link_to "Attend", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
-            <% end %>
-            <% unless event.user_events.empty? %>
-            <% user_event = UserEvent.find_by(user: current_user, event: event) %>
-            <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
-            <% end %>
-            <% end %>
-            <%= link_to 'New Event', new_beach_event_path(@beach) %>
+  <div id="Events" class=" tabcontent dontdisplaycontent">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <a href="/events/<%= event.id %>">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                      <% if event.photo.key %>
+                        <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                      <% else %>
+                          <%# else put another picture from assets %>
+                        <%= image_tag "broken-beach.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% end %>
+                  </div>
+                    <h5 class="font-weight-bold"><%= event.title %></h5>
+                    <p class="mb-2">
+                      <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li>
+                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                      </li>
+                      <li>
+                      </li>
+                    </ul>
+                      <%# displaying star-events %>
+                </div>
+              </a>
+            </div>
           </div>
+        <% end %>
+      </div>
+    </div>
+                  <%= link_to 'New Event', new_beach_event_path(@beach), class:"btn btn-outline-primary"%>
+  </section>
+</div>
+
+
+
           <script>
           function openCity(evt, cityName) {
             var i, tabcontent, tablinks;
