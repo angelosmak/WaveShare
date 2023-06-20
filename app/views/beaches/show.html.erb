@@ -1,6 +1,6 @@
 
 <div class="navbar-home">
-    <button class="buttontext">👈</button>
+    <%= link_to "👈", :back %>
     <button class="floatright buttontext">❤️</button>
     <button class="floatright buttontext">📤</button>
 </div>
@@ -87,7 +87,7 @@
           <div class="tab">
             <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
             <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
-           </div>
+          </div>
 <%# Reviewstab %>
 <div id="Reviews" class="tabcontent">
   <section style="color: #000; background-color: #f3f2f2;">
@@ -132,7 +132,7 @@
 </div>
 
           <%# Eventstab %>
-           <div id="Events" class="tabcontent dontdisplaycontent">
+          <div id="Events" class="tabcontent dontdisplaycontent">
             <% @events.each do |event| %>
             <h2><%= link_to event.title, event_path(event) %></h2>
             <p><%= event.date.strftime("%B %d %Y") %></p>
