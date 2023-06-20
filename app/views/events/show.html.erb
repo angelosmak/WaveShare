@@ -1,5 +1,4 @@
 <div class="navbar-home inFront">
-    <%# <button class="buttontext"></button> %>
     <%= link_to "👈", :back %>
     <button class="floatright buttontext">❤️</button>
     <button class="floatright buttontext">📤</button>
@@ -10,21 +9,11 @@
     <div class="function-imagemap">
       <div class="imagemap-button-container">
         <div class="tab">
-          <button class="tablinks" onclick="openCity(event, 'map')">pictures</button>
-          <button class="tablinks" onclick="openCity(event, 'picure')">view map</button>
+          <button class="tablinks" onclick="openCity(event, 'map')">map</button>
+          <button class="tablinks" onclick="openCity(event, 'picture')">picture</button>
         </div>
-        <div class="header-image-container">
-          <div class="header-image" id="hideimage">
-            <% if @event.photo.key %>
-              <%= cl_image_tag @event.photo.key, class: 'event-image-OFF' %>
-            <% end %>
-          </div>
-          <div class="imagemap-map">
-            map
-          </div>
-      </div>
       <!-- Tab content -->
-      <div id="map" class="tabcontent">
+      <div id="picture" class="tabcontent">
       <div class="header-image-container" >
         <div class="header-image" id="hideimage">
           <% if @event.photo.key %>
@@ -33,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div id="picure" class="tabcontent">
+    <div id="map" class="tabcontent">
       <div class="map-container">
         <div style="width: 100%; height: 600px; margin: 0 auto;"
           data-controller="map"
@@ -43,6 +32,18 @@
         </div>
       </div>
     </div>
+    <div class="header-footer-links">
+      <%# <button class="buttontext"></button> %>
+      <% if policy(@event).edit? %>
+        <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pen header-footer-button" %>
+      <% end %>
+      <% if policy(@event).destroy? %>
+        <%= link_to "", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa-solid fa-trash header-footer-button" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <script>
   function openCity(evt, cityName) {
     // Declare all variables
@@ -67,22 +68,6 @@
 </script>
 
 
-        <div class="header-footer-links">
-          <%# <button class="buttontext"></button> %>
-          <% if policy(@event).edit? %>
-            <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pen header-footer-button" %>
-          <% end %>
-          <% if policy(@event).destroy? %>
-            <%= link_to "", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa-solid fa-trash header-footer-button" %>
-          <% end %>
-          <%# <button class="fa-solid fa-pen header-footer-button"></button> %>
-          <%# <button class="fa-solid fa-trash header-footer-button"></button> %>
-        </div>
-        <%# <div class="header-map-container">
-          <div class="header-map">map</div>
-        </div> %>
-      </div>
-    </div>
     <div id="c" class="panels">
       <div class="section-header-text">
         <div class="header-text-container">

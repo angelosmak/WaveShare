@@ -139,15 +139,6 @@ actions {
   z-index: 999999999;
 }
 
-.inFront {
-  pointer-events: none;
-  // position: absolute;
-  // top: 25px; left: 25px;
-  // right: 25px; height: 150px;
-  // border: 3px solid red;
-  // background: rgba(0, 0, 0, .5);
-}
-
 .inFront > * {
   pointer-events: auto;
 }
