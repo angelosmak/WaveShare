@@ -1,3 +1,8 @@
+<div class="navbar-home">
+    <button class="buttontext">👈</button>
+    <button class="floatright buttontext">❤️</button>
+    <button class="floatright buttontext">📤</button>
+</div>
 <div id="wrapper">
     <div id="a" class="panels">
       <div class="function-imagemap">
@@ -38,23 +43,18 @@
               <p class="display-3" id="header-address"> <%= @beach.address %>
               </p>
             </div>
-          <div class="header-text-reviews-container">
-            <% if @beach.reviews.present? %>
-                <% total_ratings = 0 %>
-                <% @beach.reviews.each do |review| %>
-                <% total_ratings += review.rating%>
-                <% end %>
-                <% average_rating = total_ratings.to_f / @beach.reviews.count %>
-
-
-              <%= average_rating %>
-              <p class="fa-solid fa-star" ></p>
-               -
-              <%= @beach.reviews.count %> Reviews
-            <% end %>
-
-            <div>reviews counter/link</div>
-          </div>
+            <div class="header-text-reviews-container">
+              <% total_ratings = 0 %>
+              <% if @beach.reviews.present? %>
+                  <% @beach.reviews.each do |review| %>
+                  <% total_ratings += review.rating %>
+                  <% end %>
+                  <% average_rating = total_ratings.to_f / @beach.reviews.count %>
+                <%= average_rating %>
+                <p class="fa-solid fa-star" > - </p>
+                <%= @beach.reviews.count %> Reviews
+              <% end %>
+            </div>
           <h1>Reviews:</h1>
             <% @reviews.each do |review| %>
               <h2><%= review.title %></h2>
