@@ -35,15 +35,16 @@
 #function-search {
   // border: 1px solid rgba(255, 255, 255, 0.5);
   overflow: hidden;
+  background-color: blue;
 }
 .search-home-container {
-  height: 12vh;
-  // background-color: green;
+  height: 16vh;
+  background-color: blue;
 }
 .searchbox-container {
   display: flex;
   background-color: blue;
-  height: calc(8vh);
+  height: calc(10vh);
   border: 1px solid black;
   justify-content: center;
   align-items: center;
@@ -58,14 +59,14 @@
   align-items: center;
 }
 .searchbox-filters-container {
-  height: calc(4vh);
+  height: calc(6vh);
   background-color: blue;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 2%;
-  border-radius: 0px 0px 16px 16px;
+  // border: 1px solid black;
+  padding: 4%;
+  // border-radius: 0px 0px 16px 16px;
 }
 .searchbox-filters {
   display: flex;
@@ -74,6 +75,25 @@
   margin: 2px;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes curve {
+  from {border-radius: 0px 0px 0px 0px;}
+  to {border-radius: 0px 0px 16px 16px;}
+}
+.curveanimation {
+  animation-name: curve;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.curveanimationreverse {
+  animation-direction: reverse;
+  animation-name: curve;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 // search behaviour
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
@@ -108,7 +128,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  background-color: blue;
+  background-color: red;
 }
 .card-home {
   display: flex;

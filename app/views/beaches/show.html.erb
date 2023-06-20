@@ -1,120 +1,73 @@
-<div class="function-image-show">
-  <div class="header-image-container">
-    <div class="header-image">image</div>
-  </div>
-</div>
-
-<div class="section-header-text">
-  <div class="header-text-container">
-      <div class="header-title">
-        <p class="display-1"> Title: name of beach</p>
+<div id="wrapper">
+    <div id="a" class="panels">
+      <div class="function-imagemap">
+        <div class="imagemap-button-container">
+          <button onclick="hideImage()" class="button">view map</button>
+        <script>
+          function hideImage() {
+            // document.getElementById('hideimage').innerHTML.toggle("");
+            document.getElementById("hideimage").classList.toggle("hidden");
+          }
+        </script>
+        </div>
+        <div class="header-image-container">
+          <div class="header-image" id="hideimage">
+            <%= render 'shared/imagemap_image' %>
+          </div>
+          <div class="imagemap-map">
+            map
+          </div>
+        </div>
+        <%# <div class="header-map-container">
+          <div class="header-map">map</div>
+        </div> %>
       </div>
-      <div class="header-description">
-        <p class="display-2"> Description</p>
-      </div>
-      <div class="header-address">
-        <p class="display-3"> Address</p>
-      </div>
-    <div class="header-text-reviews-container">
-      <div>average rating</div>
-      <div>reviews counter/link</div>
     </div>
-  </div>
-</div>
-<div>beach info</div>
-<div>events</div>
-<div class="container">
+    <div id="b" class="panels">
+      <div class="section-header-text">
+        <div class="header-text-container">
+            <div class="header-title-container">
+              <p class="display-1" id="header-title"> <%= @beach.name %>
+              </p>
+            </div>
+            <div class="header-description-container">
+              <p class="display-2" id="header-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+            <div class="header-address-container">
+              <p class="display-3" id="header-address"> <%= @beach.address %>
+              </p>
+            </div>
+          <div class="header-text-reviews-container">
+            <% if @beach.reviews.present? %>
+                <% total_ratings = 0 %>
+                <% @beach.reviews.each do |review| %>
+                <% total_ratings += review.rating%>
+                <% end %>
+                <% average_rating = total_ratings.to_f / @beach.reviews.count %>
 
-<p>OLD BELOW </p>
 
-<% if @beach.photo_url.present? %>
-  <% photo_reference = @beach.photo_url %>
-  <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
-  <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
-  </div>
-  <%= image_tag image_url, class: "beach-show" %><div class="container relative">
-  <% end %>
-  <div class="row">
-    <div class="col-8 ">
-      <div class="flat-show-card shadow-lg p-3 mb-3 bg-body-tertiary rounded">
-        <h2><%= @beach.name %></h2>
-        <p><%= @beach.address %></p>
-      </div>
-      <div class="beach-show-card shadow-lg p-3 mb-3 bg-body-tertiary rounded">
-        <h3>A bit more about this beach...</h3>
-        <hr>
-        <p><%= @beach.description %></p>
-        <div class="shadow">
-        <%# Reviews %>
-        <h1>Reviews:</h1>
-        <% @reviews.each do |review| %>
-          <h2><%= review.title %></h2>
-          <p><%= review.content %></p>
-          <p><%= review.user.email %></p>
-          <%# displaying star-reviews %>
-          <p><% review.rating.times do %>
-            <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+              <%= average_rating %>
+              <p class="fa-solid fa-star" ></p>
+               -
+              <%= @beach.reviews.count %> Reviews
             <% end %>
-          <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
-          <% end %>
-        <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
-        <hr>
-        <%# Events %>
 
-        <div class="shadow">
-          <h1>Events:</h1>
-          <% @events.each do |event| %>
-
-            <button class="btn btn-light position-relative">
-              <h2><%= link_to event.title, event_path(event) %></h2>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <%= event.user_events.count %>
-                <span class="visually-hidden">Attendances</span>
-              </span>
-            </button>
-
-          <p><%= event.date %></p>
-          <i><%= event.description %></i>
-          <p><%= event.user.email %></p>
-
-        <% event.user_events.each do |attendance| %>
-          <% if attendance.user.profile.photo.key %>
-            <%= cl_image_tag attendance.user.profile.photo.key ,class:"avatar" %>
-          <% else %>
-            <%= image_tag "default-photo.webp",class:"avatar" %>
-          <% end %>
-        <% end %>
-
-          <% if policy(event).edit? %>
-          <%= link_to "Edit this event", edit_event_path(event), class:"btn btn-outline-primary" %> |
-          <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
-          <% end %>
-        <% end %>
-        <%= link_to 'New Event', new_beach_event_path(@beach), class:"btn btn-outline-primary"%>
-        </div>
-
+            <div>reviews counter/link</div>
+          </div>
+          <h1>Reviews:</h1>
+            <% @reviews.each do |review| %>
+              <h2><%= review.title %></h2>
+              <p><%= review.content %></p>
+              <p><%= review.user.email %></p>
+              <%# displaying star-reviews %>
+              <p><% review.rating.times do %>
+                <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                <% end %>
+              <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
+              <% end %>
+            <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
         </div>
       </div>
     </div>
-    <div id="sticky" class="col-4 py-3 ">
-<%# Stimulus controller for Weather API %>
-  <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
-    <div class="card-product">
-      <img data-beach-weather-target="icon">
-      <div class="card-product-infos">
-        <h2>Weather Conditions</h2>
-        <p data-beach-weather-target="description"></p>
-
-        <p data-beach-weather-target="temperature" style="display: inline;">
-          <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i></p>
-
-        <p data-beach-weather-target="Windspeed">
-          <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i></p>
-
-        <p data-beach-weather-target="Winddirection">
-          <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
-      </div>
-    </div>
-  </div>
-
-    </div>
+</div>

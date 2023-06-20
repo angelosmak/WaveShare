@@ -1,21 +1,135 @@
 // BEACH SHOWPAGE
-
+.function-imagemap {
+  // display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-bottom: 16px;
+}
 .header-image-container {
-  background-color: blue;
-  height: 24vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // background-color: green;
+  height: 32vh;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   margin-bottom: -16px;
 }
 
 .header-image {
+    display: flex;
+    background-color: green;
+    height: 32vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    // visibility: hidden;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.imagemap-map {
+  background-color: red;
 
 }
 
 .header-text-container {
-  background-color: red;
+  // display: flex;
+  background-color: white;
   padding: 8px;
   border-radius: 16px 16px 0px 0px;
+
   // box-shadow: -4px 4px 8px rgba(0,0,0,0.2);
+}
+.header-title-container {
+  margin-bottom: -2vh;
+}
+.header-description-container {
+  margin-bottom: -2vh;
+}
+.header-address-container {
+  margin-bottom: 2vh;
+  padding-right: 8px;
+
+}
+#header-title {
+  padding: 4px;
+  font-size: 4vh;
+  // font-weight: 500;
+  margin-bottom: 8px;
+  font-family: 'Bowlby One SC', cursive;
+}
+#header-description {
+  padding-left: 4px;
+  font-size: 3vh;
+  font-weight: 500;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  font-family: 'Dongle', sans-serif;
+  line-height: 0.6;
+  letter-spacing: -0.8px;
+  padding-right: 32px;
+}
+#header-address {
+  padding-left: 4px;
+  font-size: 2vh;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-family: 'Dongle', sans-serif;
+  text-align: right;
+}
+
+.imagemap-button-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+}
+.button {
+  background-color: rgba(185, 185, 185, 0.4);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  // margin: 4px 2px;
+  cursor: pointer;
+}
+
+#wrapper {
+  position:absolute;
+  height:100%;
+  width:100%;
+}
+.panels {
+  position: relative;
+  // height:100%;
+  // min-height:100%;
+  width:100%;
+  z-index:1000;
+}
+#a{
+  background:#eee;
+  position:fixed;
+  color:white;
+  top:0;
+  z-index:-99;
+  height:100%;
+  min-height:100%;
+  z-index:1000;
+}
+#b{
+  margin-top: calc(28vh - 24px);
+  border-radius: 16px 16px 0px 0px;
+  background: white;
+  height: 100%;
+  min-height: 100%;
+  z-index: 1000;
 }

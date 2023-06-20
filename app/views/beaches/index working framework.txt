@@ -12,3 +12,15 @@
     <div class="searchbox-filters">filter 6</div>
   </div>
 </div>
+
+
+
+     // function toggleHide() {
+          //   // document.getElementById('hideimage').innerHTML = "";
+          //     if document.getElementById('hideimage').innerHTML === "<%= render 'shared/imagemap_image' %>" {
+          //     document.getElementById('hideimage').innerHTML = "";
+          //   } else {
+          //     document.getElementById('hideimage').innerHTML = "<%= render 'shared/imagemap_image' %>";
+          //   }
+              // document.getElementById('hideimage').innerHTML.toggle("");
+}

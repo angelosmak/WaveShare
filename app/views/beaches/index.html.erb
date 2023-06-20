@@ -45,8 +45,12 @@ var sticky = functionSearch.offsetTop;
 function myFunction() {
   if (window.pageYOffset >= sticky) {
     functionSearch.classList.add("sticky")
+    // functionSearch.classList.remove("curveanimationreverse");
+    functionSearch.classList.add("curveanimation")
   } else {
     functionSearch.classList.remove("sticky");
+    functionSearch.classList.remove("curveanimation");
+    // functionSearch.classList.add("curveanimationreverse");
   }
 }
 </script>
