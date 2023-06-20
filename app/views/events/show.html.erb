@@ -9,12 +9,12 @@
       <div class="function-imagemap">
         <div class="imagemap-button-container">
           <button onclick="hideImage()" class="button">view map</button>
-        <script>
-          function hideImage() {
-            // document.getElementById('hideimage').innerHTML.toggle("");
-            document.getElementById("hideimage").classList.toggle("hidden");
-          }
-        </script>
+          <script>
+            function hideImage() {
+              // document.getElementById('hideimage').innerHTML.toggle("");
+              document.getElementById("hideimage").classList.toggle("hidden");
+            }
+          </script>
         </div>
         <div class="header-image-container">
           <div class="header-image" id="hideimage">
@@ -25,6 +25,17 @@
           <div class="imagemap-map">
             map
           </div>
+        </div>
+        <div class="header-footer-links">
+          <%# <button class="buttontext"></button> %>
+          <% if policy(@event).edit? %>
+            <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pen header-footer-button" %>
+          <% end %>
+          <% if policy(@event).destroy? %>
+            <%= link_to "", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa-solid fa-trash header-footer-button" %>
+          <% end %>
+          <%# <button class="fa-solid fa-pen header-footer-button"></button> %>
+          <%# <button class="fa-solid fa-trash header-footer-button"></button> %>
         </div>
         <%# <div class="header-map-container">
           <div class="header-map">map</div>
@@ -79,12 +90,14 @@
                 <div class="event-description">
                 </div>
                 <div class="actions">
-                  <% if policy(@event).edit? %>
-                    <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-primary mt-2' %>
-                  <% end %>
-                  <% if policy(@event).destroy? %>
-                    <%= button_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary mt-2' %>
-                  <% end %>
+                <%# comment out %>
+                  <%# if policy(@event).edit? %>
+                    <%# <%=# link_to "Edit", edit_event_path(@event), class: 'btn btn-primary mt-2' %>
+                  <%# end %>
+                  <%# if policy(@event).destroy? %>
+                    <%# <%=# button_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary mt-2' %>
+                  <% #end %>
+                <%# comment out %>
               </div>
         </div>
       </div>
