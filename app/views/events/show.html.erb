@@ -1,6 +1,6 @@
-<div class="navbar-home">
+<div class="navbar-home inFront">
     <%# <button class="buttontext"></button> %>
-    <%= link_to "👈", :back %>
+    <%= link_to "👈", :back, class: "buttontext" %>
     <button class="floatright buttontext">❤️</button>
     <button class="floatright buttontext">📤</button>
 </div>
@@ -11,8 +11,7 @@
           <button onclick="hideImage()" class="button">view map</button>
           <script>
             function hideImage() {
-              // document.getElementById('hideimage').innerHTML.toggle("");
-              document.getElementById("hideimage").classList.toggle("hidden");
+              console.log(document.getElementById("hideimage").classList.toggle("hidden"));
             }
           </script>
         </div>
