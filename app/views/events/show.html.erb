@@ -1,4 +1,5 @@
 <div class="navbar-home inFront">
+    <%# <button class="buttontext"></button> %>
     <%= link_to "👈", :back %>
     <button class="floatright buttontext">❤️</button>
     <button class="floatright buttontext">📤</button>
@@ -9,15 +10,18 @@
     <div class="function-imagemap">
       <div class="imagemap-button-container">
         <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'picture')">pictures</button>
           <button class="tablinks" onclick="openCity(event, 'map')">map</button>
-          <button class="tablinks" onclick="openCity(event, 'picture')">picture</button>
         </div>
+      </div>
       <!-- Tab content -->
       <div id="picture" class="tabcontent">
       <div class="header-image-container" >
         <div class="header-image" id="hideimage">
           <% if @event.photo.key %>
-            <%= cl_image_tag @event.photo.key, class: 'event-image-OFF header-image', data: { "tabs-target" => "hideable" } %>
+            <%= cl_image_tag @event.photo.key, class: 'event-image-OFF header-image' %>
+          <% else %>
+            <%= image_tag "broken-beach.jpg",class:"event-image-OFF header-image" %>
           <% end %>
         </div>
       </div>
@@ -28,22 +32,12 @@
           data-controller="map"
           data-tabs-target="hideable"
           data-map-markers-value="<%= @markers.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          data-map-center="<%= [@event.beach.latitude, @event.beach.longitude].to_json %>">
+
         </div>
       </div>
     </div>
-    <div class="header-footer-links">
-      <%# <button class="buttontext"></button> %>
-      <% if policy(@event).edit? %>
-        <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pen header-footer-button" %>
-      <% end %>
-      <% if policy(@event).destroy? %>
-        <%= link_to "", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa-solid fa-trash header-footer-button" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
 <script>
   function openCity(evt, cityName) {
     // Declare all variables
@@ -68,6 +62,22 @@
 </script>
 
 
+        <div class="header-footer-links">
+          <%# <button class="buttontext"></button> %>
+          <% if policy(@event).edit? %>
+            <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pen header-footer-button" %>
+          <% end %>
+          <% if policy(@event).destroy? %>
+            <%= link_to "", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa-solid fa-trash header-footer-button" %>
+          <% end %>
+          <%# <button class="fa-solid fa-pen header-footer-button"></button> %>
+          <%# <button class="fa-solid fa-trash header-footer-button"></button> %>
+        </div>
+        <%# <div class="header-map-container">
+          <div class="header-map">map</div>
+        </div> %>
+      </div>
+    </div>
     <div id="c" class="panels">
       <div class="section-header-text">
         <div class="header-text-container">
@@ -113,7 +123,6 @@
                   <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
                   <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
                 <% end %>
-                <div class="event-description">
                 </div>
                 <div class="actions">
                 <%# comment out %>
