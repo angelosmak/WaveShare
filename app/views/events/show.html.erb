@@ -50,9 +50,9 @@
               <div class="attendees-avatar-container">
                 <% @event.user_events.each do |attendance| %>
                   <% if attendance.user.profile.photo.key %>
-                    <%= cl_image_tag attendance.user.profile.photo.key , class:"attendees-avatar avatar" %>
+                    <%= cl_image_tag attendance.user.profile.photo.key , class:"attendees-avatar avatar-OFF" %>
                   <% else %>
-                    <%= image_tag "default-photo.webp", class:"attendees-avatar avatar" %>
+                    <%= image_tag "default-photo.webp", class:"attendees-avatar avatar-OFF" %>
                   <% end %>
                 <% end %>
               </div>

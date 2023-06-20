@@ -52,21 +52,27 @@ actions {
   height: 32px;
   padding: 2px;
   width: 32px;
+  border-radius: 50%;
 }
 
 .attendees-avatar-container {
   margin-bottom: -8px;
 }
 
+.attendees-counter-container {
+  margin-top: -20px;
+  /* margin-left: 8px; */
+  z-index: 1;
+  position: absolute;
+}
+
 .header-info {
-  padding-left: 16px;
+  padding-left: 8px;
+  padding-top: 12px;
   font-family: 'Dongle', sans-serif;
   font-size: 20px;
-  background-color: #fff;
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), white 48%);
   /* position: fixed; */
   z-index: 1;
 
-    p {
-      background-color: #fff;
-    }
 }
