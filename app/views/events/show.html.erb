@@ -1,57 +1,51 @@
-<div>image</div>
-<div>Title: name of event</div>
-<div>description</div>
-<div>address</div>
-<div>event info</div>
-<div>event details</div>
-<div>attendees</div>
-
-<div class="container">
-  <div class="event-details">
-    <div class="event-info">
-      <div class="event-header">
-        <h4 class="event-date"><%= @event.date %></h4>
-        <h2 class="event-title"><%= @event.title %></h2>
-      </div>
-
-      <% if @event.photo.key %>
-        <%= cl_image_tag @event.photo.key, class: 'event-image' %>
-      <% end %>
-
-      <div class="event-description">
-        <% @event.user_events.each do |attendance| %>
-          <% if attendance.user.profile.photo.key %>
-            <%= cl_image_tag attendance.user.profile.photo.key ,class:"avatar" %>
-          <% else %>
-            <%= image_tag "default-photo.webp",class:"avatar" %>
-          <% end %>
-        <% end %>
-      </div>
-
-<% if UserEvent.where(event: @event, user: current_user).empty?%>
-          <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
-        <% end %>
-        <% unless @event.user_events.empty? %>
-          <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
-          <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
-        <% end %>
-
-      <div class="event-description">
-        <textarea rows="6" readonly><%= @event.user_events.count %></textarea>
-      </div>
-      <div class="actions">
-        <% if policy(@event).edit? %>
-          <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-primary mt-2' %>
-        <% end %>
-        <% if policy(@event).destroy? %>
-          <%= button_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary mt-2' %>
-        <% end %>
+<div class="navbar-home">
+    <button class="buttontext">👈</button>
+    <button class="floatright buttontext">❤️</button>
+    <button class="floatright buttontext">📤</button>
+</div>
+<div id="wrapper">
+    <div id="a" class="panels">
+      <div class="function-imagemap">
+        <div class="imagemap-button-container">
+          <button onclick="hideImage()" class="button">view map</button>
+        <script>
+          function hideImage() {
+            // document.getElementById('hideimage').innerHTML.toggle("");
+            document.getElementById("hideimage").classList.toggle("hidden");
+          }
+        </script>
+        </div>
+        <div class="header-image-container">
+          <div class="header-image" id="hideimage">
+            <% if @event.photo.key %>
+              <%= cl_image_tag @event.photo.key, class: 'event-image' %>
+            <% end %>
+          </div>
+          <div class="imagemap-map">
+            map
+          </div>
+        </div>
+        <%# <div class="header-map-container">
+          <div class="header-map">map</div>
+        </div> %>
       </div>
     </div>
-  </div>
-
-  <div class="buttons">
-    <%= link_to 'All Events', events_path, class: 'btn btn-primary m-2' %>
-    <%= link_to 'Back to the Beach', beach_path(@event.beach), class: 'btn btn-primary m-2' %>
-  </div>
+    <div id="b" class="panels">
+      <div class="section-header-text">
+        <div class="header-text-container">
+            <div class="header-title-container">
+              <p class="display-1" id="header-title"> <%= @event.title %>
+              </p>
+            </div>
+            <div class="header-description-container">
+              <p class="display-2" id="header-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+            <div class="header-address-container">
+              <p class="display-3" id="header-address"> <%= @event.beach.address %>
+              </p>
+            </div>
+        </div>
+      </div>
+    </div>
 </div>
