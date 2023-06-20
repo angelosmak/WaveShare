@@ -19,7 +19,7 @@
         <div class="header-image-container">
           <div class="header-image" id="hideimage">
             <% if @event.photo.key %>
-              <%= cl_image_tag @event.photo.key, class: 'event-image' %>
+              <%= cl_image_tag @event.photo.key, class: 'event-image-OFF header-image' %>
             <% end %>
           </div>
           <div class="imagemap-map">
@@ -31,7 +31,7 @@
         </div> %>
       </div>
     </div>
-    <div id="b" class="panels">
+    <div id="c" class="panels">
       <div class="section-header-text">
         <div class="header-text-container">
             <div class="header-title-container">
@@ -46,6 +46,46 @@
               <p class="display-3" id="header-address"> <%= @event.beach.address %>
               </p>
             </div>
+            <div class="header-attendees-container">
+              <div class="attendees-avatar-container">
+                <% @event.user_events.each do |attendance| %>
+                  <% if attendance.user.profile.photo.key %>
+                    <%= cl_image_tag attendance.user.profile.photo.key , class:"attendees-avatar avatar" %>
+                  <% else %>
+                    <%= image_tag "default-photo.webp", class:"attendees-avatar avatar" %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="attendees-counter-container">
+                <p class="header-info"><%= @event.user_events.count %>
+                  <% if @event.user_events.count == 1 %>
+                    <%= "person attending" %>
+                  <% else %>
+                    <%= "people attending" %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+              <div class="event-description">
+                <%# end of user_events loop %>
+                <%# end of user_events loop %>
+                <% if UserEvent.where(event: @event, user: current_user).empty?%>
+                  <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+                <% end %>
+                <% unless @event.user_events.empty? %>
+                  <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
+                  <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
+                <% end %>
+                <div class="event-description">
+                </div>
+                <div class="actions">
+                  <% if policy(@event).edit? %>
+                    <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-primary mt-2' %>
+                  <% end %>
+                  <% if policy(@event).destroy? %>
+                    <%= button_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary mt-2' %>
+                  <% end %>
+              </div>
         </div>
       </div>
     </div>

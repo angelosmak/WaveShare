@@ -32,3 +32,41 @@ actions {
   margin-top: 20px;
   text-align: right;
 }
+
+#c  {
+  margin-top: calc(21vh - 24px);
+  border-radius: 16px 16px 0px 0px;
+  background: white;
+  height: 100%;
+  min-height: 100%;
+  z-index: 1000;
+}
+
+.header-info {
+  font-size: 12px;
+}
+
+.attendees-avatar {
+  border: 2px solid goldenrod;
+  box-shadow: 2px 2px 0px rgba(124, 123, 123, 0.4);
+  height: 32px;
+  padding: 2px;
+  width: 32px;
+}
+
+.attendees-avatar-container {
+  margin-bottom: -8px;
+}
+
+.header-info {
+  padding-left: 16px;
+  font-family: 'Dongle', sans-serif;
+  font-size: 20px;
+  background-color: #fff;
+  /* position: fixed; */
+  z-index: 1;
+
+    p {
+      background-color: #fff;
+    }
+}
