@@ -1,58 +1,89 @@
-<div class="function-map">
-  <div class="map-home-container">
-    <div class="map-home">
-<%# map code goes here %>
+<p style="color: green"><%= notice %></p>
+
+<div class="main-container">
+  <div class="map-container">
+    <div style="width: 80%; height: 600px; margin: 0 auto;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-</div>
 
-<div id="function-search">
-  <div class="search-home-container">
-    <div class="searchbox-container">
-      <div class="searchbox-home">Search</div>
-    </div>
-    <div class="searchbox-filters-container">
-      <div class="searchbox-filters">filter 1</div>
-      <div class="searchbox-filters">filter 2</div>
-      <div class="searchbox-filters">filter 3</div>
-      <div class="searchbox-filters">filter 4</div>
-      <div class="searchbox-filters">filter 5</div>
-      <div class="searchbox-filters">filter 6</div>
-    </div>
+  <%# searchfield %>
+
+  <div class="searchbar">
+    <%= form_tag beaches_path, method: :get do %>
+      <div class="search-form-control">
+        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "form-control" %>
+        <%= submit_tag 'Search', class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="beachcards">
+    <%# Display of each Beach instance in a card with a photo and a title and address underneath %>
+    <% if @beaches.present? %>
+      <% @beaches.each do |beach| %>
+        <div id="beach-card" class="col-md-6">
+          <%= link_to(beach_path(beach), { class: ' text-decoration-none'}) do %>
+            <div class="card beach-card shadow mb-3">
+              <% if beach.photo_url.present? %>
+                <% photo_reference = beach.photo_url %>
+                <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
+                <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
+                <%= image_tag image_url, class: "card-img-top beach-image" %>
+              <% else %>
+                <!-- Placeholder image if photo_url is not available -->
+                <%= image_tag "broken-beach.jpg", class: " beach-image" %>
+              <% end %>
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title fw-1"><%= beach.name %></h5>
+                  <%# average review display %>
+                  <% if beach.reviews.present? %>
+                    <% total_ratings = 0 %>
+                    <% beach.reviews.each do |review| %>
+                      <% total_ratings += review.rating %>
+                    <% end %>
+                    <% average_rating = total_ratings.to_f / beach.reviews.count %>
+                    <div class="d-flex">
+                      <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                      <p><%= average_rating %></p>
+                    </div>
+                  <% end %>
+                </div>
+                <hr>
+                <p class="card-text"><%= beach.address %></p>
+
+                <%# Stimuus Controller for Weather API %>
+                <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
+                  <div class="card-product-infos card shadow p-2">
+                    <h5><img data-beach-weather-target="icon"> <strong>Weather Conditions</strong></h5>
+                    <div class="col">
+                      <p data-beach-weather-target="description"></p>
+                    </div>
+                    <hr>
+                    <div class="row d-flex">
+                      <div class="col">
+                        <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
+                        <p data-beach-weather-target="Windspeed"></p>
+                      </div>
+                      <div class="col">
+                        <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i>
+                        <p data-beach-weather-target="temperature"></p>
+                      </div>
+                      <div class="col">
+                        <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
+                        <p data-beach-weather-target="Winddirection"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
-<div class="function-cardsgrid">
-  <div class="cardsgrid-header-container">
-    <h3 class="cardsgrid-header">Beaches and events near you</h3>
-  </div>
-  <div class="cards-home-container">
-    <%= render "shared/home_cards", class: "cards-home" %>
-    <%# <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div> %>
-  </div>
-</div>
-
-<script>
-window.onscroll = function() {myFunction()};
-
-var functionSearch = document.getElementById("function-search");
-var sticky = functionSearch.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    functionSearch.classList.add("sticky")
-    // functionSearch.classList.remove("curveanimationreverse");
-    functionSearch.classList.add("curveanimation")
-  } else {
-    functionSearch.classList.remove("sticky");
-    functionSearch.classList.remove("curveanimation");
-    // functionSearch.classList.add("curveanimationreverse");
-  }
-}
-</script>
