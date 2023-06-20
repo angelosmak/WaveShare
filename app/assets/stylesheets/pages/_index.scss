@@ -146,6 +146,7 @@
   flex-direction: column;
   height: 100vh;
   margin: 80px;
+  text-align: center;
 
   // border: 1px solid black;
 }
@@ -172,7 +173,7 @@
 }
 
 .search-form-control .form-control:focus {
-  border: 1px solid #1EDD88;
+  border: 1px solid #4c63c0;
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
