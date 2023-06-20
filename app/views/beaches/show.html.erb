@@ -122,7 +122,7 @@
               </p>
               <p><%= review.created_at.strftime("Created %B %d %Y") %></p>
                   <%# displaying star-reviews %>
-              <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
+              <%= button_to "Remove your Review", review, method: :delete if policy(review).destroy? %>
             </div>
           </div>
       </div>
