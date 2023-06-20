@@ -23,6 +23,7 @@
   justify-content: space-between;
   padding-left: 10px;
   color: rgba(20, 20, 20, 0.5);
+  z-index: 9999;
 }
 
 .centered {
@@ -42,3 +43,15 @@
 .icons {
   box-shadow:black
 }
+
+.searchbox-home {
+    display: flex;
+    flex-grow: 1;
+    margin: 4%;
+    height: 64%;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
