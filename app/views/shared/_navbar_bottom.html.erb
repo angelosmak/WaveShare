@@ -13,9 +13,11 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       </button>
     <% end %>
+    <% if user_signed_in? %>
     <a class="navbar-brand icons" href="/profiles/<%= current_user.profile.id %>"><i class="fa-regular fa-id-card"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     </button>
+    <% end %>
     </div>
 
   </nav>
