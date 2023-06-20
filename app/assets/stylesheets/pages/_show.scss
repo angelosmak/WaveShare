@@ -133,3 +133,43 @@
   min-height: 100%;
   z-index: 1000;
 }
+
+.buttontext {
+  // background-color: #f4511e;
+  // color: rgba(78, 14, 14, 0);
+  // padding: 16px 32px;
+  // display: inline-block;
+  border: none;
+  text-align: center;
+  font-size: 12px;
+  margin: 8px 8px;
+  opacity: 0.6;
+  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 30px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+
+
+.buttontext:hover {opacity: 1}
+
+.navbar-home {
+  height: 8vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 8px;
+  overflow: hidden;
+  z-index: 100000;
+
+}
+
+.floatright {
+  float: right;
+  margin-left: 8px;
+}
