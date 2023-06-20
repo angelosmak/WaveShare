@@ -52,13 +52,13 @@
 # # puts "Seeds executed successfully."
 
 require 'faker'
-
+User.destroy_all
 Profile.destroy_all
 Review.destroy_all
 UserEvent.destroy_all
 Event.destroy_all
-Beach.destroy_all
-User.destroy_all
+
+
 puts "All tables clear"
 #This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -70,51 +70,38 @@ puts "All tables clear"
 # db/seeds.rb
 
 
-# Create users
-
 require 'faker'
 
 # Generate users
+users = []
 10.times do
-  User.create(
+  password = Faker::Internet.password(min_length: 8)
+  user = User.create!(
     email: Faker::Internet.unique.email,
-    encrypted_password: Faker::Internet.password,
+    password: password,
+    password_confirmation: password,
     created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
     updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
   )
+  users << user
 end
-puts "Users generated"
+
 # Generate profiles
-User.all.each do |user|
-  Profile.create(
+users.each do |user|
+  Profile.create!(
     user_id: user.id,
     username: Faker::Internet.unique.username,
     created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
     updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
   )
 end
-puts "Profiles generated"
-# Generate beaches
-5.times do
-  Beach.create(
-    name: Faker::Lorem.word,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
-    address: Faker::Address.full_address,
-    description: Faker::Lorem.paragraph,
-    created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-    updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-    photo_url: Faker::LoremPixel.image(size: "300x200", is_gray: false, category: "nature")
-  )
-end
-puts "Beaches generated"
+
 # Generate events
-Beach.all.each do |beach|
-  rand_users = User.pluck(:id).sample(rand(1..3))
-  rand_users.each do |user_id|
-    Event.create(
-      beach_id: beach.id,
-      user_id: user_id,
+users.each do |user|
+  rand(1..3).times do
+    Event.create!(
+      beach_id: Beach.pluck(:id).sample,
+      user_id: users.sample.id,
       title: Faker::Lorem.sentence,
       date: Faker::Date.between(from: Date.today, to: Date.today + 30),
       description: Faker::Lorem.paragraph,
@@ -123,14 +110,13 @@ Beach.all.each do |beach|
     )
   end
 end
-puts "Events generated"
+
 # Generate reviews
-Beach.all.each do |beach|
-  rand_users = User.pluck(:id).sample(rand(1..3))
-  rand_users.each do |user_id|
-    Review.create(
-      beach_id: beach.id,
-      user_id: user_id,
+users.each do |user|
+  rand(1..3).times do
+    Review.create!(
+      beach_id: Beach.pluck(:id).sample,
+      user_id: users.sample.id,
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraph,
       rating: rand(1..5),
@@ -139,13 +125,17 @@ Beach.all.each do |beach|
     )
   end
 end
-puts "Reviews generated"
+
 # Generate user-events
-User.all.each do |user|
+users.each do |user|
   rand_events = Event.pluck(:id).sample(rand(0..3))
   rand_events.each do |event_id|
-    UserEvent.create(user_id: user.id, event_id: event_id, created_at: Faker::Time.between(from: 10.years.ago, to: Time.current), updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current))
+    UserEvent.create!(
+      user_id: user.id,
+      event_id: event_id,
+      created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
+      updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
+    )
   end
 end
-puts "User-events generated"
 puts "Seeds planted...water them, and they will grow."
