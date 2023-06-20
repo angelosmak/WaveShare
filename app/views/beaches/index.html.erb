@@ -21,11 +21,11 @@
     <% end %>
   </div>
 
-  <div class="beachcards">
+  <div class="beachcards-container">
     <%# Display of each Beach instance in a card with a photo and a title and address underneath %>
     <% if @beaches.present? %>
       <% @beaches.each do |beach| %>
-        <div id="beach-card" class="col-md-6">
+        <div class="card-holder">
           <%= link_to(beach_path(beach), { class: ' text-decoration-none'}) do %>
             <div class="card beach-card shadow mb-3">
               <% if beach.photo_url.present? %>

@@ -178,13 +178,19 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-.beachcards {
+.beachcards-container {
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: 40px;
   padding: 20px;
+  background-color: #4c63c0;
   // border: 1px solid black;
+}
+
+.card-holder {
+  padding: 10px;
+
 }
