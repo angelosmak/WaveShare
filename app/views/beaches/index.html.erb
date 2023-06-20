@@ -1,6 +1,8 @@
 <div class="function-map">
   <div class="map-home-container">
-    <div class="map-home">Map</div>
+    <div class="map-home">
+<%# map code goes here %>
+    </div>
   </div>
 </div>
 
@@ -24,15 +26,15 @@
     <h3 class="cardsgrid-header">Beaches and events near you</h3>
   </div>
   <div class="cards-home-container">
+    <%= render "shared/home_cards", class: "cards-home" %>
+    <%# <div class="card-home">card</div>
     <div class="card-home">card</div>
     <div class="card-home">card</div>
     <div class="card-home">card</div>
     <div class="card-home">card</div>
     <div class="card-home">card</div>
     <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
-    <div class="card-home">card</div>
+    <div class="card-home">card</div> %>
   </div>
 </div>
 
