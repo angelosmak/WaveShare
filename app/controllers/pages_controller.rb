@@ -5,4 +5,9 @@ class PagesController < ApplicationController
     @events = @user.events
     @attendances = @user.user_events
   end
+
+  def home
+    
+  end
+
 end

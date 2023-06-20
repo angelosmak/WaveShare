@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%# google fonts %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Dongle:wght@300;400;700&family=Orelega+One&display=swap" rel="stylesheet">
     <%# review star rating %>
     <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -18,8 +22,8 @@
   <body><%= render "shared/navbar_beaches_show" %>
 <% elsif controller_name == "events" %>
   <body><%= render "shared/navbar_events_show" %>
-<% else %>
-  <body><%= render "shared/navbar" %>
+<% elsif controller_name == "pages" %>
+  <body><%= render "shared/navbar_pages_home" %>
 <% end %>
 
 <%= render "shared/flashes" %>
