@@ -10,3 +10,35 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+//Bottom Nav
+.nav-bot {
+  width:fit-content;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(255, 228, 196,0.5);
+  height: 60px;
+  font-size:1cm;
+  justify-content: space-between;
+  padding-left: 10px;
+  color: rgba(20, 20, 20, 0.5);
+}
+
+.centered {
+  justify-content: center;
+}
+
+.navbar-brand{
+  align-items: center;
+}
+
+.icons:hover{
+  color: rgba(20, 20, 20, 1);
+  background-color: rgba(255, 228, 196,0.9);
+  border-radius: 6px;
+}
+
+.icons {
+  box-shadow:black
+}

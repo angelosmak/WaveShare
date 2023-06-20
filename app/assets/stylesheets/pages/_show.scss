@@ -30,6 +30,7 @@
 
 .imagemap-map {
   background-color: red;
+  visibility: hidden;
 
 }
 
@@ -115,7 +116,7 @@
   width:100%;
   z-index:1000;
 }
-#a{
+#a  {
   background:#eee;
   position:fixed;
   color:white;
@@ -125,7 +126,7 @@
   min-height:100%;
   z-index:1000;
 }
-#b{
+#b  {
   margin-top: calc(28vh - 24px);
   border-radius: 16px 16px 0px 0px;
   background: white;
@@ -133,6 +134,7 @@
   min-height: 100%;
   z-index: 1000;
 }
+
 
 .buttontext {
   // background-color: #f4511e;
@@ -151,9 +153,6 @@
   padding-top: 2px;
   padding-bottom: 2px;
 }
-
-
-
 .buttontext:hover {opacity: 1}
 
 .navbar-home {
@@ -168,7 +167,6 @@
   z-index: 100000;
 
 }
-
 .floatright {
   float: right;
   margin-left: 8px;
