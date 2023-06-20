@@ -34,7 +34,7 @@ actions {
 }
 
 #c  {
-  margin-top: calc(16vh - 24px);
+  margin-top: calc(21vh - 24px);
   border-radius: 16px 16px 0px 0px;
   background: white;
   height: 100%;
@@ -130,3 +130,28 @@ actions {
 // .button_to-texdecnone {
 //   text-decoration: none;
 // }
+
+.hidden {
+  visibility: hidden;
+}
+
+.viewmap {
+  z-index: 999999999;
+}
+
+.inFront {
+  pointer-events: none;
+  // position: absolute;
+  // top: 25px; left: 25px;
+  // right: 25px; height: 150px;
+  // border: 3px solid red;
+  // background: rgba(0, 0, 0, .5);
+}
+
+.inFront > * {
+  pointer-events: auto;
+}
+
+a {
+  text-decoration: none;
+}
