@@ -53,9 +53,32 @@
                 <% average_rating = total_ratings.to_f / @beach.reviews.count %>
               <%= average_rating.round(1) %>
               <p class="fa-solid fa-star" ></p>
-               -
-              <%= @beach.reviews.count %> Reviews
+              <% if @beach.reviews.count == 1 %>
+                <%= @beach.reviews.count %> Review
+              <% else %>
+                <%= @beach.reviews.count %> Reviews
+              <% end %>
             <% end %>
+
+<%# Stimulus controller for Weather API %>
+      <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
+        <div class="card-product">
+          <img data-beach-weather-target="icon" alt="">
+          <div class="card-product-infos">
+            <div class="description">
+            <p data-beach-weather-target="description"></p>
+            </div>
+            <p data-beach-weather-target="temperature" style="display: inline;">
+              <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i></p>
+
+            <p data-beach-weather-target="Windspeed">
+              <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i></p>
+
+            <p data-beach-weather-target="Winddirection">
+              <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
+          </div>
+        </div>
+      </div>
 
 <%# Tabs %>
           <div class="tab">
@@ -68,6 +91,10 @@
               <h2><%= review.title %></h2>
               <p><%= review.content %></p>
               <p><%= review.user.email %></p>
+              <h4>Created:</h4>
+              <%# do we need the exact time created (Could be removed)? %>
+              <p><%= review.created_at.strftime("%I:%M %p") %><br>
+              <p><%= review.created_at.strftime("%d.%m.%Y") %></p>
               <%# displaying star-reviews %>
               <p><% review.rating.times do %>
                 <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
