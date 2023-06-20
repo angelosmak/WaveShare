@@ -84,7 +84,7 @@
           <div class="tab">
             <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
             <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
-           </div>
+          </div>
 <%# Reviewstab %>
           <div id="Reviews" class="tabcontent">
             <% @reviews.each do |review| %>
@@ -104,7 +104,7 @@
             <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
           </div>
           <%# Eventstab %>
-           <div id="Events" class="tabcontent dontdisplaycontent">
+          <div id="Events" class="tabcontent dontdisplaycontent">
             <% @events.each do |event| %>
             <h2><%= link_to event.title, event_path(event) %></h2>
             <p><%= event.date %></p>
