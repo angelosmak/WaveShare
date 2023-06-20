@@ -44,10 +44,10 @@
               </p>
             </div>
           <div class="header-text-reviews-container">
+            <% total_ratings = 0 %>
             <% if @beach.reviews.present? %>
-                <% total_ratings = 0 %>
                 <% @beach.reviews.each do |review| %>
-                <% total_ratings += review.rating%>
+                <% total_ratings += review.rating %>
                 <% end %>
                 <% average_rating = total_ratings.to_f / @beach.reviews.count %>
 
