@@ -1,3 +1,4 @@
+
 <div class="navbar-home">
     <button class="buttontext">👈</button>
     <button class="floatright buttontext">❤️</button>
@@ -43,19 +44,26 @@
               <p class="display-3" id="header-address"> <%= @beach.address %>
               </p>
             </div>
-            <div class="header-text-reviews-container">
-              <% total_ratings = 0 %>
-              <% if @beach.reviews.present? %>
-                  <% @beach.reviews.each do |review| %>
-                  <% total_ratings += review.rating %>
-                  <% end %>
-                  <% average_rating = total_ratings.to_f / @beach.reviews.count %>
-                <%= average_rating %>
-                <p class="fa-solid fa-star" > - </p>
-                <%= @beach.reviews.count %> Reviews
-              <% end %>
-            </div>
-          <h1>Reviews:</h1>
+          <div class="header-text-reviews-container">
+            <% if @beach.reviews.present? %>
+                <% total_ratings = 0 %>
+                <% @beach.reviews.each do |review| %>
+                <% total_ratings += review.rating%>
+                <% end %>
+                <% average_rating = total_ratings.to_f / @beach.reviews.count %>
+              <%= average_rating.round(1) %>
+              <p class="fa-solid fa-star" ></p>
+               -
+              <%= @beach.reviews.count %> Reviews
+            <% end %>
+
+<%# Tabs %>
+          <div class="tab">
+            <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
+            <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
+           </div>
+<%# Reviewstab %>
+          <div id="Reviews" class="tabcontent">
             <% @reviews.each do |review| %>
               <h2><%= review.title %></h2>
               <p><%= review.content %></p>
@@ -67,6 +75,52 @@
               <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
               <% end %>
             <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
+          </div>
+          <%# Eventstab %>
+           <div id="Events" class="tabcontent dontdisplaycontent">
+            <% @events.each do |event| %>
+            <h2><%= link_to event.title, event_path(event) %></h2>
+            <p><%= event.date %></p>
+            <i><%= event.description %></i>
+            <p><%= event.user.email %></p>
+
+            <% if policy(event).edit? %>
+            <%= link_to "Edit this event", edit_event_path(event) %> |
+            <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
+            <% end %>
+            <% if UserEvent.where(event: event, user: current_user).empty?%>
+              <%= link_to "Attend", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+            <% end %>
+            <% unless event.user_events.empty? %>
+            <% user_event = UserEvent.find_by(user: current_user, event: event) %>
+            <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
+            <% end %>
+            <% end %>
+            <%= link_to 'New Event', new_beach_event_path(@beach) %>
+          </div>
+          <script>
+          function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            if (cityName == "Events") {
+              document.getElementById("Events").style.display = "block";
+              document.getElementById("Reviews").style.display = "none";
+            } else {
+              document.getElementById("Events").style.display = "none";
+              document.getElementById("Reviews").style.display = "block";
+            }
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+          }
+          </script>
+          </div>
         </div>
       </div>
     </div>
