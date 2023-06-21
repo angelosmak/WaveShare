@@ -1,7 +1,13 @@
 .tabcontent-dashboard {
   display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
 
 .tabcontent-dashboard.active {
   display: block;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
