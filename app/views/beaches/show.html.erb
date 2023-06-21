@@ -85,8 +85,8 @@
 
 <%# Tabs %>
           <div class="tab">
-            <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
-            <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
+            <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
+            <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
           </div>
 <%# Reviewstab %>
 <div id="Reviews" class="tabcontent">
@@ -138,7 +138,7 @@
       <div class="row text-center">
         <% @events.each do |event| %>
           <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card">
+            <div class="card mb-1">
               <a href="/events/<%= event.id %>">
                 <div class="card-body py-4 mt-2">
                   <div class="d-flex justify-content-center mb-4">
@@ -150,12 +150,12 @@
                     <% end %>
                   </div>
                   <h5 class="font-weight-bold"><%= event.title %></h5>
-                  <p class="mb-2">
-                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  <p class="mb-2 event-card-description">
+                    <%= event.description %>
                   </p>
                   <ul class="list-unstyled d-flex justify-content-center">
                     <li>
-                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                      <p class="event-card-date" ><%= event.date.strftime("%B %d %Y") %></p>
                     </li>
                   </ul>
                 </div>
