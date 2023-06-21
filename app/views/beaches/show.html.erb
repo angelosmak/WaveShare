@@ -85,8 +85,8 @@
 
 <%# Tabs %>
           <div class="tab">
-            <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
-            <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
+            <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
+            <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
           </div>
 <%# Reviewstab %>
 <div id="Reviews" class="tabcontent">
@@ -151,7 +151,7 @@
                   </div>
                   <h5 class="font-weight-bold"><%= event.title %></h5>
                   <p class="mb-2">
-                  
+
                     <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
                   </p>
                   <ul class="list-unstyled d-flex justify-content-center">
