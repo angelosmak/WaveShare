@@ -3,8 +3,25 @@
   border-radius: .7rem;
 }
 
-// Rating stars
+// Rating stars index
 .rating-container {
   display: flex;
   align-items: center;
 }
+
+// beach showpage reviewcards
+.review-card {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: -4px 4px 8px rgba(0,0,0,0.2);
+  background-color: rgb(171, 170, 170)!important;
+}
+
+.review-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+// avatar

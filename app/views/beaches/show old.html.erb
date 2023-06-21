@@ -37,3 +37,46 @@
 <% end %>
 <% end %>
 <%= link_to 'New Event', new_beach_event_path(@beach) %>
+
+
+<%# reviewstab saving here  %>
+ <section style="color: #000; background-color: #f3f2f2;">
+      <div class="container py-5">
+        <div class="row d-flex justify-content-center">
+        </div>
+
+        <div class="row text-center">
+        <% @reviews.each do |review| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <div class="card-body py-4 mt-2">
+                <div class="d-flex justify-content-center mb-4">
+                    <% if review.user.profile.photo.key %>
+                      <%= cl_image_tag review.user.profile.photo.key, class: 'avatar' %>
+                      <% else %>
+                      <%# else put another picture from assets %>
+                        <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
+                </div>
+                <h5 class="font-weight-bold"><%= review.user.profile.username %></h5>
+                <h6 class="font-weight-bold my-3"><strong><%= review.title %></strong></h6>
+                <ul class="list-unstyled d-flex justify-content-center">
+                  <li>
+                    <p><% review.rating.times do %>
+                        <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                      <% end %> </p>
+                  </li>
+                </ul>
+                <p class="mb-2">
+                </i> <%= review.content %>
+                </p>
+                <p><%= review.created_at.strftime("Created %B %d %Y") %></p>
+                    <%# displaying star-reviews %>
+                <%= button_to "Remove your Review", review, method: :delete if policy(review).destroy? %>
+              </div>
+            </div>
+        </div>
+            <% end %>
+      </div>
+    </section>
+  </div>
