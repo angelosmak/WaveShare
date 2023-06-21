@@ -47,9 +47,12 @@
                       <% total_ratings += review.rating %>
                     <% end %>
                     <% average_rating = total_ratings.to_f / beach.reviews.count %>
-                    <div class="d-flex">
-                      <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
-                      <p><%= average_rating %></p>
+
+                    <div class="rating-container">
+                      <div class="stars">
+                        <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                        <p class="average-rating"><%= average_rating %></p>
+                      </div>
                     </div>
                   <% end %>
                 </div>
