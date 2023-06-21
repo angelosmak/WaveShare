@@ -65,8 +65,7 @@
               <% end %>
               <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button"%>
             </div>
-          </div>
-        </div>
+
 
   <%# Stimulus controller for Weather API %>
         <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
@@ -86,7 +85,7 @@
                 <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
             </div>
           </div>
-        </div>
+
 
   <%# Tabs %>
             <div class="tab">
@@ -96,32 +95,36 @@
   <%# Reviewstab %>
 
 <%# new reviews cards %>
-<div class="container">
-    <div class="card">
+  <div id="Reviews" class="tabcontent">
     <% @reviews.each do |review| %>
-        <div class="row">
-            <div class="col-md-2 text-left">
-                <% if review.user.profile.photo.key %>
-                      <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
-                      <% else %>
-                      <%# else put another picture from assets %>
-                        <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                    <% end %>
-                <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
-            </div>
-            <div class="col-md-10">
-              <div class="d-flex">
-                  <h2 class="mr-5" style="margin-right:30px;"><%= review.user.profile.username %></h2>
-                  <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
+  <div class="container mb-2">
+      <div class="card p-2">
+          <div class="row">
+              <div class="col-md-1 d-flex align-items-center">
+                  <% if review.user.profile.photo.key %>
+                        <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
+                        <% else %>
+                        <%# else put another picture from assets %>
+                          <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% end %>
+              <h4 style="margin-left:10px;"><%= review.user.profile.username %></h4>
               </div>
-                <div class="clearfix"></div>
-                <p><%= review.content %></p>
-                <p>
-            </div>
-        </div>
-    </div>
-        <% end %>
-</div>
+               <h2 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h2>
+              <div class="col-md-10">
+                <div class="d-flex">
+                <div class="title-review">
+                  <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
+                </div>
+                    <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
+                </div>
+                  <p><%= review.content %></p>
+                  <p>
+              </div>
+          </div>
+      </div>
+  </div>
+          <% end %>
+  </div>
 
 
             <%# Eventstab %>
