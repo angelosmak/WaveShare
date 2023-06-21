@@ -14,6 +14,7 @@
 @import "components/index";
 @import "pages/index";
 @import 'events_show';
+@import 'pages/dashboard';
 
 // forms
 @import "star-rating.js/dist/star-rating.css";
@@ -149,3 +150,4 @@ a:hover {
 .green {
   background-color: green;
 }
+

@@ -1,39 +1,124 @@
 <div class="text-header-container dashboard-header">Bookmarked
 </div>
 
-<div class="container col-3 shadow mx-auto">
-  <h2>My Reviews:</h2>
-  <hr>
-  <% @reviews.each do |review| %>
-    <div class=" shadow">
-    <h4><%= review.title %></h4>
-    <h5><%= review.content %></h5>
-    <p><%= review.rating %></p>
-    </div>
-  <% end %>
+<div class="tab">
+  <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
+  <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
+  <button class="tablinks" onclick="openCity(event, 'Attendances')">Attendances</button>
 </div>
 
-<div class="container col-3 shadow mx-auto ">
-  <h2>My events:</h2>
-  <hr>
-  <% @events.each do |event| %>
-  <div class="shadow my-3">
-    <h4><%= event.title %></h4>
-    <h5><%= event.description %></h5>
-    <p><%= event.date%></p>
+<div id="Reviews" class="tabcontent-dashboard active">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center">
+      </div>
+
+      <div class="row text-center">
+      <% @reviews.each do |review| %>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="card">
+            <div class="card-body py-4 mt-2">
+              <div class="d-flex justify-content-center mb-4">
+                  <% if review.user.profile.photo.key %>
+                    <%= cl_image_tag review.user.profile.photo.key, class: 'avatar' %>
+                    <% else %>
+                    <%# else put another picture from assets %>
+                      <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% end %>
+              </div>
+              <h5 class="font-weight-bold"><%= review.user.profile.username %></h5>
+              <h6 class="font-weight-bold my-3"><strong><%= review.title %></strong></h6>
+              <ul class="list-unstyled d-flex justify-content-center">
+                <li>
+                  <p><% review.rating.times do %>
+                      <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                    <% end %> </p>
+                </li>
+              </ul>
+              <p class="mb-2">
+                <i class="fas fa-quote-left pe-2"></i> <%= review.content %>
+              </p>
+              <p><%= review.created_at.strftime("Created %B %d %Y") %></p>
+                  <%# displaying star-reviews %>
+              <%= button_to "Remove your Review", review, method: :delete if policy(review).destroy? %>
+            </div>
+          </div>
+      </div>
+          <% end %>
     </div>
-  <% end %>
+  </section>
 </div>
 
-<div class="container col-3 shadow mx-auto">
-  <h2>My Attendances:</h2>
-  <hr>
-  <% @attendances.each do |user_event| %>
-    <div class=" shadow">
-    <%= cl_image_tag user_event.event.photo.key, style: "max-width: 100%; height: auto;" if user_event.event.photo.key %>
-    <h4><%= user_event.event.title %></h4>
-    <h5><%= user_event.event.beach.name %></h5>
-    <p><%= user_event.event.date%></p>
+<div id="Events" class="tabcontent-dashboard">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <a href="/events/<%= event.id %>">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <% else %>
+                      <%# Put another picture from assets %>
+                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
+                  </div>
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <p class="mb-2">
+                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </section>
 </div>
+
+<div id="Attendances" class="tabcontent-dashboard">
+  <div class="container col-3 shadow my-5 mx-auto">
+    <h2>My Attendances:</h2>
+    <hr>
+    <% @attendances.each do |user_event| %>
+      <div class="shadow">
+        <%= cl_image_tag user_event.event.photo.key, style: "max-width: 100%; height: auto;" if user_event.event.photo.key %>
+        <h4><%= user_event.event.title %></h4>
+        <h5><%= user_event.event.beach.name %></h5>
+        <p><%= user_event.event.date %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent-dashboard");
+    if (cityName == "Events") {
+      document.getElementById("Events").style.display = "block";
+      document.getElementById("Reviews").style.display = "none";
+    } else {
+      document.getElementById("Events").style.display = "none";
+      document.getElementById("Reviews").style.display = "block";
+    }
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>

@@ -1,1 +1,7 @@
+.tabcontent-dashboard {
+  display: none;
+}
 
+.tabcontent-dashboard.active {
+  display: block;
+}
