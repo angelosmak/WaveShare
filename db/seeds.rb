@@ -125,15 +125,15 @@ review_contents = [
     email: Faker::Internet.unique.email,
     password: password,
     password_confirmation: password,
-    created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-    updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
+    created_at: Faker::Time.between(from: 1.years.ago, to: Time.current),
+    updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
   )
   users << user
   Profile.create!(
     user_id: user.id,
     username: Faker::Internet.unique.username,
-    created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-    updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
+    created_at: Faker::Time.between(from: 1.years.ago, to: Time.current),
+    updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
   )
 
 # generate events
@@ -152,8 +152,8 @@ review_contents = [
         title: title,
         date: Faker::Date.between(from: Date.today, to: Date.today + 30),
         description: content,
-        created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-        updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
+        created_at: Faker::Time.between(from: 1.years.ago, to: Time.current),
+        updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
       )
 
       unique_event = event.save if !events_set.include?([event.beach_id, event.title])
@@ -181,8 +181,8 @@ users.each do |user|
         title: title,
         content: content,
         rating: rand(2..5),
-        created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-        updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
+        created_at: Faker::Time.between(from: 1.years.ago, to: Time.current),
+        updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
       )
 
       unique_review = review.save
@@ -201,8 +201,8 @@ users.each do |user|
     UserEvent.create!(
       user_id: user.id,
       event_id: event_id,
-      created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
-      updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
+      created_at: Faker::Time.between(from: 1.years.ago, to: Time.current),
+      updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
     )
   end
 end
