@@ -1,15 +1,7 @@
-<div class="container col-3 shadow my-5 mx-auto ">
-  <% if current_user.profile.photo.key %>
-    <%= cl_image_tag current_user.profile.photo.key,class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-  <% else %>
-  <%# else put another picture from assets %>
-    <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-    </a>
-  <% end %>
-  <%= @user.profile.username %>
+<div class="text-header-container dashboard-header">Bookmarked
 </div>
 
-<div class="container col-3 shadow my-5 mx-auto">
+<div class="container col-3 shadow mx-auto">
   <h2>My Reviews:</h2>
   <hr>
   <% @reviews.each do |review| %>
@@ -21,7 +13,7 @@
   <% end %>
 </div>
 
-<div class="container col-3 shadow my-5 mx-auto ">
+<div class="container col-3 shadow mx-auto ">
   <h2>My events:</h2>
   <hr>
   <% @events.each do |event| %>
@@ -33,7 +25,7 @@
   <% end %>
 </div>
 
-<div class="container col-3 shadow my-5 mx-auto">
+<div class="container col-3 shadow mx-auto">
   <h2>My Attendances:</h2>
   <hr>
   <% @attendances.each do |user_event| %>

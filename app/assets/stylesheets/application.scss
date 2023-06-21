@@ -36,6 +36,19 @@
 
 }
 
+.text-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-header {
+  padding: 20px;
+  font-size: 4vh;
+  // font-weight: 500;
+  font-family: 'Bowlby One SC', cursive;
+}
+
 .text-header {
   border: 3px solid black;
   max-height: 200px;
