@@ -99,14 +99,14 @@
           <div class="row">
               <div class="col-md-1 d-flex align-items-center">
                   <% if review.user.profile.photo.key %>
-                        <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
-                        <% else %>
-                        <%# else put another picture from assets %>
-                          <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                      <% end %>
+                    <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
+                  <% else %>
+                    <%# else put another picture from assets %>
+                    <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% end %>
               <h4 style="margin-left:10px;"><%= review.user.profile.username %></h4>
               </div>
-               <h2 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h2>
+              <h2 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h2>
               <div class="col-md-10">
                 <div class="d-flex">
                 <div class="title-review">
