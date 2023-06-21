@@ -2,9 +2,9 @@
 </div>
 
 <div class="tab">
-  <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
-  <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
-  <button class="tablinks" onclick="openCity(event, 'Attendances')">Attendances</button>
+  <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
+  <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
+  <button class="tablinks navbar-text" onclick="openCity(event, 'Attendances')">Attendances</button>
 </div>
 
 <div id="Reviews" class="tabcontent-dashboard active">
@@ -55,7 +55,7 @@
       <div class="row text-center">
         <% @events.each do |event| %>
           <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card">
+            <div class="card mb-1">
               <a href="/events/<%= event.id %>">
                 <div class="card-body py-4 mt-2">
                   <div class="d-flex justify-content-center mb-4">
@@ -67,12 +67,12 @@
                     <% end %>
                   </div>
                   <h5 class="font-weight-bold"><%= event.title %></h5>
-                  <p class="mb-2">
-                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  <p class="mb-2 event-card-description">
+                    <%= event.description %>
                   </p>
                   <ul class="list-unstyled d-flex justify-content-center">
                     <li>
-                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                      <p class="event-card-date" ><%= event.date.strftime("%B %d %Y") %></p>
                     </li>
                   </ul>
                 </div>
@@ -86,18 +86,32 @@
 </div>
 
 <div id="Attendances" class="tabcontent-dashboard">
-  <div class="container col-3 shadow my-5 mx-auto">
-    <h2>My Attendances:</h2>
-    <hr>
-    <% @attendances.each do |user_event| %>
-      <div class="shadow">
-        <%= cl_image_tag user_event.event.photo.key, style: "max-width: 100%; height: auto;" if user_event.event.photo.key %>
-        <h4><%= user_event.event.title %></h4>
-        <h5><%= user_event.event.beach.name %></h5>
-        <p><%= user_event.event.date %></p>
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @attendances.each do |user_event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card mb-1">
+              <a href="/events/<%= user_event.event.id %>">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                    <%= cl_image_tag user_event.event.photo.key, class: 'header-image' if user_event.event.photo.key %>
+                  </div>
+                  <h5 class="font-weight-bold"><%= user_event.event.title %></h5>
+                  <p class="mb-2 event-card-description"><%= user_event.event.beach.name %></p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                      <p class="event-card-date" ><%= user_event.event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  </section>
 </div>
 
 <script>
@@ -105,11 +119,11 @@
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent-dashboard");
     if (cityName == "Events") {
-      document.getElementById("Events").style.display = "block";
-      document.getElementById("Reviews").style.display = "none";
+       document.getElementById("Events").style.display = "block";
+       document.getElementById("Reviews").style.display = "none";
     } else {
-      document.getElementById("Events").style.display = "none";
-      document.getElementById("Reviews").style.display = "block";
+       document.getElementById("Events").style.display = "none";
+       document.getElementById("Reviews").style.display = "block";
     }
     for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
