@@ -1,5 +1,9 @@
 <div class="container text-center ">
+<% if @profile.photo.key %>
   <%= cl_image_tag @profile.photo.key, class:"shadow my-5" ,height: 100, width: 100, crop: :fill %>
+  <% else %>
+    <%= image_tag "default-photo.webp", class:"avatar" %>
+  <% end %>
   <h2>Username: <%= @profile.username %></h2>
   <p>Email: <%= @user.email %></p>
   <%= link_to "Delete Profile", user_registration_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
