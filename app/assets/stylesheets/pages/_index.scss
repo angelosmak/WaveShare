@@ -199,6 +199,10 @@
   .card-holder {
     padding: 1%;
   }
+  .card-product-infos {
+    max-height: 200px;
+    overflow: hidden;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -221,7 +225,8 @@
   }
 
   .card-holder {
-    padding: 1%;
+    padding: 2%;
+    flex: 1 0 200px; /* Adjust the desired height for each card */
   }
 }
 
