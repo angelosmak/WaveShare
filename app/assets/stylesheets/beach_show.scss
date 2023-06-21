@@ -1,0 +1,28 @@
+.event-card-title {
+  font-family: 'Dongle', sans-serif;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.event-card-text {
+  font-family: 'Dongle', sans-serif;
+  font-size: x-large;
+}
+
+.event-card-buttons {
+  font-family: 'Bowlby One SC', cursive;
+  color: black;
+  font-size: small;
+}
+
+.event-button-section {
+  display: flex;
+  text-align: center;
+}
+
+.attend-seemore {
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+}
