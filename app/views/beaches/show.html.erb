@@ -37,7 +37,7 @@
               </p>
             </div>
             <div class="header-description-container">
-              <p class="display-2" id="header-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <p class="display-2" id="header-description">The beach of <%= @beach.name %> is one of the most popular beaches in the area. The sandy beach is surrounded by impressive rock formations, lush greenery ...
               </p>
             </div>
             <div class="header-address-container">
@@ -59,6 +59,7 @@
                 <%= @beach.reviews.count %> Reviews
               <% end %>
             <% end %>
+            <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button"%>
 
 <%# Stimulus controller for Weather API %>
       <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
@@ -80,51 +81,133 @@
         </div>
       </div>
 
+<%# new review cards %>
+
 <%# Tabs %>
           <div class="tab">
             <button class="tablinks active" onclick="openCity(event, 'Reviews')">Reviews</button>
             <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
-           </div>
+          </div>
 <%# Reviewstab %>
-          <div id="Reviews" class="tabcontent">
-            <% @reviews.each do |review| %>
-              <h2><%= review.title %></h2>
-              <p><%= review.content %></p>
-              <p><%= review.user.email %></p>
-              <h4>Created:</h4>
-              <%# do we need the exact time created (Could be removed)? %>
-              <p><%= review.created_at.strftime("%I:%M %p") %><br>
-              <p><%= review.created_at.strftime("%d.%m.%Y") %></p>
-              <%# displaying star-reviews %>
-              <p><% review.rating.times do %>
-                <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
-                <% end %>
-              <%= button_to "Destroy this review", review, method: :delete if policy(review).destroy? %>
-              <% end %>
-            <%= link_to "Review this Beach", new_beach_review_path(@beach), class:"btn btn-outline-primary"%>
-          </div>
-          <%# Eventstab %>
-           <div id="Events" class="tabcontent dontdisplaycontent">
-            <% @events.each do |event| %>
-            <h2><%= link_to event.title, event_path(event) %></h2>
-            <p><%= event.date %></p>
-            <i><%= event.description %></i>
-            <p><%= event.user.email %></p>
+<div id="Reviews" class="tabcontent">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center">
+      </div>
 
-            <% if policy(event).edit? %>
-            <%= link_to "Edit this event", edit_event_path(event) %> |
-            <%= button_to "Destroy this event", event, method: :delete if policy(event).destroy? %>
-            <% end %>
-            <% if UserEvent.where(event: event, user: current_user).empty?%>
-              <%= link_to "Attend", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
-            <% end %>
-            <% unless event.user_events.empty? %>
-            <% user_event = UserEvent.find_by(user: current_user, event: event) %>
-            <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
-            <% end %>
-            <% end %>
-            <%= link_to 'New Event', new_beach_event_path(@beach) %>
+      <div class="row text-center">
+      <% @reviews.each do |review| %>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="card">
+            <div class="card-body py-4 mt-2">
+              <div class="d-flex justify-content-center mb-4">
+                  <% if review.user.profile.photo.key %>
+                    <%= cl_image_tag review.user.profile.photo.key, class: 'avatar' %>
+                    <% else %>
+                    <%# else put another picture from assets %>
+                      <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% end %>
+              </div>
+              <h5 class="font-weight-bold"><%= review.user.profile.username %></h5>
+              <h6 class="font-weight-bold my-3"><strong><%= review.title %></strong></h6>
+              <ul class="list-unstyled d-flex justify-content-center">
+                <li>
+                  <p><% review.rating.times do %>
+                      <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                    <% end %> </p>
+                </li>
+              </ul>
+              <p class="mb-2">
+                <i class="fas fa-quote-left pe-2"></i> <%= review.content %>
+              </p>
+              <p><%= review.created_at.strftime("Created %B %d %Y") %></p>
+                  <%# displaying star-reviews %>
+              <%= button_to "Remove your Review", review, method: :delete if policy(review).destroy? %>
+            </div>
           </div>
+      </div>
+          <% end %>
+    </div>
+  </section>
+</div>
+
+          <%# Eventstab %>
+<div id="Events" class="tabcontent dontdisplaycontent">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <a href="/events/<%= event.id %>">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <% else %>
+                      <%# Put another picture from assets %>
+                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
+                  </div>
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <p class="mb-2">
+                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
+  </section>
+</div>
+<div id="Events" class="tabcontent dontdisplaycontent">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <a href="/events/<%= event.id %>">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <% else %>
+                      <%# Put another picture from assets %>
+                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
+                  </div>
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <p class="mb-2">
+                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
+  </section>
+</div>
+
+
+
+
           <script>
           function openCity(evt, cityName) {
             var i, tabcontent, tablinks;
