@@ -37,7 +37,7 @@
               </p>
             </div>
             <div class="header-description-container">
-              <p class="display-2" id="header-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <p class="display-2" id="header-description">The beach of <%= @beach.name %> is one of the most popular beaches in the area. The sandy beach is surrounded by impressive rock formations, lush greenery ...
               </p>
             </div>
             <div class="header-address-container">
@@ -132,7 +132,7 @@
 </div>
 
           <%# Eventstab %>
-  <div id="Events" class=" tabcontent dontdisplaycontent">
+<div id="Events" class="tabcontent dontdisplaycontent">
   <section style="color: #000; background-color: #f3f2f2;">
     <div class="container py-5">
       <div class="row text-center">
@@ -142,25 +142,22 @@
               <a href="/events/<%= event.id %>">
                 <div class="card-body py-4 mt-2">
                   <div class="d-flex justify-content-center mb-4">
-                      <% if event.photo.key %>
-                        <%= cl_image_tag event.photo.key, class: 'header-image' %>
-                      <% else %>
-                          <%# else put another picture from assets %>
-                        <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                      <% end %>
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <% else %>
+                      <%# Put another picture from assets %>
+                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
                   </div>
-                    <h5 class="font-weight-bold"><%= event.title %></h5>
-                    <p class="mb-2">
-                      <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li>
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <p class="mb-2">
+                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
                       <p><%= event.date.strftime("%B %d %Y") %></p>
-                      </li>
-                      <li>
-                      </li>
-                    </ul>
-                      <%# displaying star-events %>
+                    </li>
+                  </ul>
                 </div>
               </a>
             </div>
@@ -168,9 +165,46 @@
         <% end %>
       </div>
     </div>
-                  <%= link_to 'New Event', new_beach_event_path(@beach), class:"btn btn-outline-primary"%>
+    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
   </section>
 </div>
+<div id="Events" class="tabcontent dontdisplaycontent">
+  <section style="color: #000; background-color: #f3f2f2;">
+    <div class="container py-5">
+      <div class="row text-center">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card">
+              <a href="/events/<%= event.id %>">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <% else %>
+                      <%# Put another picture from assets %>
+                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
+                  </div>
+                  <h5 class="font-weight-bold"><%= event.title %></h5>
+                  <p class="mb-2">
+                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                  </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                      <p><%= event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
+  </section>
+</div>
+
 
 
 
