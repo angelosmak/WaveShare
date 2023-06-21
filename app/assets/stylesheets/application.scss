@@ -14,6 +14,7 @@
 @import "components/index";
 @import "pages/index";
 @import 'events_show';
+@import 'pages/dashboard';
 
 // forms
 @import "star-rating.js/dist/star-rating.css";
@@ -34,6 +35,19 @@
     margin: auto;
   }
 
+}
+
+.text-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-header {
+  padding: 20px;
+  font-size: 4vh;
+  // font-weight: 500;
+  font-family: 'Bowlby One SC', cursive;
 }
 
 .text-header {
