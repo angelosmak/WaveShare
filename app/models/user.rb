@@ -16,6 +16,6 @@ class User < ApplicationRecord
   def generate_profile
     # Using the bang method will make sure to raise an error if
     # creating the profile fails for whatever reason
-    Profile.create!(email:, user_id: id)
+    Profile.create!(email:, username: email.to_s.split('@')[0], user_id: id)
   end
 end
