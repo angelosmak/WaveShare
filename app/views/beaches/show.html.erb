@@ -1,237 +1,234 @@
+<head>
 
-<div class="navbar-home">
-    <%= link_to "👈", :back %>
-    <button class="floatright buttontext">❤️</button>
-    <button class="floatright buttontext">📤</button>
-</div>
-<div id="wrapper">
-    <div id="a" class="panels">
-      <div class="function-imagemap">
-        <div class="imagemap-button-container">
-          <button onclick="hideImage()" class="button">view map</button>
-        <script>
-          function hideImage() {
-            // document.getElementById('hideimage').innerHTML.toggle("");
-            document.getElementById("hideimage").classList.toggle("hidden");
-          }
-        </script>
-        </div>
-        <div class="header-image-container">
-          <div class="header-image" id="hideimage">
-            <%= render 'shared/imagemap_image' %>
-          </div>
-          <div class="imagemap-map">
-            map
-          </div>
-        </div>
-        <%# <div class="header-map-container">
-          <div class="header-map">map</div>
-        </div> %>
-      </div>
-    </div>
-    <div id="b" class="panels">
-      <div class="section-header-text">
-        <div class="header-text-container">
-            <div class="header-title-container">
-              <p class="display-1" id="header-title"> <%= @beach.name %>
-              </p>
-            </div>
-            <div class="header-description-container">
-              <p class="display-2" id="header-description">The beach of <%= @beach.name %> is one of the most popular beaches in the area. The sandy beach is surrounded by impressive rock formations, lush greenery ...
-              </p>
-            </div>
-            <div class="header-address-container">
-              <p class="display-3" id="header-address"> <%= @beach.address %>
-              </p>
-            </div>
-          <div class="header-text-reviews-container">
-            <% if @beach.reviews.present? %>
-                <% total_ratings = 0 %>
-                <% @beach.reviews.each do |review| %>
-                <% total_ratings += review.rating%>
-                <% end %>
-                <% average_rating = total_ratings.to_f / @beach.reviews.count %>
-              <%= average_rating.round(1) %>
-              <p class="fa-solid fa-star" ></p>
-              <% if @beach.reviews.count == 1 %>
-                <%= @beach.reviews.count %> Review
-              <% else %>
-                <%= @beach.reviews.count %> Reviews
-              <% end %>
-            <% end %>
-            <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button"%>
+</head>
 
-<%# Stimulus controller for Weather API %>
-      <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
-        <div class="card-product">
-          <img data-beach-weather-target="icon" alt="">
-          <div class="card-product-infos">
-            <div class="description">
-            <p data-beach-weather-target="description"></p>
-            </div>
-            <p data-beach-weather-target="temperature" style="display: inline;">
-              <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i></p>
-
-            <p data-beach-weather-target="Windspeed">
-              <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i></p>
-
-            <p data-beach-weather-target="Winddirection">
-              <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
-          </div>
-        </div>
-      </div>
-
-<%# new review cards %>
-
-<%# Tabs %>
-          <div class="tab">
-            <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
-            <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
-          </div>
-<%# Reviewstab %>
-<div id="Reviews" class="tabcontent">
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-5">
-      <div class="row d-flex justify-content-center">
-      </div>
-
-      <div class="row text-center">
-      <% @reviews.each do |review| %>
-        <div class="col-md-4 mb-4 mb-md-0">
-          <div class="card">
-            <div class="card-body py-4 mt-2">
-              <div class="d-flex justify-content-center mb-4">
-                  <% if review.user.profile.photo.key %>
-                    <%= cl_image_tag review.user.profile.photo.key, class: 'avatar' %>
-                    <% else %>
-                    <%# else put another picture from assets %>
-                      <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                  <% end %>
-              </div>
-              <h5 class="font-weight-bold"><%= review.user.profile.username %></h5>
-              <h6 class="font-weight-bold my-3"><strong><%= review.title %></strong></h6>
-              <ul class="list-unstyled d-flex justify-content-center">
-                <li>
-                  <p><% review.rating.times do %>
-                      <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
-                    <% end %> </p>
-                </li>
-              </ul>
-              <p class="mb-2">
-                <i class="fas fa-quote-left pe-2"></i> <%= review.content %>
-              </p>
-              <p><%= review.created_at.strftime("Created %B %d %Y") %></p>
-                  <%# displaying star-reviews %>
-              <%= button_to "Remove your Review", review, method: :delete if policy(review).destroy? %>
-            </div>
-          </div>
-      </div>
-          <% end %>
-    </div>
-  </section>
-</div>
-
-          <%# Eventstab %>
-<div id="Events" class="tabcontent dontdisplaycontent">
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-5">
-      <div class="row text-center">
-        <% @events.each do |event| %>
-          <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card mb-1">
-              <a href="/events/<%= event.id %>">
-                <div class="card-body py-4 mt-2">
-                  <div class="d-flex justify-content-center mb-4">
-                    <% if event.photo.key %>
-                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
-                    <% else %>
-                      <%# Put another picture from assets %>
-                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                    <% end %>
-                  </div>
-                  <h5 class="font-weight-bold"><%= event.title %></h5>
-                  <p class="mb-2 event-card-description">
-                    <%= event.description %>
-                  </p>
-                  <ul class="list-unstyled d-flex justify-content-center">
-                    <li>
-                      <p class="event-card-date" ><%= event.date.strftime("%B %d %Y") %></p>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
-  </section>
-</div>
-<div id="Events" class="tabcontent dontdisplaycontent">
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-5">
-      <div class="row text-center">
-        <% @events.each do |event| %>
-          <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card">
-              <a href="/events/<%= event.id %>">
-                <div class="card-body py-4 mt-2">
-                  <div class="d-flex justify-content-center mb-4">
-                    <% if event.photo.key %>
-                      <%= cl_image_tag event.photo.key, class: 'header-image' %>
-                    <% else %>
-                      <%# Put another picture from assets %>
-                      <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                    <% end %>
-                  </div>
-                  <h5 class="font-weight-bold"><%= event.title %></h5>
-                  <p class="mb-2">
-                    <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
-                  </p>
-                  <ul class="list-unstyled d-flex justify-content-center">
-                    <li>
-                      <p><%= event.date.strftime("%B %d %Y") %></p>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
-  </section>
-</div>
-
-
-
-
+<body>
+  <div class="navbar-home">
+      <%= link_to "👈", :back %>
+      <button class="floatright buttontext">❤️</button>
+      <button class="floatright buttontext">📤</button>
+  </div>
+  <div id="wrapper">
+      <div id="a" class="panels">
+        <div class="function-imagemap">
+          <div class="imagemap-button-container">
+            <button onclick="hideImage()" class="button">view map</button>
           <script>
-          function openCity(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            if (cityName == "Events") {
-              document.getElementById("Events").style.display = "block";
-              document.getElementById("Reviews").style.display = "none";
-            } else {
-              document.getElementById("Events").style.display = "none";
-              document.getElementById("Reviews").style.display = "block";
+            function hideImage() {
+              // document.getElementById('hideimage').innerHTML.toggle("");
+              document.getElementById("hideimage").classList.toggle("hidden");
             }
-            for (i = 0; i < tabcontent.length; i++) {
-              tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-              tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
-          }
           </script>
           </div>
+          <div class="header-image-container">
+            <div class="header-image" id="hideimage">
+              <%= render 'shared/imagemap_image' %>
+            </div>
+            <div class="imagemap-map">
+              map
+            </div>
+          </div>
+          <%# <div class="header-map-container">
+            <div class="header-map">map</div>
+          </div> %>
         </div>
       </div>
-    </div>
-</div>
+      <div id="b" class="panels">
+        <div class="section-header-text">
+          <div class="header-text-container">
+              <div class="header-title-container">
+                <p class="display-1" id="header-title"> <%= @beach.name %>
+                </p>
+              </div>
+              <div class="header-description-container">
+                <p class="display-2" id="header-description">The beach of <%= @beach.name %> is one of the most popular beaches in the area. The sandy beach is surrounded by impressive rock formations, lush greenery ...
+                </p>
+              </div>
+              <div class="header-address-container">
+                <p class="display-3" id="header-address"> <%= @beach.address %>
+                </p>
+              </div>
+            <div class="header-text-reviews-container">
+              <% if @beach.reviews.present? %>
+                  <% total_ratings = 0 %>
+                  <% @beach.reviews.each do |review| %>
+                  <% total_ratings += review.rating%>
+                  <% end %>
+                  <% average_rating = total_ratings.to_f / @beach.reviews.count %>
+                <%= average_rating.round(1) %>
+                <p class="fa-solid fa-star" ></p>
+                <% if @beach.reviews.count == 1 %>
+                  <%= @beach.reviews.count %> Review
+                <% else %>
+                  <%= @beach.reviews.count %> Reviews
+                <% end %>
+              <% end %>
+              <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button"%>
+            </div>
+
+
+  <%# Stimulus controller for Weather API %>
+        <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
+          <div class="card-product">
+            <img data-beach-weather-target="icon" alt="">
+            <div class="card-product-infos">
+              <div class="description">
+              <p data-beach-weather-target="description"></p>
+              </div>
+              <p data-beach-weather-target="temperature" style="display: inline;">
+                <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i></p>
+
+              <p data-beach-weather-target="Windspeed">
+                <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i></p>
+
+              <p data-beach-weather-target="Winddirection">
+                <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
+            </div>
+          </div>
+
+
+  <%# Tabs %>
+            <div class="tab">
+              <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
+              <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
+            </div>
+  <%# Reviewstab %>
+
+<%# new reviews cards %>
+  <div id="Reviews" class="tabcontent">
+    <% @reviews.each do |review| %>
+  <div class="container mb-2 p-0">
+      <div class="card p-2">
+          <div class="row">
+              <div class="col-md-1 d-flex align-items-center">
+                  <% if review.user.profile.photo.key %>
+                        <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
+                        <% else %>
+                        <%# else put another picture from assets %>
+                          <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% end %>
+              <h4 style="margin-left:10px;"><%= review.user.profile.username %></h4>
+              </div>
+               <h2 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h2>
+              <div class="col-md-10">
+                <div class="d-flex">
+                <div class="title-review">
+                  <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
+                </div>
+                    <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
+                </div>
+                  <p><%= review.content %></p>
+                  <p>
+              </div>
+          </div>
+      </div>
+  </div>
+          <% end %>
+  </div>
+
+
+            <%# Eventstab %>
+  <div id="Events" class="tabcontent dontdisplaycontent">
+    <section style="color: #000; background-color: #f3f2f2;">
+      <div class="container py-5">
+        <div class="row text-center">
+          <% @events.each do |event| %>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="card mb-1">
+                <a href="/events/<%= event.id %>">
+                  <div class="card-body py-4 mt-2">
+                    <div class="d-flex justify-content-center mb-4">
+                      <% if event.photo.key %>
+                        <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                      <% else %>
+                        <%# Put another picture from assets %>
+                        <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% end %>
+                    </div>
+                    <h5 class="font-weight-bold"><%= event.title %></h5>
+                    <p class="mb-2 event-card-description">
+                      <%= event.description %>
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li>
+                        <p class="event-card-date" ><%= event.date.strftime("%B %d %Y") %></p>
+                      </li>
+                    </ul>
+                  </div>
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
+    </section>
+  </div>
+  <div id="Events" class="tabcontent dontdisplaycontent">
+    <section style="color: #000; background-color: #f3f2f2;">
+      <div class="container py-5">
+        <div class="row text-center">
+          <% @events.each do |event| %>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="card">
+                <a href="/events/<%= event.id %>">
+                  <div class="card-body py-4 mt-2">
+                    <div class="d-flex justify-content-center mb-4">
+                      <% if event.photo.key %>
+                        <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                      <% else %>
+                        <%# Put another picture from assets %>
+                        <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% end %>
+                    </div>
+                    <h5 class="font-weight-bold"><%= event.title %></h5>
+                    <p class="mb-2">
+                      <i class="fas fa-quote-left pe-2"></i> <%= event.description %>
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li>
+                        <p><%= event.date.strftime("%B %d %Y") %></p>
+                      </li>
+                    </ul>
+                  </div>
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
+    </section>
+  </div>
+
+
+
+
+            <script>
+            function openCity(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              if (cityName == "Events") {
+                document.getElementById("Events").style.display = "block";
+                document.getElementById("Reviews").style.display = "none";
+              } else {
+                document.getElementById("Events").style.display = "none";
+                document.getElementById("Reviews").style.display = "block";
+              }
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+            </script>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
