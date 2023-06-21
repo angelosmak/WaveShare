@@ -149,7 +149,10 @@
 }
 
 .searchbar {
-  margin-top: 3%;
+  margin-top: 5%;
+  position: sticky;
+  top:0;
+  z-index: 10000;
 }
 
 .search-form-control .btn {

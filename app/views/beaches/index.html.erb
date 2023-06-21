@@ -3,7 +3,7 @@
 <div class="main-container">
   <h1 class="navbar-text">Beaches and meetups near you</h1>
   <div class="map-container">
-    <div style="width: 80%; height: 600px; margin: 0 auto;"
+    <div style="width: 95vw; height: 500px; margin: 0 auto;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -12,7 +12,7 @@
 
   <%# searchfield %>
 
-  <div class="searchbar">
+  <div class="searchbar card shadow" >
     <%= form_tag beaches_path, method: :get do %>
       <div class="search-form-control">
         <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "secondary-text form-control" %>
