@@ -37,53 +37,59 @@
                 <!-- Placeholder image if photo_url is not available -->
                 <%= image_tag "broken-beach.jpg", class: " beach-image" %>
               <% end %>
-              <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <h5 class="card-title fw-1 navbar-text"><%= beach.name %></h5>
-                  <%# average review display %>
-                  <% if beach.reviews.present? %>
-                    <% total_ratings = 0 %>
-                    <% beach.reviews.each do |review| %>
-                      <% total_ratings += review.rating %>
-                    <% end %>
-                    <% average_rating = total_ratings.to_f / beach.reviews.count %>
-
-                    <div class="rating-container">
-                      <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
-                      <%= average_rating.round(1) %>
-                    </div>
+          <% end %>
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title fw-1 navbar-text"><%= beach.name %></h5>
+                <%# average review display %>
+                <% if beach.reviews.present? %>
+                  <% total_ratings = 0 %>
+                  <% beach.reviews.each do |review| %>
+                    <% total_ratings += review.rating %>
                   <% end %>
-                </div>
-                <hr>
-                <h3 class="card-text secondary-text"><%= beach.address %></h3>
+                  <% average_rating = total_ratings.to_f / beach.reviews.count %>
 
-                <%# Stimuus Controller for Weather API %>
-                <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
-                  <div class="card-product-infos card shadow p-2">
-                    <h5 class="navbar-text"><img data-beach-weather-target="icon"> <strong>Weather Conditions</strong></h5>
+                  <div class="rating-container">
+                    <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+                    <%= average_rating.round(1) %>
+                  </div>
+                <% end %>
+              </div>
+              <hr>
+              <h3 class="card-text secondary-text"><%= beach.address %></h3>
+
+
+            <%# Collapse Toggle Weather Icon %>
+            <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
+            <p>
+              <a class="beach-weather" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <div class="p-2">
+                <h3 class="navbar-text "><img class="beach-weather" data-beach-weather-target="icon"></h5>
+                </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                <div class="col">
+                  <h3 class="secondary-text" data-beach-weather-target="description"></h3>
+                </div>
+                  <hr>
+                  <div class="row d-flex">
                     <div class="col">
-                      <h3 class="secondary-text" data-beach-weather-target="description"></h3>
+                      <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
+                      <h3 class="secondary-text" data-beach-weather-target="Windspeed"></h3>
                     </div>
-                    <hr>
-                    <div class="row d-flex">
-                      <div class="col">
-                        <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
-                        <h3 class="secondary-text" data-beach-weather-target="Windspeed"></h3>
-                      </div>
-                      <div class="col">
-                        <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i>
-                        <h3 class="secondary-text" data-beach-weather-target="temperature"></h3>
-                      </div>
-                      <div class="col">
-                        <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
-                        <h3 class="secondary-text" data-beach-weather-target="Winddirection"></h3>
-                      </div>
+                    <div class="col">
+                      <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i>
+                      <h3 class="secondary-text" data-beach-weather-target="temperature"></h3>
+                    </div>
+                    <div class="col">
+                      <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
+                      <h3 class="secondary-text" data-beach-weather-target="Winddirection"></h3>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          <% end %>
+          </div>
         </div>
       <% end %>
     <% end %>
