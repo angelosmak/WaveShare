@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="main-container">
-  <h1>Beaches and meetups near you</h1>
+  <h1 class="navbar-text">Beaches and meetups near you</h1>
   <div class="map-container">
     <div style="width: 80%; height: 600px; margin: 0 auto;"
       data-controller="map"
@@ -15,8 +15,8 @@
   <div class="searchbar">
     <%= form_tag beaches_path, method: :get do %>
       <div class="search-form-control">
-        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "form-control" %>
-        <%= submit_tag 'Search', class: "btn" %>
+        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "secondary-text form-control" %>
+        <%= submit_tag 'Search', class: "btn navbar-text" %>
       </div>
     <% end %>
   </div>
@@ -39,7 +39,7 @@
               <% end %>
               <div class="card-body">
                 <div class="d-flex justify-content-between">
-                  <h5 class="card-title fw-1"><%= beach.name %></h5>
+                  <h5 class="card-title fw-1 navbar-text"><%= beach.name %></h5>
                   <%# average review display %>
                   <% if beach.reviews.present? %>
                     <% total_ratings = 0 %>
@@ -47,35 +47,36 @@
                       <% total_ratings += review.rating %>
                     <% end %>
                     <% average_rating = total_ratings.to_f / beach.reviews.count %>
-                    <div class="d-flex">
+
+                    <div class="rating-container">
                       <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
-                      <p><%= average_rating.round(1) %></p>
+                      <%= average_rating.round(1) %>
                     </div>
                   <% end %>
                 </div>
                 <hr>
-                <p class="card-text"><%= beach.address %></p>
+                <h3 class="card-text secondary-text"><%= beach.address %></h3>
 
                 <%# Stimuus Controller for Weather API %>
                 <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
                   <div class="card-product-infos card shadow p-2">
-                    <h5><img data-beach-weather-target="icon"> <strong>Weather Conditions</strong></h5>
+                    <h5 class="navbar-text"><img data-beach-weather-target="icon"> <strong>Weather Conditions</strong></h5>
                     <div class="col">
-                      <p data-beach-weather-target="description"></p>
+                      <h3 class="secondary-text" data-beach-weather-target="description"></h3>
                     </div>
                     <hr>
                     <div class="row d-flex">
                       <div class="col">
                         <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
-                        <p data-beach-weather-target="Windspeed"></p>
+                        <h3 class="secondary-text" data-beach-weather-target="Windspeed"></h3>
                       </div>
                       <div class="col">
                         <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i>
-                        <p data-beach-weather-target="temperature"></p>
+                        <h3 class="secondary-text" data-beach-weather-target="temperature"></h3>
                       </div>
                       <div class="col">
                         <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
-                        <p data-beach-weather-target="Winddirection"></p>
+                        <h3 class="secondary-text" data-beach-weather-target="Winddirection"></h3>
                       </div>
                     </div>
                   </div>
