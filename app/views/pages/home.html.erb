@@ -1,19 +1,41 @@
 <div class="function-welcome">
   <div class="row">
-  <div class="column">
-<img src="https://images.unsplash.com/photo-1513569143478-b38b2c0ef97f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1535182463927-440364075d9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80">
-<img src="https://images.unsplash.com/photo-1517702669-ebedf5190943?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80">
-<img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1506585775532-2d6f494f607d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=654&q=80">
+    <div class="column">
+      <div class="parent">
+          <%= image_tag "https://images.unsplash.com/photo-1513569143478-b38b2c0ef97f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80", class:"image banner-small"%>
+        <div class="middle">
+          <div class="text">
+            <%= link_to "Beaches",beaches_path ,class:"image-link"%>
+          </div>
+        </div>
+      </div>
+      <div class="parent">
+          <%= image_tag "https://images.unsplash.com/photo-1535182463927-440364075d9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80", class:"image banner-small"%>
+        <div class="middle">
+          <div class="text">
+            <%= link_to "Dashboard",dashboard_path ,class:"image-link"%>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  </div>
-  <div class="column">
-<img src="https://images.unsplash.com/photo-1531722569936-825d3dd91b15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1509914398892-963f53e6e2f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1571690584414-fa2a1127a2e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=654&q=80" alt="Image description">
-<img src="https://images.unsplash.com/photo-1438505296047-83ae9945bf15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80">
+    <div class="column">
+      <div class="parent">
+          <%= image_tag "https://images.unsplash.com/photo-1509914398892-963f53e6e2f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80", class:"image banner-small"%>
+        <div class="middle">
+          <div class="text">
+            <%= link_to "Profile",dashboard_path ,class:"image-link"%>
+          </div>
+        </div>
+      </div>
+    <div class="parent">
+        <%= image_tag "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80", class:"image banner-small"%>
+      <div class="middle">
+        <div class="text">
+          <%= link_to "Gears",dashboard_path ,class:"image-link"%>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<h2 class="navbar-text text-center my-5">Surf.Connect.Enjoy</h2>
