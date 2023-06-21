@@ -180,7 +180,7 @@ users.each do |user|
         user_id: user.id,
         title: title,
         content: content,
-        rating: rand(1..5),
+        rating: rand(2..5),
         created_at: Faker::Time.between(from: 10.years.ago, to: Time.current),
         updated_at: Faker::Time.between(from: 10.years.ago, to: Time.current)
       )
