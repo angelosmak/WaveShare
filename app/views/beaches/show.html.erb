@@ -101,10 +101,10 @@
                   <%= @beach.reviews.count %> Reviews
                 <% end %>
               <% end %>
-              <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button"%>
+              <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button-review"%>
             </div>
 <%# Tabs %>
-          <div class="tab">
+          <div class="tab beaches-tab-margin">
             <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
             <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
           </div>

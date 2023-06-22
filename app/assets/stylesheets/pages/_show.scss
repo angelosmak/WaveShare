@@ -49,7 +49,6 @@
   margin-bottom: -2vh;
 }
 .header-address-container {
-  margin-bottom: 2vh;
   padding-right: 8px;
 }
 #header-title {
@@ -72,7 +71,7 @@
 }
 #header-address {
   padding: 10px;
-  font-size: 2vh;
+  font-size: 2.4vh;
   font-weight: 500;
   margin-bottom: 8px;
   font-family: 'Dongle', sans-serif;
@@ -94,6 +93,20 @@
   border: none;
   border-radius: 4px;
   color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  // margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button-review {
+  background-color: rgba(185, 185, 185, 0.4);
+  border: none;
+  border-radius: 4px;
+  color: black;
   padding: 4px 8px;
   text-align: center;
   text-decoration: none;
@@ -208,6 +221,7 @@
   // display: block;
   border: 1px solid #ccc;
   border-top: none;
+  margin-bottom: 60px;
 }
 
 .dontdisplaycontent {
