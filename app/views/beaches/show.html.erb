@@ -115,7 +115,7 @@
                     <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
                 </div>
                   <p><%= review.content %></p>
-                  <p>
+                  <p><%= button_to "Remove your Review", review, method: :delete if policy(review).destroy? %></p>
               </div>
           </div>
       </div>
