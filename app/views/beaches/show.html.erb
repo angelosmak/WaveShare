@@ -34,7 +34,8 @@
                 </p>
               </div>
               <div class="header-address-container">
-                <p class="display-3" id="header-address"> <%= @beach.address %>
+                <p class="display-3" id="header-address">
+                <span style="padding-right:8px;"><i class="fa-solid fa-map-location-dot fa-fw" style="color: #000000;"></i></span><%= @beach.address %>
                 </p>
               </div>
 
@@ -68,6 +69,14 @@
             <p data-beach-weather-target="Winddirection"></p>
             </div>
             </div>
+
+            <div class="details-box">
+              <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
+              <div class="paragraph-weather">
+            <p> testtext</p>
+            </div>
+            </div>
+
           </div>
             <div class="weather-icon">
        <img data-beach-weather-target="icon" alt="">
