@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="beach-weather"
 export default class extends Controller {
   static values = { lat: String, lon: String}
-  static targets = ["description", "temperature", "Windspeed", "Winddirection", "icon"]
+  static targets = ["description", "temperature", "Windspeed", "Winddirection", "Sunset", "icon"]
   connect() {
     console.log(this.latValue, this.lonValue)
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.latValue}&lon=${this.lonValue}&units==metric&appid=ea186841ff8ba1d952efa9a35dfa1bed`)
@@ -17,5 +17,6 @@ export default class extends Controller {
       this.WindspeedTarget.insertAdjacentHTML("beforeend", ` ${data.wind.speed} m/s`)
       this.WinddirectionTarget.insertAdjacentHTML("beforeend", `${windDir}`)
       this.iconTarget.src=`https://openweathermap.org/img/w/${data.weather[0].icon}.png`
+      this.SunsetTarget.insertAdjacentHTML("beforeend", ` ${new Date(data.sys.sunset * 1000).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`)
     })
 }}
