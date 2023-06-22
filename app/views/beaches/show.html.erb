@@ -151,13 +151,18 @@
                 </ul>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
-                    <button class="event-card-buttons">Attend</button>
-                    <!-- Add your attend content here -->
+                    <button class="event-card-buttons">
+                      <% if UserEvent.where(event: event, user: current_user).empty? %>
+                        <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
+                      <% else %>
+                        <% user_event = UserEvent.find_by(user: current_user, event: event) %>
+                        <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
+                      <% end %>
+                    </button>
                   </div>
                   <a href="/events/<%= event.id %>">
                   <div class="event-button-section">
                     <button class="event-card-buttons">See More</button>
-                    <!-- Add your see more content here -->
                   </div>
                   </a>
                 </div>
