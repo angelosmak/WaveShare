@@ -153,15 +153,16 @@
     <div class="events-container">
 
         <% @events.each do |event| %>
+           <button type="button" class="btn btn-primary btn-block"><%= link_to 'New Event', new_beach_event_path(@beach)%></button>
 
             <div class="events-card mb-1">
               <div class="events-card-body">
                 <div class="d-flex justify-content-center mb-2">
                   <% if event.photo.key %>
-                    <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <%= cl_image_tag event.photo.key, class: 'header-image event-image-rounded' %>
                   <% else %>
                     <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= event.title %></h5>
@@ -169,13 +170,13 @@
                   <%= event.description %>
                 </p>
                 <div class="d-flex justify-content-center">
-                    <p class="event-card-date event-card-text"><%= event.date.strftime("%B %d %Y") %></p>
+                    <p class="event-card-date event-card-text"><%= event.user.profile.username %><%= event.date.strftime("%B %d %Y") %></p>
                 </div>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
                     <button class="event-card-buttons">
                       <% if UserEvent.where(event: event, user: current_user).empty? %>
-                        <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
+                        <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to go to this Event?" }, class: "event-card-buttons" %>
                       <% else %>
                         <% user_event = UserEvent.find_by(user: current_user, event: event) %>
                         <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
@@ -194,7 +195,6 @@
         <% end %>
       </div>
     </div>
-    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
   </section>
 </div>
 
