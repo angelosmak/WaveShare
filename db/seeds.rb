@@ -129,12 +129,7 @@ review_contents = [
     updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
   )
   users << user
-  Profile.create!(
-    user_id: user.id,
-    username: Faker::Internet.unique.username,
-    created_at: Faker::Time.between(from: 1.years.ago, to: Time.current),
-    updated_at: Faker::Time.between(from: 1.years.ago, to: Time.current)
-  )
+  
 
 # generate events
   events_set = Set.new
