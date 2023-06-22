@@ -111,7 +111,7 @@
             <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
           </div>
 <%# Reviewstab %>
-  <div id="Reviews" class="tabcontent">
+  <div id="Reviews" class="tabcontent" style="border:none;">
     <% @reviews.each do |review| %>
   <div class="container mb-2 p-0">
       <div class="review-card">
@@ -125,7 +125,7 @@
                       <% end %>
               <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
               </div>
-               <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
+               <h5 class="mr-5" style="margin-right:10px; margin-top:10px;"><strong><%= review.title %></strong></h5>
               <div class="col-md-10">
                 <div class="d-flex">
                 <div class="title-review">
@@ -148,36 +148,35 @@
           <% end %>
   </div>
           <%# Eventstab %>
-<div id="Events" class="tabcontent dontdisplaycontent">
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-5">
-      <div class="row text-center">
+<div id="Events" class="tabcontent dontdisplaycontent" style="border:none;">
+           <button type="button" class="button-review"><%= link_to 'Create your own Event', new_beach_event_path(@beach)%></button>
+  <section>
+    <div class="events-container">
+
         <% @events.each do |event| %>
-          <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card mb-1">
-              <div class="card-body py-4 mt-2">
-                <div class="d-flex justify-content-center mb-4">
+
+            <div class="events-card mb-1">
+              <div class="events-card-body">
+                <div class="d-flex justify-content-center mb-2">
                   <% if event.photo.key %>
-                    <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <%= cl_image_tag event.photo.key, class: 'header-image event-image-rounded' %>
                   <% else %>
                     <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= event.title %></h5>
-                <p class="mb-2 event-card-description event-card-text">
+                <p class="event-card-description event-card-text">
                   <%= event.description %>
                 </p>
-                <ul class="list-unstyled d-flex justify-content-center">
-                  <li>
-                    <p class="event-card-date event-card-text"><%= event.date.strftime("%B %d %Y") %></p>
-                  </li>
-                </ul>
+                <div class="d-flex justify-content-center">
+                    <p class="event-card-date event-card-text">By <%= event.user.profile.username %> taking place on <%= event.date.strftime("%B %d %Y") %></p>
+                </div>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
                     <button class="event-card-buttons">
                       <% if UserEvent.where(event: event, user: current_user).empty? %>
-                        <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
+                        <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to go to this Event?" }, class: "event-card-buttons" %>
                       <% else %>
                         <% user_event = UserEvent.find_by(user: current_user, event: event) %>
                         <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
@@ -189,14 +188,13 @@
                     <button class="event-card-buttons">See More</button>
                   </div>
                   </a>
-                </div>
+
               </div>
             </div>
           </div>
         <% end %>
       </div>
     </div>
-    <%= link_to 'New Event', new_beach_event_path(@beach), class: "btn btn-outline-primary" %>
   </section>
 </div>
 
