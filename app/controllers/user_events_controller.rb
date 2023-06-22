@@ -5,7 +5,11 @@ class UserEventsController < ApplicationController
     @attendance.event = @event
     @attendance.user_id = current_user.id
     @attendance.save
-    redirect_to @event, notice: 'Attendendance added successfully.'
+    if URI(request.referer).path.include?("events")
+      redirect_to @event, notice: 'Attendendance added successfully.'
+    else
+      redirect_to request.original_url, notice: 'Attendance added successfully.'
+    end
     authorize @attendance
   end
 
@@ -13,7 +17,11 @@ class UserEventsController < ApplicationController
     @attendance = UserEvent.find(params[:id])
     @event = @attendance.event
     @attendance.destroy
-    redirect_to @event, notice: 'Attendance cancelled successfully.'
+    if URI(request.referer).path.include?("events")
+      redirect_to @event, notice: 'Attendendance cancelled successfully.'
+    else
+      redirect_to request.original_url, notice: 'Attendance cancelled successfully.'
+    end
     authorize @attendance
   end
 
