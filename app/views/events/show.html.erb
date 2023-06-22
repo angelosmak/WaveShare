@@ -149,16 +149,16 @@
               <div class="event-actions">
                 <%# end of user_events loop %>
                 <%# end of user_events loop %>
-                <button class="event-show-action-buttons">
                   <% if policy(@event).edit? %>
-                    <%= link_to "Edit", edit_event_path(@event), class: 'event-card-buttons' %>
-                  <% end %>
-                </button>
                 <button class="event-show-action-buttons">
-                  <% if policy(@event).destroy? %>
-                    <%= link_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'event-show-action-buttons' %>
-                  <% end %>
+                    <%= link_to "Edit", edit_event_path(@event), class: 'event-card-buttons' %>
                 </button>
+                  <% end %>
+                  <% if policy(@event).destroy? %>
+                <button class="event-show-action-buttons">
+                    <%= link_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'event-show-action-buttons' %>
+                </button>
+                  <% end %>
               </div>
         </div>
       </div>
