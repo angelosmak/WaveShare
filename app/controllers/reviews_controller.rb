@@ -31,9 +31,13 @@ class ReviewsController < ApplicationController
 
   def destroy
     # pundit
-    authorize @review
     @review.destroy
-    redirect_to beach_path(@review.beach), notice: 'Review was successfully destroyed.'
+    if URI(request.referer).path.include?("beaches")
+      redirect_to @review.beach, notice: 'Review was successfully destroyed.'
+    else
+      redirect_to request.referer, notice: 'Review was successfully destroyed.'
+    end
+    authorize @review
   end
 
   private
