@@ -96,9 +96,9 @@
                         <%# else put another picture from assets %>
                           <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                       <% end %>
-              <h4 style="margin-left:10px;"><%= review.user.profile.username %></h4>
+              <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
               </div>
-               <h2 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h2>
+               <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
               <div class="col-md-10">
                 <div class="d-flex">
                 <div class="title-review">
@@ -107,7 +107,13 @@
                     <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
                 </div>
                   <p><%= review.content %></p>
-                  <p>
+                  <% if policy(review).destroy? %>
+                    <div class="w-100 text-end">
+                      <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
+                        <i class="fa-solid fa-trash" style="color: #000000;"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
               </div>
           </div>
       </div>
