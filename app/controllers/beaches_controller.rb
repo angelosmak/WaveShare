@@ -1,7 +1,6 @@
 require 'httparty'
 
 class BeachesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index] # (CP) removed spaces inside square brackets
   def index
     # pundit
     @beaches = policy_scope(Beach)

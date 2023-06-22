@@ -8,10 +8,10 @@ class EventsController < ApplicationController
 
   def show
     @beach = @event.beach
-    @marker = {
+    @markers = [{
   lat: @beach.latitude,
   lng: @beach.longitude
-}
+  }]
     # pundit
     authorize @event
   end
