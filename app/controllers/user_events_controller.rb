@@ -20,7 +20,7 @@ class UserEventsController < ApplicationController
     if URI(request.referer).path.include?("events")
       redirect_to @event, notice: 'Attendendance cancelled successfully.'
     else
-      redirect_to request.original_url, notice: 'Attendance cancelled successfully.'
+      redirect_to request.referer, notice: 'Attendance cancelled successfully.'
     end
     authorize @attendance
   end
