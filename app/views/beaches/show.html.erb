@@ -111,7 +111,7 @@
             <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
           </div>
 <%# Reviewstab %>
-  <div id="Reviews" class="tabcontent">
+  <div id="Reviews" class="tabcontent" style="border:none;">
     <% @reviews.each do |review| %>
   <div class="container mb-2 p-0">
       <div class="review-card">
@@ -148,15 +148,15 @@
           <% end %>
   </div>
           <%# Eventstab %>
-<div id="Events" class="tabcontent dontdisplaycontent">
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-5">
-      <div class="row text-center">
+<div id="Events" class="tabcontent dontdisplaycontent" style="border:none;">
+  <section>
+    <div class="events-container">
+
         <% @events.each do |event| %>
-          <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card mb-1">
-              <div class="card-body py-4 mt-2">
-                <div class="d-flex justify-content-center mb-4">
+
+            <div class="events-card mb-1">
+              <div class="events-card-body">
+                <div class="d-flex justify-content-center mb-2">
                   <% if event.photo.key %>
                     <%= cl_image_tag event.photo.key, class: 'header-image' %>
                   <% else %>
@@ -165,14 +165,12 @@
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= event.title %></h5>
-                <p class="mb-2 event-card-description event-card-text">
+                <p class="event-card-description event-card-text">
                   <%= event.description %>
                 </p>
-                <ul class="list-unstyled d-flex justify-content-center">
-                  <li>
+                <div class="d-flex justify-content-center">
                     <p class="event-card-date event-card-text"><%= event.date.strftime("%B %d %Y") %></p>
-                  </li>
-                </ul>
+                </div>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
                     <button class="event-card-buttons">
@@ -189,7 +187,7 @@
                     <button class="event-card-buttons">See More</button>
                   </div>
                   </a>
-                </div>
+
               </div>
             </div>
           </div>

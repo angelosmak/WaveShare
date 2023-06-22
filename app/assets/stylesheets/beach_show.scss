@@ -38,3 +38,26 @@
 .header-address-margin {
   margin-bottom: 2vh;
 }
+
+.events-container {
+  padding-top: 0rem !important;
+  border: none;
+}
+
+
+.events-card {
+  background-color: blue;
+  border-radius: 3%;
+  padding: 0rem;
+  border: 1px solid black;
+}
+
+.events-content-card {
+  background-color: blue;
+}
+
+.events-card-body {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 3%;
+}
