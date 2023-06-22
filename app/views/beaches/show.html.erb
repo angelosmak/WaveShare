@@ -125,7 +125,7 @@
                       <% end %>
               <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
               </div>
-               <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
+               <h5 class="mr-5" style="margin-right:10px; margin-top:10px;"><strong><%= review.title %></strong></h5>
               <div class="col-md-10">
                 <div class="d-flex">
                 <div class="title-review">
@@ -149,11 +149,11 @@
   </div>
           <%# Eventstab %>
 <div id="Events" class="tabcontent dontdisplaycontent" style="border:none;">
+           <button type="button" class="button-review"><%= link_to 'Create your own Event', new_beach_event_path(@beach)%></button>
   <section>
     <div class="events-container">
 
         <% @events.each do |event| %>
-           <button type="button" class="btn btn-primary btn-block"><%= link_to 'New Event', new_beach_event_path(@beach)%></button>
 
             <div class="events-card mb-1">
               <div class="events-card-body">
@@ -170,7 +170,7 @@
                   <%= event.description %>
                 </p>
                 <div class="d-flex justify-content-center">
-                    <p class="event-card-date event-card-text"><%= event.user.profile.username %><%= event.date.strftime("%B %d %Y") %></p>
+                    <p class="event-card-date event-card-text">By <%= event.user.profile.username %> taking place on <%= event.date.strftime("%B %d %Y") %></p>
                 </div>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
