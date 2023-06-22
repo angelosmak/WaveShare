@@ -7,7 +7,7 @@
   <div id="wrapper">
       <div id="a" class="panels">
         <div class="function-imagemap">
-          
+
           </div>
           <div class="header-image-container">
             <div class="header-image" id="hideimage">
@@ -37,7 +37,33 @@
                 <p class="display-3" id="header-address"> <%= @beach.address %>
                 </p>
               </div>
-            <div class="header-text-reviews-container">
+
+
+<%# Stimulus controller for Weather API %>
+      <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
+        <div class="card-product">
+        <h2>Weather & Waves</h2>
+
+          <div class="card-product-infos">
+            <div>
+            <p data-beach-weather-target="temperature">
+              <i class="fa-solid fa-temperature-low" style="color: #5081d8;"></i></p>
+
+            <p data-beach-weather-target="Windspeed">
+              <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i></p>
+
+            <p data-beach-weather-target="Winddirection">
+              <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
+            </div>
+            <div class="information">
+       <img data-beach-weather-target="icon" alt="">
+            <p data-beach-weather-target="description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ <div class="header-text-reviews-container">
               <% if @beach.reviews.present? %>
                   <% total_ratings = 0 %>
                   <% @beach.reviews.each do |review| %>
@@ -54,34 +80,13 @@
               <% end %>
               <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button"%>
             </div>
-
-<%# Stimulus controller for Weather API %>
-      <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
-        <div class="card-product">
-          <img data-beach-weather-target="icon" alt="">
-          <div class="card-product-infos">
-            <div class="description">
-            <p data-beach-weather-target="description"></p>
-            </div>
-            <p data-beach-weather-target="temperature" style="display: inline;">
-              <i class="fa-solid fa-temperature-low" style="color: #1d2f50;"></i></p>
-
-            <p data-beach-weather-target="Windspeed">
-              <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i></p>
-
-            <p data-beach-weather-target="Winddirection">
-              <i class="fa-regular fa-compass" style="color: #5081d8;"></i></i></p>
-          </div>
-        </div>
-      </div>
-
-<%# new review cards %>
-
 <%# Tabs %>
           <div class="tab">
             <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
             <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
           </div>
+
+
 <%# Reviewstab %>
 <%# new reviews cards %>
   <div id="Reviews" class="tabcontent">
