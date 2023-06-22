@@ -1,0 +1,5 @@
+meta_name: "Waveshare"
+meta_title: "Waveshare - Connect.surf.enjoy"
+meta_description: "Explore Beaches nearby and connect with other surfers!"
+meta_image: "meta-beach.jpg" # should exist in `app/assets/images/`
+# twitter_account: "@your_twitter_account"   # required for Twitter Cards
