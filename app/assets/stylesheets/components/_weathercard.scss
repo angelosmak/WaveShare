@@ -7,10 +7,12 @@
   padding: 2px;
 }
 
-.information {
+.weather-icon {
+  display: flex;
   align-items: center;
-  margin-left: 100px;
-  border: 1px solid rgba(255, 0, 0, 0.1);
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: %;
 }
 
 .card-product img {
@@ -27,26 +29,43 @@
 
 .card-product p {
   font-size: 20px;
-  line-height: 1;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  text-align: center;
+  // line-height: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  // margin-bottom: 8px;
 }
 
 .card-product i {
   font-size: 25px;
-  line-height: 1;
-  opacity: .7;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  margin-right: 5%;
+  // line-height: 1;
+  // margin-top: 8px;
+  // margin-bottom: 8px;
+  // margin-right: 5%;
 }
 
+.weather-info{
+  width: 40%;
+}
 
 .card-product {
   padding: 5px;
 }
 
+.paragraph-weather {
+  display: flex;
+  width: 60%;
+}
+.details-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
 .card-product-infos {
   padding: 5px;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
