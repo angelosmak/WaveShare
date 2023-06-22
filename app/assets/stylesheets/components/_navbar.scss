@@ -15,7 +15,7 @@
 .nav-bot {
   display: flex;
   width:100vw;
-  border-radius: 20px;
+  border-radius: 10px;
   position: fixed;
   bottom: 0;
   background-color: rgb(250, 250, 250);
@@ -53,12 +53,15 @@
 
   .navbar-text {
     font-family: 'Bowlby One SC', cursive;
+    font-weight: lighter;
   }
 
   .fa-regular {
-    line-height: 0;
+  line-height: 0;
+
   }
 
   .fa-solid {
   line-height: 0;
+
   }
