@@ -2,7 +2,7 @@ require "open-uri"
 require "json"
 
 # bondi beach
-api_key = 'ea186841ff8ba1d952efa9a35dfa1bed'
+api_key = 'd4e1a1852e538a510ed264567f3c800a'
 
 # url = "https://api.openweathermap.org/data/3.0/onecall?lat=#{lat}&lon=#{lon}&units==metric&appid=#{api_key}"
 
