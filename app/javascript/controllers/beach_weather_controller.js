@@ -7,7 +7,7 @@ export default class extends Controller {
   connect() {
 
     console.log(this.latValue, this.lonValue)
-    fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${this.latValue}&lon=${this.lonValue}&appid=ea186841ff8ba1d952efa9a35dfa1bed`)
+    fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${this.latValue}&lon=${this.lonValue}&appid=secret`)
     .then(response => response.json())
     .then(data => {
 
