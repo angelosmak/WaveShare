@@ -188,6 +188,9 @@
 
   .searchbar {
     margin-top: 2%;
+    position: sticky;
+    top:0;
+    z-index: 10000;
   }
 
   .search-form-control .form-control {
@@ -200,7 +203,6 @@
   }
 
   .card-holder {
-    padding: 1%;
     border-radius: 12px;
 
   }
@@ -217,6 +219,9 @@
 
   .searchbar {
     margin-top: 2%;
+    position: sticky;
+    top:0;
+    z-index: 10000;
   }
 
   .search-form-control .form-control {
@@ -229,7 +234,6 @@
   }
 
   .card-holder {
-    padding: 2%;
     flex: 1 0 200px; /* Adjust the desired height for each card */
 
   }
@@ -243,6 +247,9 @@
 
   .searchbar {
     margin-top: 1%;
+    position: sticky;
+    top:0;
+    z-index: 10000;
   }
 
   .search-form-control .form-control {
@@ -255,7 +262,6 @@
   }
 
   .card-holder {
-    padding: 0.5%;
     border-radius: 12px;
   }
 }
@@ -310,4 +316,3 @@
 #shadowed {
   text-shadow: 2px 2px black;
 }
-
