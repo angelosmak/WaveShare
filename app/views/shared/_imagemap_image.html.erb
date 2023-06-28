@@ -1,9 +1,12 @@
-<% if @beach.photo_url.present? %>
-    <% photo_reference = @beach.photo_url %>
-    <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
-    <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
-    <%= image_tag image_url%>
+<% if false %>
+  <% if @beach.photo_url.present? %>
+      <% photo_reference = @beach.photo_url %>
+      <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
+      <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
+      <%= image_tag image_url%>
   <% else %>
     <!-- Placeholder image if photo_url is not available -->
     <%= image_tag "broken-beach.jpg", class: " beach-image" %>
   <% end %>
+<% end %>
+<%=  image_tag "broken-beach.jpg" %>
