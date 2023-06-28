@@ -41,31 +41,32 @@
             <div class="details-box">
               <i class="fa-solid fa-temperature-low" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-                <p data-beach-weather-target="temperature"></p>
+                <p data-beach-weather-target="temperature">30</p>
               </div>
             </div>
             <div class="details-box">
               <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-                <p data-beach-weather-target="Windspeed"></p>
+                <p data-beach-weather-target="Windspeed">10km/h</p>
               </div>
             </div>
             <div class="details-box">
               <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-                <p data-beach-weather-target="Winddirection"></p>
+                <p data-beach-weather-target="Winddirection">NW</p>
               </div>
             </div>
             <div class="details-box">
               <i class="fa-solid fa-sun" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-                <p data-beach-weather-target="Sunset"></p>
+                <p data-beach-weather-target="Sunset">18:30</p>
               </div>
             </div>
           </div>
           <div class="weather-icon">
-            <img data-beach-weather-target="icon" alt="">
-            <p data-beach-weather-target="description"></p>
+            <%# <img data-beach-weather-target="icon" alt=""> %>
+            <%# <p data-beach-weather-target="description"></p> %>
+            <%= image_tag "weather.webp" %>
           </div>
         </div>
       </div>
