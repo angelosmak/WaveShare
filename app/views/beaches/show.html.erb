@@ -1,167 +1,146 @@
-<head>
-<body>
-  <div class="navbar-home ">
-    <%= link_to :back do%>
-      <i class="fa-solid fa-left-long" style="color: #fafafa;"></i>
-    <% end %>
+<div class="navbar-home">
+  <%= link_to :back do %>
+    <i class="fa-solid fa-left-long" style="color: #fafafa;"></i>
+  <% end %>
+</div>
 
+<div id="wrapper">
+  <div id="a" class="panels">
+    <div class="function-imagemap">
+      <!-- Add content for function-imagemap here -->
+    </div>
+    <div class="header-image-container">
+      <div class="header-image" id="hideimage">
+        <%= render 'shared/imagemap_image' %>
+      </div>
+    </div>
   </div>
-  <div id="wrapper">
-      <div id="a" class="panels">
-        <div class="function-imagemap">
 
-          </div>
-          <div class="header-image-container">
-            <div class="header-image" id="hideimage">
-              <%= render 'shared/imagemap_image' %>
-            </div>
-            <div class="imagemap-map">
-              map
-            </div>
-          </div>
-          <%# <div class="header-map-container">
-            <div class="header-map">map</div>
-          </div> %>
+  <div id="b" class="panels">
+    <div class="section-header-text">
+      <div class="header-text-container">
+        <div class="header-title-container">
+          <p class="display-1" id="header-title"><%= @beach.name %></p>
+        </div>
+        <div class="header-description-container">
+          <p class="display-2" id="header-description">The beach of <%= @beach.name %> is one of the most popular beaches in the area. The sandy beach is surrounded by impressive rock formations, lush greenery...</p>
+        </div>
+        <div class="header-address-container">
+          <p class="display-3" id="header-address">
+            <span style="padding-right:10px;"><i class="fa-solid fa-map-location-dot fa-fw" style="color: #000000;"></i></span><%= @beach.address %>
+          </p>
         </div>
       </div>
-      <div id="b" class="panels">
-        <div class="section-header-text">
-          <div class="header-text-container">
-              <div class="header-title-container">
-                <p class="display-1" id="header-title"> <%= @beach.name %>
-                </p>
-              </div>
-              <div class="header-description-container">
-                <p class="display-2" id="header-description">The beach of <%= @beach.name %> is one of the most popular beaches in the area. The sandy beach is surrounded by impressive rock formations, lush greenery ...
-                </p>
-              </div>
-              <div class="header-address-container">
-                <p class="display-3" id="header-address">
-                <span style="padding-right:10px;"><i class="fa-solid fa-map-location-dot fa-fw" style="color: #000000;"></i></span><%= @beach.address %>
-                </p>
-              </div>
+    </div>
 
-
-<%# Stimulus controller for Weather API %>
-      <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
-        <div class="card-product">
+    <div data-controller="beach-weather" data-beach-weather-lat-value=<%=@beach.longitude %> data-beach-weather-lon-value=<%=@beach.latitude %>>
+      <div class="card-product">
         <h2>Weather & Waves</h2>
-
-          <div class="card-product-infos">
-            <div class="weather-info">
-
+        <div class="card-product-infos">
+          <div class="weather-info">
             <div class="details-box">
               <i class="fa-solid fa-temperature-low" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-             <p data-beach-weather-target="temperature"></p>
+                <p data-beach-weather-target="temperature"></p>
               </div>
             </div>
-
             <div class="details-box">
               <i class="fa-shrp fa-solid fa-wind" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-            <p data-beach-weather-target="Windspeed"></p>
+                <p data-beach-weather-target="Windspeed"></p>
+              </div>
             </div>
-            </div>
-
-
             <div class="details-box">
               <i class="fa-regular fa-compass" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-            <p data-beach-weather-target="Winddirection"></p>
+                <p data-beach-weather-target="Winddirection"></p>
+              </div>
             </div>
-            </div>
-
             <div class="details-box">
               <i class="fa-solid fa-sun" style="color: #5081d8;"></i>
               <div class="paragraph-weather">
-            <p data-beach-weather-target="Sunset"></p>
+                <p data-beach-weather-target="Sunset"></p>
+              </div>
             </div>
-            </div>
-
           </div>
-            <div class="weather-icon">
-       <img data-beach-weather-target="icon" alt="">
+          <div class="weather-icon">
+            <img data-beach-weather-target="icon" alt="">
             <p data-beach-weather-target="description"></p>
-            </div>
           </div>
         </div>
       </div>
+    </div>
 
- <div class="header-text-reviews-container">
-              <% if @beach.reviews.present? %>
-                  <% total_ratings = 0 %>
-                  <% @beach.reviews.each do |review| %>
-                  <% total_ratings += review.rating%>
-                  <% end %>
-                  <% average_rating = total_ratings.to_f / @beach.reviews.count %>
-                <%= average_rating.round(1) %>
-                <p class="fa-solid fa-star" ></p>
-                <% if @beach.reviews.count == 1 %>
-                  <%= @beach.reviews.count %> Review
-                <% else %>
-                  <%= @beach.reviews.count %> Reviews
-                <% end %>
-              <% end %>
-              <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class:"button-review"%>
-            </div>
-<%# Tabs %>
-          <div class="tab beaches-tab-margin">
-            <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
-            <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
-          </div>
-<%# Reviewstab %>
-  <div id="Reviews" class="tabcontent" style="border:none;">
-    <% @reviews.each do |review| %>
-  <div class="container mb-2 p-0">
-      <div class="review-card">
-          <div class="row">
+    <div class="header-text-reviews-container">
+      <% if @beach.reviews.present? %>
+        <% total_ratings = 0 %>
+        <% @beach.reviews.each do |review| %>
+          <% total_ratings += review.rating %>
+        <% end %>
+        <% average_rating = total_ratings.to_f / @beach.reviews.count %>
+        <%= average_rating.round(1) %>
+        <p class="fa-solid fa-star"></p>
+        <% if @beach.reviews.count == 1 %>
+          <%= @beach.reviews.count %> Review
+        <% else %>
+          <%= @beach.reviews.count %> Reviews
+        <% end %>
+      <% end %>
+      <%= link_to "Tell us about your Experience", new_beach_review_path(@beach), class: "button-review" %>
+    </div>
+
+    <div class="tab beaches-tab-margin">
+      <button class="tablinks active navbar-text" onclick="openCity(event, 'Reviews')">Reviews</button>
+      <button class="tablinks navbar-text" onclick="openCity(event, 'Events')">Events</button>
+    </div>
+
+    <div id="Reviews" class="tabcontent" style="border:none;">
+      <% @reviews.each do |review| %>
+        <div class="container mb-2 p-0">
+          <div class="review-card">
+            <div class="row">
               <div class="col-md-1 d-flex align-items-center">
-                  <% if review.user.profile.photo.key %>
-                        <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
-                        <% else %>
-                        <%# else put another picture from assets %>
-                          <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                      <% end %>
-              <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
+                <% if review.user.profile.photo.key %>
+                  <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
+                <% else %>
+                  <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% end %>
+                <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
               </div>
-               <h5 class="mr-5" style="margin-right:10px; margin-top:10px;"><strong><%= review.title %></strong></h5>
+              <h5 class="mr-5" style="margin-right:10px; margin-top:10px;"><strong><%= review.title %></strong></h5>
               <div class="col-md-10">
                 <div class="d-flex">
-                <div class="title-review">
-                  <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
+                  <div class="title-review">
+                    <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
+                  </div>
+                  <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
                 </div>
-                    <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
-                </div>
-                  <p><%= review.content %></p>
-                  <% if policy(review).destroy? %>
-                    <div class="w-100 text-end">
-                      <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
-                        <i class="fa-solid fa-trash" style="color: #000000;"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
+                <p><%= review.content %></p>
+                <% if policy(review).destroy? %>
+                  <div class="w-100 text-end">
+                    <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                      <i class="fa-solid fa-trash" style="color: #000000;"></i>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
+            </div>
           </div>
-      </div>
-  </div>
-          <% end %>
-  </div>
-          <%# Eventstab %>
-<div id="Events" class="tabcontent dontdisplaycontent" style="border:none;">
-           <button type="button" class="button-review"><%= link_to 'Create your own Event', new_beach_event_path(@beach)%></button>
-  <section>
-    <div class="events-container">
+        </div>
+      <% end %>
+    </div>
 
-        <% @events.each do |event| %>
-
+    <div id="Events" class="tabcontent dontdisplaycontent" style="border:none;">
+      <button type="button" class="button-review"><%= link_to 'Create your own Event', new_beach_event_path(@beach) %></button>
+      <section>
+        <div class="events-container">
+          <% @events.each do |event| %>
             <div class="events-card mb-1">
               <div class="events-card-body">
                 <div class="d-flex justify-content-center mb-2">
                   <% if event.photo.key %>
                     <%= cl_image_tag event.photo.key, class: 'header-image event-image-rounded' %>
                   <% else %>
-                    <%# Put another picture from assets %>
                     <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
@@ -170,7 +149,7 @@
                   <%= event.description %>
                 </p>
                 <div class="d-flex justify-content-center">
-                    <p class="event-card-date event-card-text">By <%= event.user.profile.username %> taking place on <%= event.date.strftime("%B %d %Y") %></p>
+                  <p class="event-card-date event-card-text">By <%= event.user.profile.username %> taking place on <%= event.date.strftime("%B %d %Y") %></p>
                 </div>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
@@ -184,41 +163,37 @@
                     </button>
                   </div>
                   <a href="/events/<%= event.id %>">
-                  <div class="event-button-section">
-                    <button class="event-card-buttons">See More</button>
-                  </div>
+                    <div class="event-button-section">
+                      <button class="event-card-buttons">See More</button>
+                    </div>
                   </a>
-
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      </section>
     </div>
-  </section>
-</div>
 
-<script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  if (cityName == "Events") {
-    document.getElementById("Events").style.display = "block";
-    document.getElementById("Reviews").style.display = "none";
-  } else {
-    document.getElementById("Events").style.display = "none";
-    document.getElementById("Reviews").style.display = "block";
-  }
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
-</body>
-</head>
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        if (cityName == "Events") {
+          document.getElementById("Events").style.display = "block";
+          document.getElementById("Reviews").style.display = "none";
+        } else {
+          document.getElementById("Events").style.display = "none";
+          document.getElementById("Reviews").style.display = "block";
+        }
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
