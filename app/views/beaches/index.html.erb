@@ -43,21 +43,21 @@
           </div>
           <div class="beach-icons">
             <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
-              <h3 id="shadowed" class="card-text secondary-text"><%= beach.address %></h3>
-              <div class="col">
+              <h3 id="shadowed" class="card-text text-center secondary-text"><%= beach.address %></h3>
+              <%# <div class="col text-center">
                 <h3 id="shadowed" class="secondary-text d-none" data-beach-weather-target="description">Sunny </h3>
-              </div>
+              </div> %>
 
               <div class="row">
-                <div class="col">
+                <div class="col text-center">
                   <i class="fa-solid fa-wind" style="color: #ffffff;"></i>
                   <h3 id="shadowed" class="secondary-text" data-beach-weather-target="Windspeed">10 km/h</h3>
                 </div>
-                <div class="col">
+                <div class="col text-center">
                   <i class="fa-solid fa-temperature-full" style="color: #ffffff;"></i>
                   <h3 id="shadowed" class="secondary-text" data-beach-weather-target="temperature">35</h3>
                 </div>
-                <div class="col">
+                <div class="col text-center">
                   <i class="fa-regular fa-compass" style="color: #ffffff;"></i>
                   <h3 id="shadowed" class="secondary-text" data-beach-weather-target="Winddirection">NW</h3>
                 </div>
