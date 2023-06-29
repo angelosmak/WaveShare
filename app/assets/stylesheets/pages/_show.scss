@@ -233,24 +233,22 @@
   width: 100%;
   height: auto;
 }
+
+#b {
+  border-radius: 16px 16px 0px 0px;
+  background: white;
+  min-height: 100%;
+  z-index: 1000;
+  padding-bottom: 5px;
+}
 @media only screen and (max-width: 600px) {
   #b  {
     margin-top: calc(25vh - 24px);
-    border-radius: 16px 16px 0px 0px;
-    background: white;
-    height: 100%;
-    min-height: 100%;
-    z-index: 1000;
   }
 }
 
 @media only screen and (min-width: 768px) {
   #b  {
     margin-top: calc(45vh - 24px);
-    border-radius: 16px 16px 0px 0px;
-    background: white;
-    height: 100%;
-    min-height: 100%;
-    z-index: 1000;
   }
 }
