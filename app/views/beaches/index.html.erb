@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="main-container">
-  <h1 class="navbar-text">Beaches and meetups near you</h1>
+  <h1 class="primary-text">Beaches and meetups near you</h1>
   <div class="map-container">
     <div style="width: 100%; height: 500px; margin: 0 auto;"
       data-controller="map"
@@ -11,11 +11,11 @@
   </div>
 </div>
 
-<div class="searchbar shadow">
+<div class="searchbar card shadow">
   <%= form_tag beaches_path, method: :get do %>
     <div class="search-form-control">
       <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "secondary-text form-control" %>
-      <%= submit_tag 'Search', class: "btn navbar-text" %>
+      <%= submit_tag 'Search', class: "btn primary-text" %>
     </div>
   <% end %>
 </div>
@@ -34,10 +34,10 @@
                 <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
                 <%= image_tag image_url, class: "card-img-top" %>
               <% else %>
-                <%= image_tag "broken-beach.jpg", class: " beach-image" %>
+                <%= image_tag "broken-beach.jpg", class: "card-img-top" %>
               <% end %>
             <% end %>
-            <%=  image_tag "broken-beach.jpg" , class: " beach-image"%>
+            <%=  image_tag "broken-beach.jpg" , class: "card-img-top"%>
 
 
           </div>
