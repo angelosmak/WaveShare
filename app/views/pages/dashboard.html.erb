@@ -21,7 +21,7 @@
                       <% end %>
               <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
               </div>
-               <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
+                <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
               <div class="col-md-10">
                 <div class="d-flex">
                 <div class="title-review">
@@ -54,10 +54,10 @@
               <div class="card-body py-4 mt-2">
                 <div class="d-flex justify-content-center mb-4">
                   <% if event.photo.key %>
-                    <%= cl_image_tag event.photo.key, class: 'header-image' %>
+                    <%= cl_image_tag event.photo.key, class: 'header-image event-image-rounded' %>
                   <% else %>
                     <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= event.title %></h5>
@@ -105,10 +105,10 @@
               <div class="card-body py-4 mt-2">
                 <div class="d-flex justify-content-center mb-4">
                   <% if user_event.event.photo.key %>
-                    <%= cl_image_tag user_event.event.photo.key, class: 'header-image' %>
+                    <%= cl_image_tag user_event.event.photo.key, class: 'header-image event-image-rounded' %>
                   <% else %>
                     <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= user_event.event.title %></h5>
@@ -148,11 +148,11 @@
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent-dashboard");
     if (cityName == "Events") {
-       document.getElementById("Events").style.display = "block";
-       document.getElementById("Reviews").style.display = "none";
+      document.getElementById("Events").style.display = "block";
+      document.getElementById("Reviews").style.display = "none";
     } else {
-       document.getElementById("Events").style.display = "none";
-       document.getElementById("Reviews").style.display = "block";
+        document.getElementById("Events").style.display = "none";
+        document.getElementById("Reviews").style.display = "block";
     }
     for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
