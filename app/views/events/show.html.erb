@@ -101,8 +101,8 @@
       <div class="section-header-text">
         <div class="header-text-container">
             <div class="header-title-container">
-              <p class="display-1" id="header-title"> <%= @event.title %>
-              </p>
+              <h2> <%= @event.title %>
+              </h2>
             </div>
             <div class="header-description-container">
               <p class="display-2" id="header-description"> <%= @event.description %>
@@ -118,7 +118,7 @@
             </div>
             <button class="event-show-buttons">
                   <% if UserEvent.where(event: @event, user: current_user).empty?%>
-                    <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Are ready to parteyyyyyyyyyyyyyy?"} %>
+                    <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
                   <% end %>
                   <% unless @event.user_events.empty? %>
                     <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
@@ -137,7 +137,7 @@
                 <% end %>
               </div>
               <div class="attendees-counter-container">
-                <p class="header-info"><%= @event.user_events.count %>
+                <p><%= @event.user_events.count %>
                   <% if @event.user_events.count == 1 %>
                     <%= "person attending" %>
                   <% else %>

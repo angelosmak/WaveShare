@@ -34,7 +34,6 @@
     text-align: center;
     margin: auto;
   }
-
 }
 
 .text-header-container {
@@ -47,7 +46,6 @@
   padding: 20px;
   font-size: 4vh;
   // font-weight: 500;
-  font-family: 'Bowlby One SC', cursive;
 }
 
 .text-header {
@@ -55,12 +53,10 @@
   max-height: 200px;
 
   .display-1 {
-    font-size: 32px;
     padding: 8px;
   }
 
   .display-2 {
-    font-size: 24px;
     padding: 8px;
     margin-top: -35px;
   }
@@ -79,6 +75,31 @@
   border: 3px solid black;
 }
 
+// headings
+
+h1 {
+  font-family: $headers-font;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: $headers-font;
+  font-size: 1.8rem;
+  font-weight: 550;
+}
+
+h3 {
+  font-family: $headers-font;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+h4 {
+  font-family: $headers-font;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
 
 
 
@@ -112,6 +133,7 @@
 
 a {
   text-decoration: none;
+  font-family: $body-font;
 }
 
 a:hover {
@@ -148,7 +170,7 @@ a:hover {
 }
 
 .secondary-text {
-  font-family: 'Dongle', sans-serif;
+  font-family: $body-font;
 }
 
 
