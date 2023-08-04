@@ -1,22 +1,45 @@
-<div class="background-image">
-  <div class="hero-text">
-    <h1>Wave Share</h1>
-    <h3>Connect.Surf.Enjoy</h3>
-    <p>Connect to fellow Surfers worldwide and  <br>Share your experiences and Waves with others!</p>
-    <div class="input-field">
-    <%= form_tag beaches_path, method: :get do %>
-      <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: " form-control" %>
-      <%= button_tag type: 'submit', class: 'btn btn1' do %>
-        <%= content_tag(:i, '', class: 'fa fa-search') %>
+<section id="home">
+  <div class="background-image">
+    <div class="hero-text">
+      <h1>Wave Share</h1>
+      <h3>Connect.Surf.Enjoy</h3>
+      <p>Connect to fellow Surfers worldwide and  <br>Share your experiences and Waves with others!</p>
+      <div class="input-field">
+      <%= form_tag beaches_path, method: :get do %>
+        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: " form-control" %>
+        <%= button_tag type: 'submit', class: 'btn btn1' do %>
+          <%= content_tag(:i, '', class: 'fa fa-search') %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
-
-<section id="about">
-  
 </section>
 
+<section id="about">
+  <div class="left-content">
+    <!-- Your content for the left side goes here -->
+    <div class="image-card">
+    <%= image_tag "about-image.png", alt:"about-img" %>
+    </div>
+  </div>
+  <div class="right-content">
+    <div class="surf-app-container">
+      <div>
+      <p class="surf-app-paragraph">
+        At WaveShare
+        <br>
+        we understand that surfing is more than just a sport; <br>
+        it's a way of life.
+        <br>
+        <br>
+        Our purpose is to bring the thrill of the ocean and the joy of riding waves right to your fingertips.
+        <br>
+        <br> With real-time surf forecasts, tide charts, and live wave conditions, you'll never miss the perfect swell again.
+      </p>
+      </div>
+    </div>
+  </div>
+</section>
 <%# Commented out stock images %>
   <% if false %>
   <div class="row-dash justify-content-center">
