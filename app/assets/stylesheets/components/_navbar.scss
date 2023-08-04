@@ -1,62 +1,49 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: $dark-blue;
+#mainNavigation a {
+  font-family: $headers-font;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  text-shadow:1px 1px 2px rgba(0,0,0,0.4)
+}
+li.nav-item.dropdown{
+  margin:0;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.dropdown-menu {
+  background:#03727d
+}
+a.dropdown-toggle {
+  color:#dfdfdf !important
+}
+a:hover{
+  font-size: large;
+  background-color: transparent;
+}
+.nav-item a{
+  color:#dfdfdf;
+}
+.nav-item a:hover {
+  font-weight: 700;
+}
+.nav-item{
+  min-width:12vw;
+}
+#mainNavigation {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:123;
+  padding-bottom:120px;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
+background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+#navbarNavDropdown.collapsing .navbar-nav,
+#navbarNavDropdown.show .navbar-nav{
+  background:#037582;
+  padding:12px;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-//Bottom Nav
-.nav-bot {
-  display: flex;
-  width:100vw;
-  border-radius: 10px;
-  position: fixed;
-  bottom: 0;
-  background-color: rgb(250, 250, 250);
-  height: 60px;
-  font-size:1cm;
-  justify-content: space-between;
-  color: rgba(20, 20, 20, 0.5);
-  z-index: 9999;
-  box-shadow: 0 4px 10px 0px rgba(17, 1, 141, 0.2), 0 6px 20px 0 rgba(0, 4, 88, 0.19);
-  padding:0 13px ;
-}
-
-.centered {
-  justify-content: center;
-}
-
-.icons:hover{
-  color: rgba(20, 20, 20, 1);
-  background-color: rgba(255, 228, 196,0.9);
-  border-radius: 6px;
-}
-
-
-.searchbox-home {
-    display: flex;
-    flex-grow: 1;
-    margin: 4%;
-    height: 64%;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-  }
-
-  .fa-regular {
-  line-height: 0;
-
-  }
-
-  .fa-solid {
-  line-height: 0;
-
-  }
