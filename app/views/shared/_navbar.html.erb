@@ -1,0 +1,123 @@
+
+<div id="mainNavigation">
+  <nav role="navigation">
+
+  </nav>
+  <div class="navbar-expand-md">
+    <div class="navbar-dark text-center ">
+      <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> <span class="align-middle">Menu</span>
+      </button>
+    </div>
+    <div id="navbarbg" class="text-center py-3 collapse navbar-collapse border-bottom" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto " >
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Beaches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a id="navbarul" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Wave
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Function to apply the scroll effect
+    function applyScrollEffect() {
+      const navbar = document.getElementById("mainNavigation");
+      const navLinks = navbar.getElementsByTagName("a");
+      const navbarbg = document.getElementById("navbarbg")
+      const navbarul = document.getElementById("navbarul");
+
+      if (window.scrollY > 0) {
+        navbarbg.style.backgroundColor = "#205374";
+        navbarbg.style.boxShadow = "0px 0px 10px rgba(255, 200, 58, 0.5)";
+        navbarul.style.color = "#ffc83a";
+
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].style.color = "#ffc83a";
+          // navLinks[i].style.fontSize = "18px";
+
+
+        }
+      } else {
+        navbar.style.fontSize = "16px";
+        navbarbg.style.backgroundColor = "";
+        navbarbg.style.boxShadow = "";
+        navbarul.style.color = "";
+
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].style.color = "";
+          navLinks[i].style.fontSize = ""
+          navLinks[i].style.backgroundColor = "";
+
+        }
+      }
+    }
+
+    // Attach scroll event listener to the window
+    window.addEventListener("scroll", applyScrollEffect);
+
+</script>
+
+<%# Commented out %>
+<% if false %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to beaches_path, class: "navbar-brand" do %>
+      <%= image_tag "WaveShareLogoRounded.png" %>
+
+    <% end %>
+    <div class="primary-text">
+
+</div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+              <%# if  user has a profile photo then put the profile photo avatar %>
+              <% if current_user.profile.photo.key %>
+                <%= cl_image_tag current_user.profile.photo.key,class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+              <%# else put another picture from assets %>
+                <%= image_tag "default-photo.webp", class: "avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                </a>
+              <% end %>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
+              <% if current_user.profile %>
+              <%= link_to "Profile", edit_profile_path(current_user.profile.id), class: "dropdown-item" %>
+              <% end %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>
+<%# Commented out %>

@@ -22,7 +22,9 @@
 @import "star-rating.js/dist/star-rating.css";
 
 
-
+a{
+  font-family: $body-font;
+}
 .image-header {
   height: 200px;
   background-size: cover;
