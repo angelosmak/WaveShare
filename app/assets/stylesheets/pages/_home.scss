@@ -207,12 +207,27 @@ body {
     display: block;
   }
 
-  .left-content,
+  .left-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Each child occupies 50% of the container width */
+    height: auto; /* Each child occupies full container height */
+  }
+
   .right-content {
-  width: 100%; /* Each child occupies 50% of the container width */
-  height: 100%; /* Each child occupies full container height */
-  display: block;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 97%; /* Each child occupies 50% of the container width */
+    height: auto; /* Each child occupies full container height */
+    margin-left: 3%;
+  }
+
+  .image-card{
+    margin: 30px;
+  }
+
 }
 
 /* Tablets and Smaller Laptops */
