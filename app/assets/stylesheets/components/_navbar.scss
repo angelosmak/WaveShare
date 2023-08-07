@@ -27,6 +27,11 @@ a:hover{
 }
 .nav-item{
   min-width:12vw;
+  li
+  {
+    justify-content: center;
+    align-items: center;
+  }
 }
 #mainNavigation {
   position:fixed;
@@ -45,4 +50,8 @@ a:hover{
 #navbarNavDropdown.show .navbar-nav{
   background:#037582;
   padding:12px;
+}
+
+.logo {
+  padding-left: 20px;
 }
