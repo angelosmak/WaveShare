@@ -1,8 +1,5 @@
 
 <div id="mainNavigation">
-  <nav role="navigation">
-
-  </nav>
   <div class="navbar-expand-md">
     <div class="navbar-dark text-center ">
       <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,12 +7,12 @@
       </button>
     </div>
     <div id="navbarbg" class="text-center py-3 collapse navbar-collapse border-bottom" id="navbarNavDropdown">
-          <a class= "logo" aria-current="page" href="/">
+          <a class= "logo" href="/">
           <%= image_tag "WaveShareLogoRounded.png", class: "avatar"%>
           </a>
       <ul class="navbar-nav mx-auto " >
         <li class="nav-item">
-          <a class="nav-link" href="/beaches">Beaches</a>
+          <a class="nav-link" aria-current="page" href="/beaches">Beaches</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/#about">About</a>
@@ -72,6 +69,8 @@
     window.addEventListener("scroll", applyScrollEffect);
 
 </script>
+
+
 
 <%# Commented out %>
 <% if false %>
