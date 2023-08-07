@@ -6,7 +6,7 @@
       <p>Connect to fellow Surfers worldwide and  <br>Share your experiences and Waves with others!</p>
       <div class="input-field">
       <%= form_tag beaches_path, method: :get do %>
-        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: " form-control" %>
+        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "form-control" %>
         <%= button_tag type: 'submit', class: 'btn btn1' do %>
           <%= content_tag(:i, '', class: 'fa fa-search') %>
         <% end %>
@@ -34,8 +34,10 @@
         <br>
         Our purpose is to bring the thrill of the ocean and the joy of riding waves right to your fingertips.
         <br>
-        <br> With real-time surf forecasts, tide charts, and live wave conditions, you'll never miss the perfect swell again.
       </p>
+      </div>
+      <div class="image-relative">
+        <%= image_tag "1.png"%>
       </div>
     </div>
   </div>
