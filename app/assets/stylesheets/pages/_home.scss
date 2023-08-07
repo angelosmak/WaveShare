@@ -156,35 +156,36 @@ body {
 }
 
 .image-card {
-  width: 100%; /* The image card occupies 50% of the left content width */
-  height: 100%; /* The image card occupies 50% of the left content height */
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 50%; /* The image card occupies 50% of the left content width */
+  height: 50%; /* The image card occupies 50% of the left content height */
 }
 
 .image-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  size: relative;
+  max-width: 100%;
+  height: auto;
 }
 
 
-.surf-app-container {
-  display: flex;
+
+.about-header {
+  max-width: 600px; /* Set the desired maximum width for the paragraph */
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  text-align: center; /* Center-align the paragraph text */
 }
 
-.surf-app-paragraph {
-  font-size: 30px;
-  max-width: 500px; /* Set the desired maximum width for the paragraph */
-  text-align: center; /* Center-align the paragraph text */
+
+.about-paragraph {
+  max-width: 600px; /* Set the desired maximum width for the paragraph */
 }
 
 .svg{
   width: 100px;
   height: auto;
 }
+
+
+
+
 /* ---------------END ABOUT------------------ */
 /* ----------------------------------------- */
