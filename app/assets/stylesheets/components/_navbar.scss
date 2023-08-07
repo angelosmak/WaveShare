@@ -27,6 +27,11 @@ a:hover{
 }
 .nav-item{
   min-width:12vw;
+  li
+  {
+    justify-content: center;
+    align-items: center;
+  }
 }
 #mainNavigation {
   position:fixed;
@@ -47,3 +52,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
   padding:12px;
 }
 
+.logo {
+  padding-left: 20px;
+}
