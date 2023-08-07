@@ -14,32 +14,6 @@
 }
 
 
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-  .hero-text{
-    position: absolute;
-    top:20%;
-    left: 40%;
-    h1{
-      font-size: 60px;
-    }
-    h3{
-      margin-left: 17px;
-    }
-    p{
-      margin-left: 25px;
-    }
-  }
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-
 .background-image {
   position: relative;
   width: 100vw;
@@ -135,8 +109,8 @@ body {
 //-------------------------------------------------------
 
 
-/* ---------------ABOUT------------------ */
-/* -------------------------------------- */
+/* -------------------------ABOUT-----------------------
+/* ----------------------------------------------------- */
 
 #about {
   background-color: transparent;
@@ -183,8 +157,98 @@ body {
   width: 100px;
   height: auto;
 }
+/* ----------------------END ABOUT---------------------- */
+/* ----------------------------------------------------- */
 
 
+/* -------------------------MEDIA------------------------
+/* ------------------------------------------------------ */
 
-/* ---------------END ABOUT------------------ */
-/* ----------------------------------------- */
+/* Mobile Phones */
+@media only screen and (max-width: 767px) {
+  /* CSS for mobile phones */
+
+  //----------------HOME SECTION MOBILE---------------
+  //--------------------------------------------------
+  .hero-text{
+    position: absolute;
+    top:28%;
+    left: 0;
+    h1{
+      margin-left: 7px;
+      font-size: 40px;
+    }
+    h3{
+      font-size: 1rem;
+      margin-left: 18px;
+    }
+    p{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  .form-control{
+    width: 250px;
+  }
+
+  .input-field button{
+    left:202px;
+  }
+
+
+  .background-image{
+    height: 80vh;
+  }
+
+  //----------------ABOUT SECTION MOBILE---------------
+  //---------------------------------------------------
+  #about {
+    display: block;
+  }
+
+  .left-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Each child occupies 50% of the container width */
+    height: auto; /* Each child occupies full container height */
+  }
+
+  .right-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 97%; /* Each child occupies 50% of the container width */
+    height: auto; /* Each child occupies full container height */
+    margin-left: 3%;
+  }
+
+  .image-card{
+    margin: 30px;
+  }
+
+}
+
+/* Tablets and Smaller Laptops */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* CSS for tablets and smaller laptops */
+
+
+}
+
+/* Desktops and Larger Laptops */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  /* CSS for desktops and larger laptops */
+
+
+}
+
+/* Large Desktops and High-Resolution Monitors */
+@media only screen and (min-width: 1200px) {
+  /* CSS for large desktops and high-resolution monitors */
+
+
+}
+/* ----------------------END MEDIA---------------------- */
+/* ----------------------------------------------------- */
