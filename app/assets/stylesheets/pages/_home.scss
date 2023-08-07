@@ -139,16 +139,24 @@ body {
 /* -------------------------------------- */
 
 #about {
-  margin-top: $margin;
   background-color: transparent;
   height: 100vh;
   display: flex;
+  background-color: $bg-yellow;
 }
 
-.left-content,
-.right-content {
+.left-content {
   width: 50%; /* Each child occupies 50% of the container width */
   height: 100%; /* Each child occupies full container height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.right-content {
+  width: 50%; /* Each child occupies 50% of the container width */
+  height: auto; /* Each child occupies full container height */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,14 +175,6 @@ body {
 }
 
 
-
-.about-header {
-  max-width: 600px; /* Set the desired maximum width for the paragraph */
-  justify-content: center;
-  text-align: center; /* Center-align the paragraph text */
-}
-
-
 .about-paragraph {
   max-width: 600px; /* Set the desired maximum width for the paragraph */
 }
@@ -183,7 +183,6 @@ body {
   width: 100px;
   height: auto;
 }
-
 
 
 
