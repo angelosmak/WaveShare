@@ -171,6 +171,8 @@ body {
   //----------------HOME SECTION MOBILE---------------
   //--------------------------------------------------
   .hero-text{
+    background-image: url("shell.png");
+
     position: absolute;
     top:28%;
     left: 0;
@@ -222,6 +224,7 @@ body {
     width: 97%; /* Each child occupies 50% of the container width */
     height: auto; /* Each child occupies full container height */
     margin-left: 3%;
+
   }
 
   .image-card{
