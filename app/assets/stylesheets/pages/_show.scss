@@ -17,7 +17,7 @@
   position: relative;
   bottom: 100px;
   background-color:white;
-  height: 100vh;
+  height: auto;
   border-radius: 20px 20px;
   box-shadow: 9px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -28,7 +28,7 @@
 //FOREGROUND PANEL CONTENT
 
 .info-events-section{
-  height: 60vh;
+  height: auto;
   width: inherit;
   display: flex;
   padding: 20px;
