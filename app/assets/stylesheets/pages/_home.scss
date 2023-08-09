@@ -33,25 +33,6 @@ body {
 
 }
 
-.text1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.text1 h1 {
-  color: #000;
-  font-size: 40px;
-  font-weight: 600;
-  font-family: 'Shippori Mincho B1', serif;
-}
-
-.text2 {
-  text-align: center;
-  color: #5e94c1;
-}
-
 .form-control {
   height: 50px;
   width: 530px;
@@ -62,7 +43,7 @@ body {
   position: relative;
 }
 
-.btn1 {
+.btn__search {
   align-items: center;
   position: absolute;
   height: 44px;
@@ -72,12 +53,12 @@ body {
   border: none;
 }
 
-.input-field {
+.searchbar {
   position: relative;
   margin-left: 15px;
 }
 
-.input-field button {
+.searchbar button {
   position: relative;
   /* top: -52px; */
   /* right: 133px; */
@@ -233,7 +214,7 @@ body {
     width: 250px;
   }
 
-  .input-field button{
+  .searchbar button{
     left:202px;
   }
 

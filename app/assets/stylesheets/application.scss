@@ -16,6 +16,7 @@
 @import "pages/index";
 @import 'events_show';
 @import 'beach_show';
+@import 'pages/_home';
 
 // forms
 @import "star-rating.js/dist/star-rating.css";
@@ -53,12 +54,6 @@ h4 {
 // ---------------------Headings End--------------------
 //------------------------------------------------------
 
-
-#map {
-  height: 100vh;
-  position: sticky;
-  top: 0;
-}
 
 .card-body{
   min-height: 250px;
