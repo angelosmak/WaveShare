@@ -1,9 +1,56 @@
 <div class="container">
-  <div class="background-image-show">
+  <div class="background-panel-show">
     <img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="">
+
     <div class="foreground-panel">
-      <h2>Beach name</h2>
-      <p>Beach Description</p>
+      <div class="info-events-section">
+        <div class="left-content">
+          <div class="beach-info">
+            <h2><%= @beach.name %></h2>
+            <p><i class="fa-solid fa-location-dot"></i> <%= @beach.address %></p>
+            <br>
+            <hr>
+            <p class="opacity-6">
+              Nestled along the azure coastline, the beach presents a captivating panorama that merges sky, sea, and sand in harmonious brilliance. As the sun begins its descent, casting a warm, golden glow across the horizon, the beachscape transforms into an enchanting tableau.
+
+              The soft, powdery sand stretches out like an endless canvas, inviting barefoot explorations. Each step sinks gently into the welcoming embrace of the shoreline, leaving delicate imprints as the water teases with its rhythmic lapping.
+
+              Crystal-clear waves roll in with a soothing cadence, their whispers echoing tales of distant shores. The sea breeze carries a salty tang, caressing sun-kissed skin and carrying the promise of adventure on its wings.            </p>
+          </div>
+        </div>
+        <div class="right-content">
+          <div class="events-card">
+            <h2>Events</h2>
+            <br>
+            <% @beach.events.each do |event| %>
+              <div class="event-card">
+                <% if event.photo.key %>
+                  <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                <% else %>
+                  <%= image_tag "broken-beach.jpg",class:"event-image-OFF header-image" %>
+                <% end %>
+                <div class="event-card-infos">
+                  <h2><%= event.title %></h2>
+                  <p><%= event.description %></p>
+                </div>
+                <div class="join-button">
+                    <%= link_to "Join", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"}, class:"basic-button" %>
+                  <p><%= event.user_events.count %>
+                    <% if event.user_events.count == 1 %>
+                      <%= "person attending" %>
+                    <% else %>
+                      <%= "people attending" %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+              <hr>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

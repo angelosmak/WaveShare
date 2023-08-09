@@ -1,21 +1,93 @@
 
+//SCROLL FUNCTIONALITY
 
-
-.background-image-show img{
-  height: 70vh;
-  width: 100%;
-  object-fit: cover;
-  position: sticky;
-  top: 0;
-  border-radius: 10px 10px;
+.background-panel-show{
+  border-radius: 20px 20px;
+  img{
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    position: sticky;
+    top: 0;
+    border-radius: 20px 20px;
+  }
 }
 
 .foreground-panel{
-  text-align: center;
   position: relative;
   bottom: 100px;
-  background-color:bisque;
+  background-color:white;
   height: 100vh;
-  border-radius: 10px 10px;
+  border-radius: 20px 20px;
   box-shadow: 9px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+//SCROLL FUNCTIONALITY END
+
+
+//FOREGROUND PANEL CONTENT
+
+.info-events-section{
+  height: 60vh;
+  width: inherit;
+  display: flex;
+  padding: 20px;
+}
+
+.opacity-6{
+  opacity: 0.6;
+}
+
+.beach-info{
+  height: 100%;
+  padding: 20px;
+}
+
+.events-card{
+  padding: 20px;
+  background-color: $bg-yellow;
+  height: fit-content;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid #5e94c1 ;
+}
+
+.event-card {
+  margin-bottom: 10px;
+  overflow: hidden;
+  height: 120px;
+  display: flex;
+  align-items:start;
+  border-radius: 20px;
+}
+
+.event-card img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  box-shadow: 9px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.event-card h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.event-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  max-width: 80%;
+}
+
+.event-card .event-card-infos {
+  padding: 16px;
+}
+
+.join-button{
+  margin-right: 10px;
+
 }
