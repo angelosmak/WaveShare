@@ -1,6 +1,6 @@
 # Le Wagon Waveshare Project
 
-Welcome to the Le Wagon Waveshares project repository! This project was developed as part of the Le Wagon coding bootcamp. It focuses on creating an interactive and user-friendly website called Waveshare that aims to connect surfers and water sports enthusiasts with their ideal waves, providing real-time wave and weather information.
+Welcome to the Le Wagon Waveshare project repository! This project was developed as part of the Le Wagon coding bootcamp. It focuses on creating an interactive and user-friendly website called Waveshare that aims to connect surfers and water sports enthusiasts with their ideal waves, providing real-time wave and weather information,as well as joining the surfer community!
 
 ## Table of Contents
 
@@ -11,6 +11,12 @@ Welcome to the Le Wagon Waveshares project repository! This project was develope
 ## About
 
 Waveshares is a platform that allows users to explore and find the best surfing conditions in various locations. Users can view live wave and weather data, discover popular surf spots, and connect with a community of fellow surfers. This project was developed during the Le Wagon coding bootcamp as a collaborative effort by our team.
+- [Angelos](https://github.com/angelosmak)
+- [Antoine](https://github.com/IAntoine)
+- [Thoren](https://github.com/thorend)
+- [Nathan](https://github.com/nateobabs)
+- [Murdo](https://github.com/MurdoGIT)
+
 
 ## Features
 
