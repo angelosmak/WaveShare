@@ -35,25 +35,49 @@
     </div>
 </section>
 
-<section id="identity">
-  <div class="left-content">
-    <!-- Your content for the left side goes here -->
-    <div class="image-card">
-    <%= image_tag "shell.png", alt:"about-img" %>
-    </div>
-  </div>
-  <div class="right-content">
-      <div>
-      <h3>Ambitious Web Developer Team</h3>
-        <br>
-        <p class="about-paragraph">
-        At WaveShare we want to bring the thrill of the ocean and the joy of riding waves right to your fingertips.
-        <br>
-        Join existing local communities, build your own, create events or just share any thoughts about your surfing experiences.
-        </p>
+<section id="features">
+  <h2>These are our best features!</h2>
+  <div class="row justify-content-around my-5">
+
+    <div class="col-lg-3 col-md-5 col-sm-6 card feature-card shadow">
+      <%= image_tag "surf-friends.png", class:"feature-img" %>
+      <div class="feature-card-details">
+        <h3>Build a Community!</h3>
       </div>
     </div>
+
+    <div class="col-lg-3 col-md-5 col-sm-6 card feature-card shadow">
+      <%= image_tag "beach-card.png", class:"feature-img" %>
+      <div class="feature-card-details">
+        <h3>Find the Beaches!</h3>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-5 col-sm-6 card feature-card shadow">
+      <%= image_tag "surf-like.png", class:"feature-img" %>
+      <div class="feature-card-details">
+        <h3>Comment your favourites!</h3>
+      </div>
+    </div>
+  </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <%# Commented out stock images %>
   <% if false %>
   <div class="row-dash justify-content-center">
