@@ -5,10 +5,13 @@
 
 // layout and containers
 .left-container-index {
-
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .right-container-index {
+
 }
 
 .main-container-index {
@@ -28,106 +31,4 @@
   cursor: pointer;
   bottom: 47px;
   left: -209px;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 568px) {
-  /* Styles for iPhone SE */
-
-
-  .beachcards-container {
-    margin: 2%;
-    padding: 1%;
-  }
-
-  .card-product-infos {
-    overflow: hidden;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  /* Styles for other smaller devices */
-
-  .searchbar {
-    margin-top: 2%;
-
-  }
-
-  .search-form-control .form-control {
-    height: 2.5rem;
-  }
-
-  .beachcards-container {
-    margin: 2%;
-    padding: 1%;
-  }
-
-  .card-holder {
-    flex: 1 0 200px; /* Adjust the desired height for each card */
-
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  /* Styles for larger devices with small screens */
-
-  .searchbar {
-    margin-top: 1%;
-  }
-
-  .search-form-control .form-control {
-    height: 2rem;
-  }
-
-  .beachcards-container {
-    margin: 1%;
-    padding: 0.5%;
-  }
-
-}
-
-// .beach-weather {
-//   z-index:99999;
-//   background: rgb(2,0,36);
-//   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(11,11,116,1) 46%, rgba(0,212,255,1) 100%);
-//   height: 55px;
-//   width: 55px;
-//   border-radius: 50%;
-//   text-align: center;
-
-// }
-
-.collapsed {
-  border: none;
-}
-
-
-.beach-icons {
-  position: relative;
-  bottom: 97px;
-  box-shadow: inset 0 -50px 20px -10px #000000;
-  color: white;
-  border-radius: 12px;
-}
-
-.beach-card {
-  margin-bottom: 50px;
-  border-radius: 12px;
-}
-.card-img-top {
-  height: 273px;
-  position: relative;
-  border-radius: 12px;
-
-}
-
-.card-text {
-
-  h3 {
-    color:white;
-  }
-}
-
-#shadowed {
-  text-shadow: 2px 2px black;
 }

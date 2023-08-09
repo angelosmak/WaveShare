@@ -2,14 +2,13 @@
 
 
 <div class="main-container-index">
-<div class="left-container-index">
-<div class="beachcards-container">
-  <% if @beaches.present? %>
+  <div class="left-container-index">
+  <div class="beachcards-container">
+    <% if @beaches.present? %>
     <% @beaches.each do |beach| %>
       <div class="card-holder">
         <%= link_to(beach_path(beach), { class: 'beach-link text-decoration-none'}) do %>
           <div class="beach-image">
-
             <% if false %>
               <% if beach.photo_url.present? %>
                 <% photo_reference = beach.photo_url %>
@@ -21,8 +20,6 @@
               <% end %>
             <% end %>
             <%=  image_tag "broken-beach.jpg" , class: "card-img-top"%>
-
-
           </div>
           <div class="beach-icons">
             <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
