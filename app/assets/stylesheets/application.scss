@@ -15,7 +15,6 @@
 @import "components/index";
 @import "pages/index";
 @import 'events_show';
-@import 'pages/dashboard';
 @import 'beach_show';
 
 // forms
@@ -89,40 +88,15 @@ a {
 }
 
 
-
-// -------------------Homepage----------------------
-//--------------------------------------------------
-
-.function-welcome {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-}
-.welcome-container {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 8px;
-  text-align: center;
+li{
+  list-style: none;
 }
 
-.blue {
-  background-color: blue;
-}
+//-------------------NAVBAR MARGIN BOTTOM------------------------
+//---------------------------------------------------------------
 
-.red {
-  background-color: red;
+.margin-top{
+  margin: 7%;
 }
-
-.green {
-  background-color: green;
-}
-
-.secondary-text {
-  font-family: $body-font;
-}
-
-// ---------------------Homepage End--------------------
-//------------------------------------------------------
+//-------------------NAVBAR MARGIN BOTTOM END--------------------
+//---------------------------------------------------------------
