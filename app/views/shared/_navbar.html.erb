@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span> <span class="align-middle">Menu</span>
       </button>
     </div>
-    <div id="navbarbg" class="text-center py-3 collapse navbar-collapse border-bottom" id="navbarNavDropdown">
+    <div class="text-center py-3 collapse navbar-collapse border-bottom" id="navbarNavDropdown">
           <a class= "logo" href="/">
           <%= image_tag "WaveShareLogoRounded.png", class: "avatar"%>
           </a>
@@ -18,7 +18,7 @@
           <a class="nav-link" href="/#about">About</a>
         </li>
         <li class="nav-item dropdown">
-          <a id="navbarul" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Wave
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -36,8 +36,8 @@
     function applyScrollEffect() {
       const navbar = document.getElementById("mainNavigation");
       const navLinks = navbar.getElementsByTagName("a");
-      const navbarbg = document.getElementById("navbarbg")
-      const navbarul = document.getElementById("navbarul");
+      const navbarbg = document.getElementById("navbarNavDropdown")
+      const navbarul = document.getElementById("navbarDropdownMenuLink");
 
       if (window.scrollY > 0) {
         navbarbg.style.backgroundColor = "#205374";
@@ -47,8 +47,6 @@
         for (var i = 0; i < navLinks.length; i++) {
           navLinks[i].style.color = "#ffc83a";
           // navLinks[i].style.fontSize = "18px";
-
-
         }
       } else {
         navbar.style.fontSize = "16px";

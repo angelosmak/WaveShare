@@ -23,7 +23,7 @@
 }
 
 
-// ---------------------SearchBar-----------------------
+// ---------------------SEARCHBAR-----------------------
 //------------------------------------------------------
 
 
@@ -105,7 +105,7 @@ body {
 }
 
 
-// ---------------------SearchBar End--------------------
+// ---------------------SEARCHBAR END--------------------
 //-------------------------------------------------------
 
 
@@ -161,16 +161,57 @@ body {
 /* ----------------------------------------------------- */
 
 
+/* ----------------------FEATURES----------------------- */
+/* ----------------------------------------------------- */
+#features{
+  background-image: url('background-features.png');
+  height: 100vh;
+}
+
+#features h2{
+  text-align: center;
+}
+
+.feature-img{
+  max-height: 60%;
+  width:100%;
+  object-fit: cover;
+  border-radius: 28px;
+  padding-top: 10px;
+}
+
+.feature-card{
+  background-color: $dark-yellow;
+  border-radius: 28px;
+  height: 60vh;
+  border: 1px solid #5e94c1 ;
+}
+
+.feature-card-details{
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ----------------------END FEATURES------------------- */
+/* ----------------------------------------------------- */
+
+
 /* -------------------------MEDIA------------------------
 /* ------------------------------------------------------ */
 
 /* Mobile Phones */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 800px) {
   /* CSS for mobile phones */
 
   //----------------HOME SECTION MOBILE---------------
   //--------------------------------------------------
   .hero-text{
+    background-image: url("shell.png");
+
     position: absolute;
     top:28%;
     left: 0;
@@ -222,13 +263,31 @@ body {
     width: 97%; /* Each child occupies 50% of the container width */
     height: auto; /* Each child occupies full container height */
     margin-left: 3%;
+
   }
 
   .image-card{
     margin: 30px;
   }
 
+  //------------END ABOUT SECTION MOBILE---------------
+  //---------------------------------------------------
+
+
+  //----------------FEATURE SECTION MOBILE--------------
+  //----------------------------------------------------
+
+
+
+
+  .feature-card{
+    margin-bottom: 10px;
+    max-width: 89%;
+  }
+  //----------------END FEATURE SECTION MOBILE----------
+  //----------------------------------------------------
 }
+
 
 /* Tablets and Smaller Laptops */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
