@@ -1,90 +1,36 @@
 <p style="color: green"><%= notice %></p>
 
-    <div class="content">
-      <div class="cards">
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/rio)">
-          Rio
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/berlin)">
-          Berlin
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/shanghai)">
-          Shanghai
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/barcelona)">
-          Barcelona
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/paris)">
-          Paris
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/london)">
-          London
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/melbourne)">
-          Melbourne
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/marseille)">
-          Marseille
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/buenos-aires)">
-          Buenos Aires
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/bali)">
-          Bali
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/tel-aviv)">
-          Tel Aviv
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/kyoto)">
-          Kyoto
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/copenhagen)">
-          Copenhagen
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/lisbon)">
-          Lisbon
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/montreal)">
-          Montreal
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/nantes)">
-          Nantes
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/milan)">
-          Milan
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/tokyo)">
-          Tokyo
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/amsterdam)">
-          Amsterdam
-        </div>
-
-        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/lyon)">
-          Lyon
-        </div>
+<div class="content">
+  <div class="cards">
+    <% if @beaches.present? %>
+      <% @beaches.each do |beach| %>
+      <div class="card">
+            <% if false %>
+              <% if beach.photo_url.present? %>
+                <% photo_reference = beach.photo_url %>
+                <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
+                <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
+                <%= image_tag image_url, class: "card-img-top" %>
+              <% else %>
+                <%= image_tag "broken-beach.jpg"%>
+              <% end %>
+            <% end %>
+            <%=  image_tag "broken-beach.jpg", class:"card-img-top"%>
+          <div class="card-body">
+            <h3 class="card-text" ><%= beach.address%></h3>
+          </div>
       </div>
+      <% end %>
+    <% end %>
+  </div>
 
 
-      <img id="map" src='https://raw.githubusercontent.com/lewagon/layouts-demo/gh-pages/images/mapbox.png'>
-    </div>
+  <div id="map"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
+</div>
 
   </body>
