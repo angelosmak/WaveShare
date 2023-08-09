@@ -1,245 +1,93 @@
-// BEACH SHOWPAGE
 
-.header-image-container {
-  // background-color: green;
-  height: 32vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  margin-bottom: -16px;
+//SCROLL FUNCTIONALITY
+
+.background-panel-show{
+  border-radius: 20px 20px;
+  img{
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    position: sticky;
+    top: 0;
+    border-radius: 20px 20px;
+  }
 }
 
-
-.hidden {
-  visibility: hidden;
-}
-
-.imagemap-map {
-  background-color: red;
-  visibility: hidden;
-
-}
-
-.header-text-container {
-  // display: flex;
-  background-color: white;
-  padding: 8px;
-  border-radius: 16px 16px 0px 0px;
-
-  // box-shadow: -4px 4px 8px rgba(0,0,0,0.2);
-}
-.header-title-container {
-  margin-bottom: -2vh;
-}
-.header-description-container {
-  margin-bottom: -2vh;
-}
-.header-address-container {
-  padding-right: 8px;
-}
-
-#header-description {
-  padding: 10px;
-  font-size: 3vh;
-  font-weight: 300;
-  margin-top: 2px;
-  margin-bottom: 8px;
-  line-height: 0.6;
-  letter-spacing: -0.8px;
-}
-
-#header-address {
-  padding: 10px;
-  font-size: 2.4vh;
-  font-weight: 400;
-  margin-bottom: 8px;
-  text-align: left;
-}
-
-#header-date {
-  padding: 10px;
-  font-size: 3vh;
-  font-weight: 500;
-  text-align: left;
-  opacity: 0.5;
-}
-
-.imagemap-button-container {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  margin-top: 16px;
-  margin-bottom: 16px;
-
-}
-.button {
-  background-color: rgba(185, 185, 185, 0.4);
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 4px 8px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 10px;
-  // margin: 4px 2px;
-  cursor: pointer;
-}
-
-.button-review {
-  background-color: rgba(185, 185, 185, 0.4);
-  border: none;
-  border-radius: 4px;
-  color: black;
-  padding: 4px 8px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 10px;
-  // margin: 4px 2px;
-  cursor: pointer;
-  margin-bottom: 3px;
-}
-
-#wrapper {
-  position:absolute;
-  height:100%;
-  width:100%;
-}
-.panels {
+.foreground-panel{
   position: relative;
-  // height:100%;
-  // min-height:100%;
-  width:100%;
-  z-index:1000;
-}
-#a  {
-  background:#eee;
-  position:fixed;
-  color:white;
-  top:0;
-  z-index:-99;
-  height:100%;
-  min-height:100%;
-  z-index:1000;
-}
-
-
-
-
-.buttontext {
-  // background-color: #f4511e;
-  // color: rgba(78, 14, 14, 0);
-  // padding: 16px 32px;
-  // display: inline-block;
-  border: none;
-  text-align: center;
-  font-size: 12px;
-  margin: 8px 8px;
-  opacity: 0.6;
-  transition: 0.3s;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 30px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-.buttontext:hover {opacity: 1}
-
-.navbar-home {
-  height: 8vh;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  list-style-type: none;
-  margin: 0;
-  padding: 8px;
-  overflow: hidden;
-  z-index: 100000;
-}
-
-.floatright {
-  float: right;
-  margin-left: 8px;
-}
-
-// Tabs in Showpage
-
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  display: flex;
-  justify-content: center;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  // display: block;
-  border: 1px solid #ccc;
-  border-top: none;
-  margin-bottom: 60px;
-}
-
-.dontdisplaycontent {
-  display: none;
-}
-
-// Eventstab
-.event-card-description {
-  font-size: 10px;
-  color: $logo-color;
-  opacity: 0.8;
-}
-.event-card-date {
-  font-size: 11px;
-  color: $logo-color;
-  opacity: 0.5;
-}
-
-.beach-image-show{
-  width: 100%;
+  bottom: 100px;
+  background-color:white;
   height: auto;
+  border-radius: 20px 20px;
+  box-shadow: 9px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-#b {
-  border-radius: 16px 16px 0px 0px;
-  background: white;
-  min-height: 100%;
-  z-index: 1000;
-  padding-bottom: 5px;
-}
-@media only screen and (max-width: 600px) {
-  #b  {
-    margin-top: calc(25vh - 24px);
-  }
+//SCROLL FUNCTIONALITY END
+
+
+//FOREGROUND PANEL CONTENT
+
+.info-events-section{
+  height: auto;
+  width: inherit;
+  display: flex;
+  padding: 20px;
 }
 
-@media only screen and (min-width: 768px) {
-  #b  {
-    margin-top: calc(45vh - 24px);
-  }
+.opacity-6{
+  opacity: 0.6;
+}
+
+.beach-info{
+  height: 100%;
+  padding: 20px;
+}
+
+.events-card{
+  padding: 20px;
+  background-color: $bg-yellow;
+  height: fit-content;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid #5e94c1 ;
+}
+
+.event-card {
+  margin-bottom: 10px;
+  overflow: hidden;
+  height: 120px;
+  display: flex;
+  align-items:start;
+  border-radius: 20px;
+}
+
+.event-card img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  box-shadow: 9px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.event-card h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.event-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  max-width: 80%;
+}
+
+.event-card .event-card-infos {
+  padding: 16px;
+}
+
+.join-button{
+  margin-right: 10px;
+
 }
