@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="content">
+<div class="beach-index-content">
   <div class="beach-cards">
     <% if @beaches.present? %>
       <% @beaches.each do |beach| %>
@@ -20,8 +20,8 @@
             <% full_address = beach.address %>
             <% address_parts = full_address.split(',').map(&:strip) %>
             <% country = address_parts.last %>
-            <h3><%= address_parts[0..-2].join(', ') %></h3>
-            <i class="fa-solid fa-location-dot" style="color: #1c75bc;"></i></span><%= country %>
+            <h3><%= address_parts.first %></h3>
+            <i class="fa-solid fa-location-dot" style="color: #1c75bc;"></i> </span><%= country %>
           </div>
       </div>
       <% end %>
