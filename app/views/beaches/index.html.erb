@@ -1,7 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="main-container">
-  <h1>Beaches and meetups near you</h1>
+
+<div class="main-container-index">
+
+<div class="searchbar">
+      <%= form_tag beaches_path, method: :get do %>
+        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "form-control" %>
+        <%= button_tag type: 'submit', class: 'btn btn__search' do %>
+          <%= content_tag(:i, '', class: 'fa fa-search') %>
+        <% end %>
+      <% end %>
+    </div>
+
   <div class="map-container">
     <div style="width: 100%; height: 500px; margin: 0 auto;"
       data-controller="map"
@@ -10,16 +20,7 @@
     </div>
   </div>
 </div>
-
-<div class="searchbar card shadow">
-  <%= form_tag beaches_path, method: :get do %>
-    <div class="search-form-control">
-      <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "secondary-text form-control" %>
-      <%= submit_tag 'Search', class: "btn primary-text" %>
-    </div>
-  <% end %>
 </div>
-
 <div class="beachcards-container">
   <% if @beaches.present? %>
     <% @beaches.each do |beach| %>

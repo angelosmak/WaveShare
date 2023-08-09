@@ -4,10 +4,10 @@
       <h1>Wave Share</h1>
       <h3>Connect.Surf.Enjoy</h3>
       <p>Connect to fellow Surfers worldwide and  <br>Share your experiences and Waves with others!</p>
-      <div class="input-field">
+      <div class="searchbar">
       <%= form_tag beaches_path, method: :get do %>
         <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "form-control" %>
-        <%= button_tag type: 'submit', class: 'btn btn1' do %>
+        <%= button_tag type: 'submit', class: 'btn btn__search' do %>
           <%= content_tag(:i, '', class: 'fa fa-search') %>
         <% end %>
       <% end %>
