@@ -1,73 +1,90 @@
 <p style="color: green"><%= notice %></p>
 
+    <div class="content">
+      <div class="cards">
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/rio)">
+          Rio
+        </div>
 
-<div class="main-container-index">
-  <div class="left-container-index">
-  <div class="beachcards-container">
-    <% if @beaches.present? %>
-    <% @beaches.each do |beach| %>
-      <div class="card-holder">
-        <%= link_to(beach_path(beach), { class: 'beach-link text-decoration-none'}) do %>
-          <div class="beach-image">
-            <% if false %>
-              <% if beach.photo_url.present? %>
-                <% photo_reference = beach.photo_url %>
-                <% google_maps_api_key = ENV['GOOGLE_MAPS_API_KEY'] %>
-                <% image_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{google_maps_api_key}" %>
-                <%= image_tag image_url, class: "card-img-top" %>
-              <% else %>
-                <%= image_tag "broken-beach.jpg", class: "card-img-top" %>
-              <% end %>
-            <% end %>
-            <%=  image_tag "broken-beach.jpg" , class: "card-img-top"%>
-          </div>
-          <div class="beach-icons">
-            <div data-controller="beach-weather" data-beach-weather-lat-value=<%=beach.longitude %> data-beach-weather-lon-value=<%=beach.latitude %>>
-              <h3 id="shadowed" class="card-text text-center secondary-text"><%= beach.address %></h3>
-              <%# <div class="col text-center">
-                <h3 id="shadowed" class="secondary-text d-none" data-beach-weather-target="description">Sunny </h3>
-              </div> %>
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/berlin)">
+          Berlin
+        </div>
 
-              <div class="row">
-                <div class="col text-center">
-                  <i class="fa-solid fa-wind" style="color: #ffffff;"></i>
-                  <h3 id="shadowed" class="secondary-text" data-beach-weather-target="Windspeed">10 km/h</h3>
-                </div>
-                <div class="col text-center">
-                  <i class="fa-solid fa-temperature-full" style="color: #ffffff;"></i>
-                  <h3 id="shadowed" class="secondary-text" data-beach-weather-target="temperature">35</h3>
-                </div>
-                <div class="col text-center">
-                  <i class="fa-regular fa-compass" style="color: #ffffff;"></i>
-                  <h3 id="shadowed" class="secondary-text" data-beach-weather-target="Winddirection">NW</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/shanghai)">
+          Shanghai
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/barcelona)">
+          Barcelona
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/paris)">
+          Paris
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/london)">
+          London
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/melbourne)">
+          Melbourne
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/marseille)">
+          Marseille
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/buenos-aires)">
+          Buenos Aires
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/bali)">
+          Bali
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/tel-aviv)">
+          Tel Aviv
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/kyoto)">
+          Kyoto
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/copenhagen)">
+          Copenhagen
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/lisbon)">
+          Lisbon
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/montreal)">
+          Montreal
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/nantes)">
+          Nantes
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/milan)">
+          Milan
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/tokyo)">
+          Tokyo
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/amsterdam)">
+          Amsterdam
+        </div>
+
+        <div class="card" style="background-image: url(http://kitt.lewagon.com/placeholder/cities/lyon)">
+          Lyon
+        </div>
       </div>
-    <% end %>
-  <% end %>
-</div>
-</div>
 
-<div class="right-container-index">
-<div class="searchbar-index">
-      <%= form_tag beaches_path, method: :get do %>
-        <%= text_field_tag :search_query, params[:search_query], placeholder: "Find your Dream Beach", class: "form-control" %>
-        <%= button_tag type: 'submit', class: 'btn btn__search' do %>
-          <%= content_tag(:i, '', class: 'fa fa-search') %>
-        <% end %>
-      <% end %>
+
+      <img id="map" src='https://raw.githubusercontent.com/lewagon/layouts-demo/gh-pages/images/mapbox.png'>
     </div>
 
-  <div class="map-container">
-    <div style="width: 100%; height: 500px; margin: 0 auto;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-  </div>
-</div>
-</div>
-</div>
+  </body>
