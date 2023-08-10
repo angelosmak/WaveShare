@@ -1,6 +1,6 @@
 <div class="container">
   <div class="background-panel-show">
-    <img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="" class="background-panel-image">
     <%# -------------------FRONT PANEL CODE------------------ %>
     <%# ----------------------------------------------------- %>
 
@@ -169,12 +169,14 @@
       <%# ------------------------------------------------------ %>
 
       <div class="info-events-section">
-        <div class="left-content">
-          <h2>Reviews</h2>
-        </div>
-        <div class="right-content">
-          <p>review cards</p>
-        </div>
+        <% @beach.reviews.each do |review| %>
+          <% if review.user.profile.photo.key %>
+            <%= cl_image_tag review.user.profile.photo.key, class:"avatar"%>
+          <% else %>
+            <%= image_tag "default-photo.webp", class:"avatar"%>
+            <%= review.title %>
+          <% end %>
+        <% end %>
       </div>
 
       <%# ---------------------END REVIEWS SECTION------------------ %>
