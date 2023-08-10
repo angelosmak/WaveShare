@@ -14,3 +14,15 @@
   border-radius: 50%;
   padding-top: 5px;
 }
+
+.button-arrow-right {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  background-color: $dark-yellow;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  bottom: 47px;
+}

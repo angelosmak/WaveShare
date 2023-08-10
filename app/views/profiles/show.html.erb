@@ -1,10 +1,48 @@
-<div class="container text-center ">
-<% if @profile.photo.key %>
-  <%= cl_image_tag @profile.photo.key, class:"shadow my-5" ,height: 100, width: 100, crop: :fill %>
-  <% else %>
-    <%= image_tag "default-photo.webp", class:"avatar" %>
-  <% end %>
-  <h2>Username: <%= @profile.username %></h2>
-  <p>Email: <%= @user.email %></p>
-  <%= link_to "Delete Profile", user_registration_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-</div>
+<section class="vh-100" style="background-color: #f4f5f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 py-3 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <div class="profile-picture">
+                <% if @profile.photo.key %>
+                  <%= cl_image_tag @profile.photo.key, class:"shadow my-5" ,height: 200, width: 200, crop: :fill %>
+                <% else %>
+                  <%= image_tag "default-photo.webp", class:"avatar-large" %>
+                <% end %>
+              </div>
+              <h2><%= @profile.username %></h2>
+              <%= link_to "Edit Profile", edit_profile_path(current_user.profile.id) %>
+              <br>
+              <%= link_to "Delete Profile", user_registration_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Information</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1 pb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted"><%= @user.email %></p>
+                </div>
+                <h6>Recent activity</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Reviews</h6>
+                    <%= link_to "see all", dashboard_path %>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Events</h6>
+                    <%= link_to "see all", dashboard_path %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
