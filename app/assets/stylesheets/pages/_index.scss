@@ -57,66 +57,6 @@
   top: 0;
 }
 
-// ---------------------SEARCHBAR-MAP-----------------------
-//------------------------------------------------------
-
-.form-control {
-  height: 50px;
-  width: 530px;
-  background-color: #fff;
-  border: none;
-  border-radius: 25px;
-  font-size: 12px;
-  position: relative;
-}
-
-.btn__search {
-  align-items: center;
-  position: absolute;
-  height: 44px;
-  width: 44px;
-  border-radius: 50%;
-  background-color: $dark-yellow;
-  border: none;
-}
-
-.searchbar-index {
-  z-index: 1;
-  position: absolute;
-  margin: 16px;
-}
-
-.searchbar-index button {
-  position: relative;
-  /* top: -52px; */
-  /* right: 133px; */
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  bottom: 47px;
-  left: 480px;
-}
-
-.card .icons {
-  position: absolute;
-  bottom: -340px;
-  left: 40%;
-  transition: all 0.5s;
-}
-
-.card:hover .icons {
-  bottom: 40px;
-}
-
-.card .icons span {
-  font-size: 23px;
-  color: white;
-}
-
-
-// ---------------------SEARCHBAR-MAP END--------------------
-//-------------------------------------------------------
-
 #map {
   height: 100vh;
   width: 100%;
