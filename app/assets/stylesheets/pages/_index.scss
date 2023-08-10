@@ -6,20 +6,22 @@
 .beach-index-content {
   margin-top: 10%;
   display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .beach-cards {
   flex-grow: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   grid-gap: 1.2em;
   justify-content: space-evenly;
-  margin-inline: 1%;
 }
 
 .beach-card {
   width: 400px;
   height: 400px;
+  margin: 0 2%;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
@@ -50,11 +52,9 @@
 
 .map-container {
   height: 100vh;
-  width: 70%;
+  width: 35%;
   position: sticky;
   top: 0;
-  border-radius: 16px;
-  margin-right: 2%;
 }
 
 // ---------------------SEARCHBAR-MAP-----------------------
@@ -81,10 +81,9 @@
 }
 
 .searchbar-index {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
-  left: 30%;
-  margin: 32px;
+  margin: 16px;
 }
 
 .searchbar-index button {
@@ -119,7 +118,6 @@
 //-------------------------------------------------------
 
 #map {
-  padding: 16px;
   height: 100vh;
   width: 100%;
   position: sticky;
