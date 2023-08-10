@@ -4,15 +4,14 @@
 
 .background-panel-show{
   border-radius: 20px 20px;
-}
-
-.background-panel-image{
-  height: 70vh;
-  width: 100%;
-  object-fit: cover;
-  position: sticky;
-  top: 0;
-  border-radius: 20px 20px;
+  img{
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    position: sticky;
+    top: 0;
+    border-radius: 20px 20px;
+  }
 }
 
 .foreground-panel{
@@ -169,10 +168,30 @@
   display: flex;
   justify-content: center;
 }
-
 //---------------END WEATHER WIDGET SECTION--------------------
 //--------------------------•••--------------------------------
 
+
+//---------------REVIEWS SECTION--------------------
+//--------------------------------------------------
+#avatar-reviews{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.review-card{
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.users-stars{
+  width: 80%;
+}
+//---------------END REVIEWS SECTION----------------
+//--------------------------•••---------------------
 
 
 //---------------------------MOBILE SECTION-----------------------------------
