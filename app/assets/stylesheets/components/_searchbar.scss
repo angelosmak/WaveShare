@@ -2,7 +2,10 @@
 //------------------------------------------------------
 .searchbar {
   size: relative;
+  position: absolute;
   width: 80%;
+  z-index: 1;
+  margin-top: 15px;
 }
 
 .form-control {
