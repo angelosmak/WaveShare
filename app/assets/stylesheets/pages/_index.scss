@@ -6,21 +6,28 @@
 .beach-index-content {
   margin-top: 10%;
   display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .beach-cards {
-  flex-grow: 1;
+  width: 65%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1.2em;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-row-gap: 1.5em;
   justify-content: space-evenly;
-  margin-inline: 1%;
 }
+
+ a {
+  display: flex;
+  width: 400px;
+  justify-content: center;
+  }
 
 .beach-card {
   width: 400px;
   height: 400px;
-  border-radius: 15px;
+  border-radius: $border-radius;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -28,14 +35,13 @@
 
 .card-img-top {
   width: 100%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-radius: $border-radius;
 }
 
 .beach-card-body {
   text-align: left;
   padding: 16px;
-  border-radius: 20px;
+  border-radius: $border-radius;
   position: relative;
   bottom: 16px;
   background-color: white;
@@ -50,79 +56,17 @@
 
 .map-container {
   height: 100vh;
-  width: 70%;
+  width: 35%;
   position: sticky;
   top: 0;
-  border-radius: 16px;
-  margin-right: 2%;
+  display: flex;
+  justify-content: center;
 }
-
-// ---------------------SEARCHBAR-MAP-----------------------
-//------------------------------------------------------
-
-.form-control {
-  height: 50px;
-  width: 530px;
-  background-color: #fff;
-  border: none;
-  border-radius: 25px;
-  font-size: 12px;
-  position: relative;
-}
-
-.btn__search {
-  align-items: center;
-  position: absolute;
-  height: 44px;
-  width: 44px;
-  border-radius: 50%;
-  background-color: $dark-yellow;
-  border: none;
-}
-
-.searchbar-index {
-  z-index: 2;
-  position: absolute;
-  left: 30%;
-  margin: 32px;
-}
-
-.searchbar-index button {
-  position: relative;
-  /* top: -52px; */
-  /* right: 133px; */
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  bottom: 47px;
-  left: 480px;
-}
-
-.card .icons {
-  position: absolute;
-  bottom: -340px;
-  left: 40%;
-  transition: all 0.5s;
-}
-
-.card:hover .icons {
-  bottom: 40px;
-}
-
-.card .icons span {
-  font-size: 23px;
-  color: white;
-}
-
-
-// ---------------------SEARCHBAR-MAP END--------------------
-//-------------------------------------------------------
 
 #map {
-  padding: 16px;
   height: 100vh;
   width: 100%;
   position: sticky;
   top: 0;
-  border-radius: 16px;
+  border-radius: $border-radius;
 }

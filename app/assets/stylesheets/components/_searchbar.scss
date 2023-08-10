@@ -1,0 +1,53 @@
+// ---------------------SEARCHBAR-----------------------
+//------------------------------------------------------
+.searchbar {
+  size: relative;
+  position: absolute;
+  width: 80%;
+  z-index: 1;
+  margin-top: 15px;
+}
+
+.form-control {
+  height: 50px;
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  position: relative;
+}
+
+.btn__search {
+  position: relative;
+  left: 88%;
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  background-color: $dark-yellow;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  bottom: 47px;
+}
+
+.card .icons {
+  position: absolute;
+  bottom: -340px;
+  left: 40%;
+  transition: all 0.5s;
+}
+
+.card:hover .icons {
+  bottom: 40px;
+}
+
+.card .icons span {
+  font-size: 23px;
+  color: white;
+}
+
+
+// ---------------------SEARCHBAR END--------------------
+//-------------------------------------------------------
