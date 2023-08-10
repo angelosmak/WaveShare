@@ -1,6 +1,8 @@
 <div class="container">
   <div class="background-panel-show">
     <img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="">
+    <%# -------------------FRONT PANEL CODE------------------ %>
+    <%# ----------------------------------------------------- %>
 
     <div class="foreground-panel">
       <div class="info-events-section">
@@ -18,39 +20,154 @@
               Crystal-clear waves roll in with a soothing cadence, their whispers echoing tales of distant shores. The sea breeze carries a salty tang, caressing sun-kissed skin and carrying the promise of adventure on its wings.            </p>
           </div>
         </div>
+
+        <%# ---------------------EVENTS SECTION------------------ %>
+        <%# ----------------------------------------------------- %>
         <div class="right-content">
           <div class="events-card">
+          <div class="d-flex justify-content-between">
             <h2>Events</h2>
+            <%= link_to new_beach_event_path(@beach) do%>
+              <h3><i class="fa-solid fa-plus plus-button"></i></h3>
+            <% end %>
+          </div>
             <br>
-            <% @beach.events.each do |event| %>
-              <div class="event-card">
+
+
+            <%# <% upcoming_events = @beach.events.select { |event| event.date >= Date.today }.sort_by(&:date) %>
+            <% upcoming_events = @beach.events.sort_by(&:date) %>
+
+            <% if upcoming_events.count > 3 %>
+              <div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% upcoming_events.each_slice(3).with_index do |events_group, index| %>
+                    <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                      <% events_group.each do |event| %>
+                        <div class="event-card">
+                        <% if event.photo.key %>
+                          <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                        <% else %>
+                          <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                        <% end %>
+                        <div class="event-card-infos">
+                          <h2><%= event.title %></h2>
+                          <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                        </div>
+                        <div class="join-button-div">
+                          <div>
+                            <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                            <p><%= event.user_events.count %>
+                              <% if event.user_events.count == 1 %>
+                                <%= "person attending" %>
+                              <% else %>
+                                <%= "people attending" %>
+                              <% end %>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+                <ol class="carousel-indicators" >
+                  <% upcoming_events.each_slice(3).with_index do |_, index| %>
+                    <li data-bs-target="#eventCarousel" data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" ></li>
+                  <% end %>
+                </ol>
+              </div>
+            <% else %>
+              <% upcoming_events.each do |event| %>
+                <div class="event-card">
                 <% if event.photo.key %>
                   <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
                 <% else %>
-                  <%= image_tag "broken-beach.jpg",class:"event-image-OFF header-image" %>
+                  <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
                 <% end %>
                 <div class="event-card-infos">
                   <h2><%= event.title %></h2>
-                  <p><%= event.description %></p>
+                  <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
                 </div>
-                <div class="join-button">
-                    <%= link_to "Join", event_user_events_path(event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"}, class:"basic-button" %>
-                  <p><%= event.user_events.count %>
-                    <% if event.user_events.count == 1 %>
-                      <%= "person attending" %>
-                    <% else %>
-                      <%= "people attending" %>
-                    <% end %>
-                  </p>
+                <div class="join-button-div">
+                  <div>
+                    <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                    <p><%= event.user_events.count %>
+                      <% if event.user_events.count == 1 %>
+                        <%= "person attending" %>
+                      <% else %>
+                        <%= "people attending" %>
+                      <% end %>
+                    </p>
+                  </div>
                 </div>
               </div>
               <hr>
+              <% end %>
             <% end %>
           </div>
+        </div>
+      </div>
+      <%# -------------------END EVENT SECTION------------------ %>
+      <%# --------------------------•••------------------------- %>
 
+
+      <%# -------------------WEATHER SECTION------------------ %>
+      <%# ---------------------------------------------------- %>
+      <hr>
+      <div class="square-container">
+
+        <div class="square">
+          <div>
+            <%= image_tag "sun.png" %>
+            <h6>Sunny</h6>
+          </div>
+        </div>
+
+        <div class="square">
+          <div>
+            <%= image_tag "temperature.png" %>
+            <h6>30°C</h6>
+          </div>
+        </div>
+        <div class="square">
+          <div>
+            <%= image_tag "wind.png" %>
+            <h6>10km/h</h6>
+          </div>
+        </div>
+        <div class="square">
+          <div>
+            <%= image_tag "sunset.png" %>
+            <h6>19:34</h6>
+          </div>
+        </div>
+        <div class="square">
+          <div>
+            <%= image_tag "wind-direction.png" %>
+            <h6>NW</h6>
+          </div>
         </div>
       </div>
 
+      <%# -------------------END WEATHER SECTION---------------- %>
+      <%# --------------------------•••------------------------- %>
+      <hr>
+
+      <%# ---------------------REVIEWS SECTION------------------ %>
+      <%# ------------------------------------------------------ %>
+
+      <div class="info-events-section">
+        <div class="left-content">
+          <h2>Reviews</h2>
+        </div>
+        <div class="right-content">
+          <p>review cards</p>
+        </div>
+      </div>
+
+      <%# ---------------------END REVIEWS SECTION------------------ %>
+      <%# ---------------------------------------------------------- %>
     </div>
   </div>
 </div>
