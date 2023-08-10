@@ -13,11 +13,23 @@
             <br>
             <hr>
             <p class="opacity-6">
-              Nestled along the azure coastline, the beach presents a captivating panorama that merges sky, sea, and sand in harmonious brilliance. As the sun begins its descent, casting a warm, golden glow across the horizon, the beachscape transforms into an enchanting tableau.
+              Nestled along the azure coastline, the beach presents a
+              captivating panorama that merges sky, sea, and sand in
+              harmonious brilliance. As the sun begins its descent,
+              casting a warm, golden glow across the horizon, the
+              beachscape transforms into an enchanting tableau.
 
-              The soft, powdery sand stretches out like an endless canvas, inviting barefoot explorations. Each step sinks gently into the welcoming embrace of the shoreline, leaving delicate imprints as the water teases with its rhythmic lapping.
+              The soft, powdery sand stretches out like an endless
+              canvas, inviting barefoot explorations. Each step
+              sinks gently into the welcoming embrace of the shoreline,
+              leaving delicate imprints as the water teases with its
+              rhythmic lapping.
 
-              Crystal-clear waves roll in with a soothing cadence, their whispers echoing tales of distant shores. The sea breeze carries a salty tang, caressing sun-kissed skin and carrying the promise of adventure on its wings.            </p>
+              Crystal-clear waves roll in with a soothing cadence, t
+              heir whispers echoing tales of distant shores. The sea
+              breeze carries a salty tang, caressing sun-kissed skin
+              and carrying the promise of adventure on its wings.
+            </p>
           </div>
         </div>
 
@@ -36,7 +48,6 @@
 
             <%# <% upcoming_events = @beach.events.select { |event| event.date >= Date.today }.sort_by(&:date) %>
             <% upcoming_events = @beach.events.sort_by(&:date) %>
-
             <% if upcoming_events.count > 3 %>
               <div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -44,39 +55,40 @@
                     <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                       <% events_group.each do |event| %>
                         <div class="event-card">
-                        <% if event.photo.key %>
-                          <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
-                        <% else %>
-                          <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
-                        <% end %>
-                        <div class="event-card-infos">
-                          <h2><%= event.title %></h2>
-                          <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
-                        </div>
-                        <div class="join-button-div">
-                          <div>
-                            <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
-                            <p><%= event.user_events.count %>
-                              <% if event.user_events.count == 1 %>
-                                <%= "person attending" %>
-                              <% else %>
-                                <%= "people attending" %>
-                              <% end %>
-                            </p>
+                          <% if event.photo.key %>
+                            <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                          <% else %>
+                            <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                          <% end %>
+
+                          <div class="event-card-infos">
+                            <h2><%= event.title %></h2>
+                            <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                          </div>
+                          <div class="join-button-div">
+                            <div>
+                              <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                              <p><%= event.user_events.count %>
+                                <% if event.user_events.count == 1 %>
+                                  <%= "person attending" %>
+                                <% else %>
+                                  <%= "people attending" %>
+                                <% end %>
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <hr>
+                        <hr>
                       <% end %>
-                    </div>
-                  <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <ol class="carousel-indicators" >
+                    <% upcoming_events.each_slice(3).with_index do |_, index| %>
+                      <li data-bs-target="#eventCarousel" data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" ></li>
+                    <% end %>
+                  </ol>
                 </div>
-                <ol class="carousel-indicators" >
-                  <% upcoming_events.each_slice(3).with_index do |_, index| %>
-                    <li data-bs-target="#eventCarousel" data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" ></li>
-                  <% end %>
-                </ol>
-              </div>
             <% else %>
               <% upcoming_events.each do |event| %>
                 <div class="event-card">
@@ -101,8 +113,7 @@
                     </p>
                   </div>
                 </div>
-              </div>
-              <hr>
+                <hr>
               <% end %>
             <% end %>
           </div>
