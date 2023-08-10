@@ -11,17 +11,22 @@
 }
 
 .beach-cards {
-  flex-grow: 1;
+  width: 65%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  grid-gap: 1.2em;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-row-gap: 1.5em;
   justify-content: space-evenly;
 }
+
+ a {
+  display: flex;
+  width: 400px;
+  justify-content: center;
+  }
 
 .beach-card {
   width: 400px;
   height: 400px;
-  margin: 0 2%;
   border-radius: $border-radius;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
