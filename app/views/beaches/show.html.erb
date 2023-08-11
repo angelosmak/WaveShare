@@ -99,7 +99,7 @@
                   <% end %>
                   <div class="event-card-infos">
                     <h2><%= event.title %></h2>
-                    <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                    <p ><%= event.date.strftime("%B %d %Y") %></p>
                   </div>
                   <div class="join-button-div">
                     <div>
@@ -175,25 +175,30 @@
 
       <div class="info-events-section">
         <div class="row row-cols-2">
-          <% @beach.reviews.each do |review| %>
-          <div class="review-card">
-            <div class="user-stars">
-              <% if review.user.profile.photo.key %>
-                <%= cl_image_tag review.user.profile.photo.key, id:"avatar-reviews"%>
-              <% else %>
-                <%= image_tag "default-photo.webp", id:"avatar-reviews"%>
-              <% end %>
-              <h4><%= review.title %></h4>
-              <p class="opacity-6"><%= review.created_at.strftime("%B %d %Y") %></p>
-              <hr>
-              <p><%= review.content %></p>
+          <% if @beach.reviews %>
+            <% @beach.reviews.each do |review| %>
+              <div class="review-card">
+                <div class="user-stars">
+                  <% if review.user.profile.photo.key %>
+                    <%= cl_image_tag review.user.profile.photo.key, id:"avatar-reviews"%>
+                  <% else %>
+                    <%= image_tag "default-photo.webp", id:"avatar-reviews"%>
+                  <% end %>
+                  <h4><%= review.title %></h4>
+                  <p class="opacity-6"><%= review.created_at.strftime("%B %d %Y") %></p>
+                  <hr>
+                  <p><%= review.content %></p>
+                </div>
+                <i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i></p>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="review-card">
+              <h2>Be the first to write a review!</h2>
             </div>
-              <i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i></p>
-
-          </div>
           <% end %>
+          </div>
         </div>
-      </div>
 
       <%# ---------------------END REVIEWS SECTION------------------ %>
       <%# ---------------------------------------------------------- %>
