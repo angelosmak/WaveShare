@@ -34,7 +34,7 @@
 //-----------------BEACH INFO - EVENTS SECTION-----------------
 //-------------------------------------------------------------
 
-.info-events-section{
+.two-column-section{
   height: auto;
   width: inherit;
   display: flex;
@@ -193,7 +193,7 @@
   justify-content: space-between;
 }
 
-.users-stars{
+.review-user-info{
   width: 80%;
 }
 //---------------END REVIEWS SECTION----------------
@@ -256,7 +256,7 @@
 
   //------------BEACH INFO - EVENTS SECTION MOBILE-------------
   //-----------------------------------------------------------
-  .info-events-section{
+  .two-column-section{
     display: block;
   }
   //-------------END BEACH INFO - EVENTS SECTION MOBILE--------
@@ -290,7 +290,7 @@
 
   //------------BEACH INFO - EVENTS SECTION MOBILE-------------
   //-----------------------------------------------------------
-  .info-events-section{
+  .two-column-section{
     display: block;
   }
   //-------------END BEACH INFO - EVENTS SECTION MOBILE--------

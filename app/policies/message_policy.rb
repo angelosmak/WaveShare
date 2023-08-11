@@ -9,16 +9,10 @@ class MessagePolicy < ApplicationPolicy
     end
 
     def update?
-      record.user == user
+      true
     end
 
-    def edit?
-      record.user == user
-    end
-
-    def destroy?
-      record.user == user
-    end
+    
 
     def resolve
       scope.all # If users can see all instances

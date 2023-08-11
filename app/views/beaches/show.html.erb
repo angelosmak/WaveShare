@@ -5,7 +5,7 @@
     <%# ----------------------------------------------------- %>
 
     <div class="foreground-panel">
-      <div class="info-events-section">
+      <div class="two-column-section">
         <div class="left-content">
           <div class="beach-info">
             <h2><%= @beach.name %></h2>
@@ -169,12 +169,12 @@
 
       <%# ---------------------REVIEWS SECTION------------------ %>
       <%# ------------------------------------------------------ %>
-      <div class="info-events-section">
+      <div class="two-column-section">
         <div class="row row-cols-2">
           <% if @beach.reviews %>
             <% @beach.reviews.each do |review| %>
               <div class="review-card">
-                <div class="user-stars">
+                <div class="review-user-info">
                   <% if review.user.profile.photo.key %>
                     <%= cl_image_tag review.user.profile.photo.key, id:"avatar-reviews"%>
                   <% else %>
@@ -185,7 +185,9 @@
                   <hr>
                   <p><%= review.content %></p>
                 </div>
-                <i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i></p>
+                <div class="d-flex">
+                  <i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i>
+                </div>
               </div>
             <% end %>
           <% else %>
@@ -214,14 +216,39 @@
         <div class="thread">
           <% @messages.each do |message| %>
             <div class="message">
+              <!-- Avatar and username -->
               <% if message.user.profile.photo.key %>
-                <%= cl_image_tag message.user.profile.photo.key, id:"avatar-reviews"%>
+                <%= cl_image_tag message.user.profile.photo.key, id: "avatar-reviews" %>
               <% else %>
-                <%= image_tag "default-photo.webp", id:"avatar-reviews"%>
+                <%= image_tag "default-photo.webp", id: "avatar-reviews" %>
               <% end %>
               <strong><%= message.user.profile.username %></strong>
+
+              <!-- Created at and content -->
               <p class="opacity-6"><%= format_message_date(message.created_at) %></p>
               <%= message.content %>
+
+              <!-- Like button and counter -->
+              <%= link_to message_path(message), method: :patch, remote: true, class: "like-button" do %>
+                <i class="fa-solid fa-thumbs-up"></i>
+              <% end %>
+
+              <p><%= message.likes %> likes</p>
+
+              <!-- Comment option -->
+              <button type="button" class="comment-button" data-bs-toggle="collapse" data-bs-target="#collapse<%= message.id %>">
+                Comment
+              </button>
+
+              <!-- Comment form -->
+              <div id="collapse<%= message.id %>" class="collapse">
+                <%= form_for message do |form| %>
+                  <%= form.hidden_field :user_id, value: current_user.id %>
+                  <%= form.hidden_field :parent_id, value: message.id %>
+                  <%= form.text_area :content, placeholder: "Add a comment...", class: "form-control" %>
+                  <%= form.submit "Post", class: "join-button" %>
+                <% end %>
+              </div>
             </div>
             <hr>
           <% end %>
