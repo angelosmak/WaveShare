@@ -181,7 +181,7 @@
                   <% else %>
                     <%= image_tag "default-photo.webp", id:"avatar-reviews"%>
                   <% end %>
-                  <h4><%= review.title %></h4>
+                  <h5><%= review.title %></h5>
                   <p class="opacity-6"><%= review.created_at.strftime("%B %d %Y") %></p>
                   <hr>
                   <p><%= review.content %></p>
