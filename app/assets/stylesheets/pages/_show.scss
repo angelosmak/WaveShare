@@ -200,6 +200,54 @@
 //--------------------------•••---------------------
 
 
+//----------------- THREADS SECTION-----------------
+//--------------------------•••---------------------
+.form-control-threads{
+  height: 17vh;
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  position: relative;
+  border: 1px solid #5e94c1 ;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+
+  .join-button{
+  width:140px ;
+  }
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.thread {
+  padding: 20px;
+}
+
+.comment {
+  margin-left: 0;
+}
+
+.user-comment {
+  background-color: #ffffff;
+  border: 1px solid #5e94c1 ;
+  padding: 10px;
+  border-radius: 18px;
+}
+
+.reply {
+  margin-left: 20px; /* Increase margin-left for each level of reply */
+}
+
+//---------------END THREADS SECTION----------------
+//--------------------------•••---------------------
+
+
 //---------------------------MOBILE SECTION-----------------------------------
 //----------------------------------------------------------------------------
 
