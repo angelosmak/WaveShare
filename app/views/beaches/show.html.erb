@@ -1,6 +1,6 @@
 <div class="container">
   <div class="background-panel-show">
-    <img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="">
+    <img src="https://images.unsplash.com/photo-1537519646099-335112f03225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="" class="background-panel-image">
     <%# -------------------FRONT PANEL CODE------------------ %>
     <%# ----------------------------------------------------- %>
 
@@ -13,11 +13,23 @@
             <br>
             <hr>
             <p class="opacity-6">
-              Nestled along the azure coastline, the beach presents a captivating panorama that merges sky, sea, and sand in harmonious brilliance. As the sun begins its descent, casting a warm, golden glow across the horizon, the beachscape transforms into an enchanting tableau.
+              Nestled along the azure coastline, the beach presents a
+              captivating panorama that merges sky, sea, and sand in
+              harmonious brilliance. As the sun begins its descent,
+              casting a warm, golden glow across the horizon, the
+              beachscape transforms into an enchanting tableau.
 
-              The soft, powdery sand stretches out like an endless canvas, inviting barefoot explorations. Each step sinks gently into the welcoming embrace of the shoreline, leaving delicate imprints as the water teases with its rhythmic lapping.
+              The soft, powdery sand stretches out like an endless
+              canvas, inviting barefoot explorations. Each step
+              sinks gently into the welcoming embrace of the shoreline,
+              leaving delicate imprints as the water teases with its
+              rhythmic lapping.
 
-              Crystal-clear waves roll in with a soothing cadence, their whispers echoing tales of distant shores. The sea breeze carries a salty tang, caressing sun-kissed skin and carrying the promise of adventure on its wings.            </p>
+              Crystal-clear waves roll in with a soothing cadence, t
+              heir whispers echoing tales of distant shores. The sea
+              breeze carries a salty tang, caressing sun-kissed skin
+              and carrying the promise of adventure on its wings.
+            </p>
           </div>
         </div>
 
@@ -25,12 +37,12 @@
         <%# ----------------------------------------------------- %>
         <div class="right-content">
           <div class="events-card">
-          <div class="d-flex justify-content-between">
-            <h2>Events</h2>
-            <%= link_to new_beach_event_path(@beach) do%>
-              <h3><i class="fa-solid fa-plus plus-button"></i></h3>
-            <% end %>
-          </div>
+            <div class="d-flex justify-content-between">
+              <h2>Events</h2>
+              <%= link_to new_beach_event_path(@beach) do%>
+                <h3><i class="fa-solid fa-plus plus-button"></i></h3>
+              <% end %>
+            </div>
             <br>
 
 
@@ -44,29 +56,29 @@
                     <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                       <% events_group.each do |event| %>
                         <div class="event-card">
-                        <% if event.photo.key %>
-                          <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
-                        <% else %>
-                          <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
-                        <% end %>
-                        <div class="event-card-infos">
-                          <h2><%= event.title %></h2>
-                          <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
-                        </div>
-                        <div class="join-button-div">
-                          <div>
-                            <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
-                            <p><%= event.user_events.count %>
-                              <% if event.user_events.count == 1 %>
-                                <%= "person attending" %>
-                              <% else %>
-                                <%= "people attending" %>
-                              <% end %>
-                            </p>
+                          <% if event.photo.key %>
+                            <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                          <% else %>
+                            <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                          <% end %>
+                          <div class="event-card-infos">
+                            <h2><%= event.title %></h2>
+                            <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                          </div>
+                          <div class="join-button-div">
+                            <div>
+                              <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                              <p><%= event.user_events.count %>
+                                <% if event.user_events.count == 1 %>
+                                  <%= "person attending" %>
+                                <% else %>
+                                  <%= "people attending" %>
+                                <% end %>
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <hr>
+                        <hr>
                       <% end %>
                     </div>
                   <% end %>
@@ -80,29 +92,29 @@
             <% else %>
               <% upcoming_events.each do |event| %>
                 <div class="event-card">
-                <% if event.photo.key %>
-                  <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
-                <% else %>
-                  <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
-                <% end %>
-                <div class="event-card-infos">
-                  <h2><%= event.title %></h2>
-                  <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
-                </div>
-                <div class="join-button-div">
-                  <div>
-                    <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
-                    <p><%= event.user_events.count %>
-                      <% if event.user_events.count == 1 %>
-                        <%= "person attending" %>
-                      <% else %>
-                        <%= "people attending" %>
-                      <% end %>
-                    </p>
+                  <% if event.photo.key %>
+                    <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                  <% else %>
+                    <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                  <% end %>
+                  <div class="event-card-infos">
+                    <h2><%= event.title %></h2>
+                    <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                  </div>
+                  <div class="join-button-div">
+                    <div>
+                      <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                      <p><%= event.user_events.count %>
+                        <% if event.user_events.count == 1 %>
+                          <%= "person attending" %>
+                        <% else %>
+                          <%= "people attending" %>
+                        <% end %>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <hr>
+                <hr>
               <% end %>
             <% end %>
           </div>
@@ -110,6 +122,7 @@
       </div>
       <%# -------------------END EVENT SECTION------------------ %>
       <%# --------------------------•••------------------------- %>
+
 
 
       <%# -------------------WEATHER SECTION------------------ %>
@@ -156,18 +169,65 @@
 
       <%# ---------------------REVIEWS SECTION------------------ %>
       <%# ------------------------------------------------------ %>
-
       <div class="info-events-section">
-        <div class="left-content">
-          <h2>Reviews</h2>
-        </div>
-        <div class="right-content">
-          <p>review cards</p>
+        <div class="row row-cols-2">
+          <% if @beach.reviews %>
+            <% @beach.reviews.each do |review| %>
+              <div class="review-card">
+                <div class="user-stars">
+                  <% if review.user.profile.photo.key %>
+                    <%= cl_image_tag review.user.profile.photo.key, id:"avatar-reviews"%>
+                  <% else %>
+                    <%= image_tag "default-photo.webp", id:"avatar-reviews"%>
+                  <% end %>
+                  <h5><%= review.title %></h5>
+                  <p class="opacity-6"><%= review.created_at.strftime("%B %d %Y") %></p>
+                  <hr>
+                  <p><%= review.content %></p>
+                </div>
+                <i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i><i class="fa-solid fa-star" style="color: #cfc807;"></i></p>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="review-card">
+              <h2>Be the first to write a review!</h2>
+            </div>
+          <% end %>
         </div>
       </div>
-
       <%# ---------------------END REVIEWS SECTION------------------ %>
+      <%# -----------------------------•••-------------------------- %>
+      <hr>
+      <%# -----------------------THREADS SECTION-------------------- %>
       <%# ---------------------------------------------------------- %>
+      <div class="events-card">
+        <h2>Threads..</h2>
+        <%= simple_form_for(@message, url: messages_path) do |form| %>
+          <%= form.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+          <%= form.input :beach_id, as: :hidden, input_html: { value: @beach.id } %>
+          <%= form.input :content, as: :text, label: "Add a message...", input_html: { class: "form-control" } %>
+          <%= form.button :submit, "Post", class: "join-button" %>
+        <% end %>
+        <hr>
+
+        <!-- Thread View -->
+        <div class="thread">
+          <% @messages.each do |message| %>
+            <div class="message">
+              <% if message.user.profile.photo.key %>
+                <%= cl_image_tag message.user.profile.photo.key, id:"avatar-reviews"%>
+              <% else %>
+                <%= image_tag "default-photo.webp", id:"avatar-reviews"%>
+              <% end %>
+              <strong><%= message.user.profile.username %></strong>
+              <p class="opacity-6"><%= format_message_date(message.created_at) %></p>
+              <%= message.content %>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      <%# -----------------------END THREADS SECTION-----------------%>
+      <%# ------------------------------•••------------------------- %>
     </div>
   </div>
 </div>

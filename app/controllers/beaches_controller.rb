@@ -74,6 +74,8 @@ class BeachesController < ApplicationController
     @beach = Beach.find_by_id(params[:id])
     @events = @beach.events
     @reviews = @beach.reviews
+    @message = Message.new
+    @messages = @beach.messages.order(created_at: :desc)
     # pundit
     authorize @beach
   end
