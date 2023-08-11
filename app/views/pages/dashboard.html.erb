@@ -1,6 +1,7 @@
-<div class="dashboard-header">Bookmarked
+<div class="dashboard-container">
+<div class="dashboard-header">
+<h1>Your Activity</h1>
 </div>
-
 <div class="tab">
   <button class="tablinks active primary-text" onclick="openCity(event, 'Reviews')">Reviews</button>
   <button class="tablinks primary-text" onclick="openCity(event, 'Events')">Events</button>
@@ -8,43 +9,42 @@
 </div>
 
 <div id="Reviews" class="tabcontent-dashboard active">
-<% @reviews.each do |review| %>
-  <div class="container mb-2 p-0">
+  <% @reviews.each do |review| %>
+    <div class="container mb-2 p-0">
       <div class="card p-2">
-          <div class="row">
-              <div class="col-md-1 d-flex align-items-center">
-                  <% if review.user.profile.photo.key %>
-                        <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
-                        <% else %>
-                        <%# else put another picture from assets %>
-                          <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                      <% end %>
-              <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
+        <div class="row">
+          <div class="col-md-1 d-flex align-items-center">
+            <% if review.user.profile.photo.key %>
+              <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
+              <% else %>
+                <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
+            <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
+          </div>
+          <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
+          <div class="col-md-10">
+            <div class="d-flex">
+              <div class="title-review">
+                <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
               </div>
-                <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
-              <div class="col-md-10">
-                <div class="d-flex">
-                <div class="title-review">
-                  <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
-                </div>
-                    <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
-                </div>
-                  <p><%= review.content %></p>
-                  <% if policy(review).destroy? %>
-                    <div class="w-100 text-end">
-                      <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
-                        <i class="fa-solid fa-trash" style="color: #000000;"></i>
-                      <% end %>
-                    </div>
+              <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
+            </div>
+            <p><%= review.content %></p>
+            <% if policy(review).destroy? %>
+              <div class="w-100 text-end">
+                <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
+                  <i class="fa-solid fa-trash" style="color: #000000;"></i>
                   <% end %>
               </div>
+              <% end %>
+            </div>
           </div>
+        </div>
       </div>
-  </div>
-          <% end %>
-  </div>
+      <% end %>
+    </div>
 
-<div id="Events" class="tabcontent-dashboard">
+  <div id="Events" class="tabcontent-dashboard">
   <section style="color: #000; background-color: #f3f2f2;">
     <div class="container py-5">
       <div class="row text-center">
@@ -142,7 +142,7 @@
     </div>
   </section>
 </div>
-
+</div>
 <script>
   function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

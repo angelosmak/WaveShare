@@ -1,12 +1,22 @@
-
 .dashboard-header {
-  margin-top: 15%;
+  margin: 15px;
+}
+
+.dashboard-container {
+  padding: 15px;
+  margin-top: 300px;
+  position: relative;
+  bottom: 100px;
+  background-color:white;
+  height: auto;
+  border-radius: 20px 20px;
+  box-shadow: 9px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .tabcontent-dashboard {
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-top: none;
 }
 
@@ -15,4 +25,26 @@
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+}
+
+.tab {
+  display: flex;
+  background-color:  white;
+  border-bottom: 1px solid #ccc;
+}
+
+.tablinks {
+  background-color:  white;
+  width: 130px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  text-decoration: underline;
+  .active {
+  }
+}
+.active {
+  color: #1c75bc;
 }
