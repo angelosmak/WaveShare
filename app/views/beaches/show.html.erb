@@ -37,12 +37,12 @@
         <%# ----------------------------------------------------- %>
         <div class="right-content">
           <div class="events-card">
-          <div class="d-flex justify-content-between">
-            <h2>Events</h2>
-            <%= link_to new_beach_event_path(@beach) do%>
-              <h3><i class="fa-solid fa-plus plus-button"></i></h3>
-            <% end %>
-          </div>
+            <div class="d-flex justify-content-between">
+              <h2>Events</h2>
+              <%= link_to new_beach_event_path(@beach) do%>
+                <h3><i class="fa-solid fa-plus plus-button"></i></h3>
+              <% end %>
+            </div>
             <br>
 
 
@@ -56,29 +56,29 @@
                     <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                       <% events_group.each do |event| %>
                         <div class="event-card">
-                        <% if event.photo.key %>
-                          <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
-                        <% else %>
-                          <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
-                        <% end %>
-                        <div class="event-card-infos">
-                          <h2><%= event.title %></h2>
-                          <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
-                        </div>
-                        <div class="join-button-div">
-                          <div>
-                            <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
-                            <p><%= event.user_events.count %>
-                              <% if event.user_events.count == 1 %>
-                                <%= "person attending" %>
-                              <% else %>
-                                <%= "people attending" %>
-                              <% end %>
-                            </p>
+                          <% if event.photo.key %>
+                            <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                          <% else %>
+                            <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                          <% end %>
+                          <div class="event-card-infos">
+                            <h2><%= event.title %></h2>
+                            <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                          </div>
+                          <div class="join-button-div">
+                            <div>
+                              <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                              <p><%= event.user_events.count %>
+                                <% if event.user_events.count == 1 %>
+                                  <%= "person attending" %>
+                                <% else %>
+                                  <%= "people attending" %>
+                                <% end %>
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <hr>
+                        <hr>
                       <% end %>
                     </div>
                   <% end %>
@@ -92,29 +92,29 @@
             <% else %>
               <% upcoming_events.each do |event| %>
                 <div class="event-card">
-                <% if event.photo.key %>
-                  <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
-                <% else %>
-                  <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
-                <% end %>
-                <div class="event-card-infos">
-                  <h2><%= event.title %></h2>
-                  <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
-                </div>
-                <div class="join-button-div">
-                  <div>
-                    <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
-                    <p><%= event.user_events.count %>
-                      <% if event.user_events.count == 1 %>
-                        <%= "person attending" %>
-                      <% else %>
-                        <%= "people attending" %>
-                      <% end %>
-                    </p>
+                  <% if event.photo.key %>
+                    <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                  <% else %>
+                    <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                  <% end %>
+                  <div class="event-card-infos">
+                    <h2><%= event.title %></h2>
+                    <p id="header-date"><%= event.date.strftime("%B %d %Y") %></p>
+                  </div>
+                  <div class="join-button-div">
+                    <div>
+                      <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                      <p><%= event.user_events.count %>
+                        <% if event.user_events.count == 1 %>
+                          <%= "person attending" %>
+                        <% else %>
+                          <%= "people attending" %>
+                        <% end %>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <hr>
+                <hr>
               <% end %>
             <% end %>
           </div>
@@ -169,7 +169,6 @@
 
       <%# ---------------------REVIEWS SECTION------------------ %>
       <%# ------------------------------------------------------ %>
-
       <div class="info-events-section">
         <div class="row row-cols-2">
           <% if @beach.reviews %>
@@ -194,11 +193,17 @@
               <h2>Be the first to write a review!</h2>
             </div>
           <% end %>
-          </div>
         </div>
-
+      </div>
       <%# ---------------------END REVIEWS SECTION------------------ %>
+      <%# -----------------------------•••-------------------------- %>
+      <hr>
+      <%# -----------------------THREADS SECTION-------------------- %>
       <%# ---------------------------------------------------------- %>
-    </div>
+      <div class="events-card">
+        <h2>Threads..</h2>
+      </div>
+      <%# -----------------------END THREADS SECTION-----------------%>
+      <%# ------------------------------•••------------------------- %>
   </div>
 </div>
