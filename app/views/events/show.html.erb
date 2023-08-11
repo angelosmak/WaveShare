@@ -117,15 +117,15 @@
               <p class="display-3" id="header-date"><%= @event.date.strftime("%B %d %Y") %></p>
             </div>
             <button class="event-show-buttons">
-                  <% if UserEvent.where(event: @event, user: current_user).empty?%>
-                    <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
-                  <% end %>
-                  <% unless @event.user_events.empty? %>
-                    <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
-                    <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
-                  <% end %>
-                  </div>
-                </button>
+              <% if UserEvent.where(event: @event, user: current_user).empty?%>
+                <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
+              <% end %>
+              <% unless @event.user_events.empty? %>
+                <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
+                <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
+              <% end %>
+              </div>
+            </button>
             <div class="header-attendees-container">
               <div class="attendees-avatar-container">
                 <% @event.user_events.each do |attendance| %>

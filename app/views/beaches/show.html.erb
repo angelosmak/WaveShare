@@ -214,68 +214,45 @@
 
         <!-- Thread View -->
         <div class="thread">
-  <% @messages.each do |message| %>
-    <div class="message">
-      <!-- Avatar and username -->
-      <% if message.user.profile.photo.key %>
-        <%= cl_image_tag message.user.profile.photo.key, id: "avatar-reviews" %>
-      <% else %>
-        <%= image_tag "default-photo.webp", id: "avatar-reviews" %>
-      <% end %>
-      <strong><%= message.user.profile.username %></strong>
+          <% @messages.each do |message| %>
+            <div class="message">
+              <!-- Avatar and username -->
+              <% if message.user.profile.photo.key %>
+                <%= cl_image_tag message.user.profile.photo.key, id: "avatar-reviews" %>
+              <% else %>
+                <%= image_tag "default-photo.webp", id: "avatar-reviews" %>
+              <% end %>
+              <strong><%= message.user.profile.username %></strong>
 
-      <!-- Created at and content -->
-      <p class="opacity-6"><%= format_message_date(message.created_at) %></p>
-      <%= message.content %>
+              <!-- Created at and content -->
+              <p class="opacity-6"><%= format_message_date(message.created_at) %></p>
+              <%= message.content %>
 
-      <!-- Like button and counter -->
-      <%= link_to message_path(message), method: :post, remote: true, class: "like-button", id: "like-button-#{message.id}" do %>
-        <i class="fa-solid fa-thumbs-up"></i>
-      <% end %>
+              <!-- Like button and counter -->
+              <%= link_to message_path(message), method: :patch, remote: true, class: "like-button" do %>
+                <i class="fa-solid fa-thumbs-up"></i>
+              <% end %>
 
-      <span class="like-counter"><%= message.likes %> likes</span>
+              <p><%= message.likes %> likes</p>
 
-      <!-- Comment option -->
-      <button type="button" class="comment-button" data-bs-toggle="collapse" data-bs-target="#collapse<%= message.id %>">
-        Comment
-      </button>
+              <!-- Comment option -->
+              <button type="button" class="comment-button" data-bs-toggle="collapse" data-bs-target="#collapse<%= message.id %>">
+                Comment
+              </button>
 
-      <!-- Comment form -->
-      <div id="collapse<%= message.id %>" class="collapse">
-        <%= form_for message do |form| %>
-          <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.hidden_field :parent_id, value: message.id %>
-          <%= form.text_area :content, placeholder: "Add a comment...", class: "form-control" %>
-          <%= form.submit "Post", class: "join-button" %>
-        <% end %>
-      </div>
-    </div>
-    <hr>
-  <% end %>
-</div>
-
-<script>
-  // Attach click event to like buttons
-  document.addEventListener('DOMContentLoaded', () => {
-    const likeButtons = document.querySelectorAll('.like-button');
-    likeButtons.forEach(button => {
-      button.addEventListener('ajax:success', (event) => {
-        const messageId = event.detail[0].message_id;
-        const likeButton = document.getElementById(`like-button-${messageId}`);
-        const likeCounter = likeButton.nextElementSibling;
-
-        if (event.detail[0].liked) {
-          likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i> Unlike';
-        } else {
-          likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i> Like';
-        }
-
-        likeCounter.innerHTML = `${event.detail[0].likes_count} likes`;
-      });
-    });
-  });
-</script>
-
+              <!-- Comment form -->
+              <div id="collapse<%= message.id %>" class="collapse">
+                <%= form_for message do |form| %>
+                  <%= form.hidden_field :user_id, value: current_user.id %>
+                  <%= form.hidden_field :parent_id, value: message.id %>
+                  <%= form.text_area :content, placeholder: "Add a comment...", class: "form-control" %>
+                  <%= form.submit "Post", class: "join-button" %>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+        </div>
       <%# -----------------------END THREADS SECTION-----------------%>
       <%# ------------------------------•••------------------------- %>
     </div>
