@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   # root to: "beaches#index"
+  resources :messages, only: [:create]
+
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

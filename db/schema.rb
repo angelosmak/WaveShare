@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_102820) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_063534) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_102820) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "beach_id", null: false
+    t.integer "likes"
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beach_id"], name: "index_messages_on_beach_id"
+    t.index ["parent_id"], name: "index_messages_on_parent_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "username"
     t.bigint "user_id", null: false
@@ -111,6 +124,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_102820) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "beaches"
   add_foreign_key "events", "users"
+  add_foreign_key "messages", "beaches"
+  add_foreign_key "messages", "messages", column: "parent_id"
+  add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "reviews", "beaches"
   add_foreign_key "reviews", "users"

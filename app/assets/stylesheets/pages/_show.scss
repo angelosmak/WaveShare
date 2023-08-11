@@ -131,6 +131,11 @@
   color: #1c75bc;
 }
 
+
+.vl {
+  border-left: 1px solid $logo-color;
+  height: auto;
+}
 //---------------END BEACH INFO - EVENTS SECTION---------------
 //-----------------------------•••-----------------------------
 
@@ -168,10 +173,76 @@
   display: flex;
   justify-content: center;
 }
-
 //---------------END WEATHER WIDGET SECTION--------------------
 //--------------------------•••--------------------------------
 
+
+//---------------REVIEWS SECTION--------------------
+//--------------------------------------------------
+#avatar-reviews{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.review-card{
+  width: 50%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.users-stars{
+  width: 80%;
+}
+//---------------END REVIEWS SECTION----------------
+//--------------------------•••---------------------
+
+
+//----------------- THREADS SECTION-----------------
+//--------------------------•••---------------------
+.form-control-threads{
+  height: 17vh;
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  position: relative;
+  border: 1px solid #5e94c1 ;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+
+  .join-button{
+  width:140px ;
+  }
+}
+
+
+.thread {
+  padding: 20px;
+
+}
+
+.comment {
+  margin-left: 0;
+}
+
+.message {
+  background-color: #ffffff;
+  border: 1px solid #5e94c1 ;
+  padding: 10px;
+  border-radius: 18px;
+}
+
+.reply {
+  margin-left: 20px; /* Increase margin-left for each level of reply */
+}
+
+//---------------END THREADS SECTION----------------
+//--------------------------•••---------------------
 
 
 //---------------------------MOBILE SECTION-----------------------------------
