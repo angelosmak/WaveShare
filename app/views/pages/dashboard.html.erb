@@ -10,14 +10,14 @@
 
 <div id="Reviews" class="tabcontent-dashboard active">
   <% @reviews.each do |review| %>
-    <div class="container mb-2 p-0">
+    <div class="review-card">
       <div class="card p-2">
         <div class="row">
           <div class="col-md-1 d-flex align-items-center">
             <% if review.user.profile.photo.key %>
-              <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
+              <%= cl_image_tag review.user.profile.photo.key, id:'avatar-reviews' %>
               <% else %>
-                <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= image_tag "default-photo.webp", id:'avatar-reviews', class: "dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
             <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
           </div>
@@ -54,10 +54,10 @@
               <div class="card-body py-4 mt-2">
                 <div class="d-flex justify-content-center mb-4">
                   <% if event.photo.key %>
-                    <%= cl_image_tag event.photo.key, class: 'header-image event-image-rounded' %>
+                    <%= cl_image_tag event.photo.key, class: 'header-image event-image' %>
                   <% else %>
                     <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <%= image_tag "broken-beach.jpg", class: "header-image event-image", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= event.title %></h5>
@@ -105,10 +105,10 @@
               <div class="card-body py-4 mt-2">
                 <div class="d-flex justify-content-center mb-4">
                   <% if user_event.event.photo.key %>
-                    <%= cl_image_tag user_event.event.photo.key, class: 'header-image event-image-rounded' %>
+                    <%= cl_image_tag user_event.event.photo.key, class: 'header-image event-image' %>
                   <% else %>
                     <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <%= image_tag "broken-beach.jpg", class: "header-image event-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
                 </div>
                 <h5 class="event-card-title"><%= user_event.event.title %></h5>
