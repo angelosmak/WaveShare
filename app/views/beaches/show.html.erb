@@ -241,7 +241,7 @@
               <%# ------------------------------------------------ %>
               <div class="comments">
                 <% if user_signed_in? %>
-                  <div class="like-section">
+                  <div class="like-section ">
                     <% if current_user.liked?(message) %>
                       <%= link_to 'Unlike', unlike_message_path(message), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
                     <% else %>
@@ -270,8 +270,8 @@
 
 
                 <a class="accordion"><i class="fa-solid fa-comment"></i></a>
-              <%# -------------LIKE-COMMENT BUTTON---------------- %>
-              <%# ----------------------•••----------------------- %>
+                <%# -------------LIKE-COMMENT BUTTON---------------- %>
+                <%# ----------------------•••----------------------- %>
 
 
                 <div class="panel">
