@@ -13,16 +13,17 @@ class MessagesController < ApplicationController
   end
 
   def like
-    message = Message.find(params[:id])
-    like = current_user.likes.create(message: message)
-    render json: { message: 'Liked successfully', like_id: like.id }
+    @message = Message.find(params[:id])
+    @like = @message.likes.new(like_params)
+    @like.user = current_user
+    @like.save
+
   end
 
   def unlike
-    message = Message.find(params[:id])
-    like = current_user.likes.find_by(message: message)
-    like.destroy if like
-    render json: { message: 'Unliked successfully' }
+    @message = Message.find(params[:id])
+    @like = @message.likes.find_by(user_id: current_user)
+    @like.destroy
   end
 
   def create_comment
@@ -50,4 +51,10 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:content, :user_id, :beach_id)
   end
+
+  def like_params
+    params.require(:like).permit(:message_id)
+  end
+
+
 end

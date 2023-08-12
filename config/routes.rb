@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   # root to: "beaches#index"
   resources :messages do
-    post 'like', on: :member
-    delete 'unlike', on: :member
+    member do
+      post :like
+      post :unlike
+    end
     post 'create_comment', on: :member
   end
 

@@ -212,67 +212,119 @@
         <% end %>
         <hr>
 
-        <!-- Thread View -->
+
         <div class="thread">
           <% @messages.each do |message| %>
             <div class="message">
-              <!-- Avatar and username -->
+
+              <!-- ---------------AVATAR-USERNAME ----------------->
+              <%# ----------------------------------------------- %>
               <% if message.user.profile.photo.key %>
                 <%= cl_image_tag message.user.profile.photo.key, id: "avatar-reviews" %>
               <% else %>
                 <%= image_tag "default-photo.webp", id: "avatar-reviews" %>
               <% end %>
               <strong><%= message.user.profile.username %></strong>
+              <!-- -------------AVATAR-USERNAME END---------------->
+              <%# ----------------------•••---------------------- %>
 
 
-              <!-- Created at and content -->
+              <!---------DATE-CONTENT -------->
+              <%# -------------------------- %>
               <p class="opacity-6"><%= format_message_date(message.created_at) %></p>
               <%= message.content %>
+              <!---------DATE-CONTENT -------->
+              <%# -----------•••------------ %>
 
+
+              <%# -------------LIKE-COMMENT BUTTON---------------- %>
+              <%# ------------------------------------------------ %>
               <div class="comments">
-              <% if user_signed_in? %>
-                <% if current_user.liked?(message) %>
-                  <%= link_to 'Unlike', unlike_message_path(message), method: :post, remote: true %>
-                <% else %>
-                  <%= link_to  like_message_path(message), method: :post, remote: true do%>
-                    <i class="fa-regular fa-thumbs-up"></i>
-                  <% end %>
+                <% if user_signed_in? %>
+                  <div class="like-section">
+                    <% if current_user.liked?(message) %>
+                      <%= link_to 'Unlike', unlike_message_path(message), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
+                    <% else %>
+                      <%= link_to like_message_path(message, like: { message_id: message.id }), data: {turbo_method: :post} do %>
+                        <i class="fa-solid fa-heart"></i>
+                      <% end %>
+
+                    <% end %>
+                    <span class="like-count" id="like-count-<%= message.id %>"><%= message.likes.count %></span>
+                  </div>
                 <% end %>
-              <% end %>
-                <button class="accordion"><i class="fa-solid fa-comment"></i></button>
+
+                <script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                    var likeButtons = document.querySelectorAll(".like-button");
+
+                    likeButtons.forEach(function(button) {
+                      button.addEventListener("ajax:success", function(event) {
+                        var message_id = event.target.getAttribute("id").split("-")[2];
+                        var likeCount = document.getElementById("like-count-" + message_id);
+                        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+                      });
+                    });
+                  });
+                </script>
+
+
+                <a class="accordion"><i class="fa-solid fa-comment"></i></a>
+              <%# -------------LIKE-COMMENT BUTTON---------------- %>
+              <%# ----------------------•••----------------------- %>
+
+
                 <div class="panel">
-                
                   <!-- Loop through comments for this message -->
                   <% message.comments.each do |comment| %>
                     <div class="comment">
+
+
+                    <!-- ---------------AVATAR-USERNAME ----------------->
+                    <%# ----------------------------------------------- %>
                       <% if comment.user.profile.photo.key %>
                         <%= cl_image_tag comment.user.profile.photo.key, id: "avatar-reviews" %>
                       <% else %>
                         <%= image_tag "default-photo.webp", id: "avatar-reviews" %>
                       <% end %>
                       <strong><%= comment.user.profile.username %></strong>
+                      <!-- -------------AVATAR-USERNAME END---------------->
+                      <%# ----------------------•••---------------------- %>
 
-                      <!-- Created at and content -->
+
+                      <!---------DATE-CONTENT -------->
+                      <%# -------------------------- %>
                       <p class="opacity-6"><%= format_message_date(comment.created_at) %></p>
                       <%= comment.content %>
                     </div>
                   <% end %>
-                  <!-- Comment Form -->
+                      <!-------DATE-CONTENT END------>
+                      <%# -----------•••------------ %>
+
+
+                    <!----------COMMENT FORM -------->
+                    <%# --------------------------- %>
                   <%= simple_form_for([message, Comment.new], url: create_comment_message_path(message)) do |form| %>
-                    <%= form.input :content, as: :text, label: "Add a comment...", input_html: { class: "form-control" } %>
-                    <%= form.button :submit, "Post Comment", class: "comment-button" %>
+                    <%= form.input :content, as: :text, label: "Add a comment...", input_html: { class: "form-comments-control" } %>
+                    <%= form.button :submit, "Comment", class: "join-button" %>
                   <% end %>
+                  <!----------COMMENT FORM -------->
+                  <%# --------------------------- %>
+
                 </div>
               </div>
             </div>
             <hr>
           <% end %>
         </div>
-      <%# -----------------------END THREADS SECTION-----------------%>
-      <%# ------------------------------•••------------------------- %>
+      <%# -------------------END THREADS SECTION---------------------%>
+      <%# --------------------------•••----------------------------- %>
     </div>
   </div>
 </div>
+
+<%# ---------JAVASCRIPT COMMENT ACCORDION---------- %>
+<%# ----------------------•••---------------------- %>
 <script>
   const accordions = document.querySelectorAll('.accordion');
 
@@ -283,3 +335,5 @@
     });
   });
 </script>
+<%# ---------JAVASCRIPT COMMENT ACCORDION END---------- %>
+<%# ------------------------•••------------------------ %>

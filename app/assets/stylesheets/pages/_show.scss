@@ -264,6 +264,16 @@
 .comments.active .accordion i {
   transform: rotate(360deg);
 }
+
+.form-comments-control {
+  height: 50px;
+  width: 100%;
+  background-color: #ffc83a;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  position: relative;
+}
 //---------------END THREADS SECTION----------------
 //--------------------------•••---------------------
 
