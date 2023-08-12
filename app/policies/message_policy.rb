@@ -12,7 +12,9 @@ class MessagePolicy < ApplicationPolicy
       true
     end
 
-    
+    def create_comment?
+      true
+    end
 
     def resolve
       scope.all # If users can see all instances

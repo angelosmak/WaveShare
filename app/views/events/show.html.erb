@@ -116,6 +116,9 @@
             <div class="header-address-container">
               <p class="display-3" id="header-date"><%= @event.date.strftime("%B %d %Y") %></p>
             </div>
+
+
+
             <button class="event-show-buttons">
               <% if UserEvent.where(event: @event, user: current_user).empty?%>
                 <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
@@ -126,6 +129,8 @@
               <% end %>
               </div>
             </button>
+
+
             <div class="header-attendees-container">
               <div class="attendees-avatar-container">
                 <% @event.user_events.each do |attendance| %>
@@ -136,6 +141,9 @@
                   <% end %>
                 <% end %>
               </div>
+
+
+              
               <div class="attendees-counter-container">
                 <p><%= @event.user_events.count %>
                   <% if @event.user_events.count == 1 %>
@@ -146,6 +154,9 @@
                 </p>
               </div>
             </div>
+
+
+
               <div class="event-actions">
                 <%# end of user_events loop %>
                 <%# end of user_events loop %>

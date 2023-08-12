@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   # root to: "beaches#index"
-resources :messages, only: [:create,:update]
+  resources :messages do
+    member do
+      post :like
+      post :unlike
+    end
+    post 'create_comment', on: :member
+  end
+
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
