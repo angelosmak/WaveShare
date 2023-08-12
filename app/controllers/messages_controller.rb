@@ -12,21 +12,42 @@ class MessagesController < ApplicationController
     authorize @message
   end
 
-  def create_reply
-    @message = Message.find(params[:message_id])
-    @reply = @message.replies.build(reply_params)
-    @reply.user_id = current_user.id
+  def like
+    message = Message.find(params[:id])
+    like = current_user.likes.create(message: message)
+    render json: { message: 'Liked successfully', like_id: like.id }
+  end
 
-    if @reply.save
-      # Handle successful reply creation
+  def unlike
+    message = Message.find(params[:id])
+    like = current_user.likes.find_by(message: message)
+    like.destroy if like
+    render json: { message: 'Unliked successfully' }
+  end
+
+  def create_comment
+    @message = Message.find(params[:id])
+
+    @comment = @message.comments.new(comment_params)
+    @comment.user = current_user
+
+    if @comment.save
+      redirect_to @message, notice: 'Comment was successfully created.'
     else
-      # Handle validation errors
+      # Handle errors
+      redirect_to @message, alert: 'Comment creation failed.'
+
     end
+
   end
 
   private
 
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
+
   def message_params
-    params.require(:message).permit(:content, replies_attributes: [:user_id, :parent_id, :content])
+    params.require(:message).permit(:content, :user_id, :beach_id)
   end
 end

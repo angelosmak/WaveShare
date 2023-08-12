@@ -237,10 +237,33 @@
   border-radius: 18px;
 }
 
-.reply {
-  margin-left: 20px; /* Increase margin-left for each level of reply */
+.comment{
+  background-color: #ffffff;
+  border: 1px solid #5e94c1 ;
+  padding: 10px;
+  border-radius: 18px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
+.comments .panel {
+  display: none;
+}
+
+.accordion i {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Display the panel and rotate the accordion icon when active */
+.comments.active .panel {
+  display: block;
+}
+
+.comments.active .accordion i {
+  transform: rotate(360deg);
+}
 //---------------END THREADS SECTION----------------
 //--------------------------•••---------------------
 
