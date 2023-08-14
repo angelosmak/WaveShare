@@ -243,7 +243,7 @@
                 <% if user_signed_in? %>
                   <div class="like-section ">
                     <% if current_user.liked?(message) %>
-                      <%= link_to 'Unlike', unlike_message_path(message), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
+                      <%= link_to 'Unlike', unlike_message_path(message), data: {turbo_method: :postga} %>
                     <% else %>
                       <%= link_to like_message_path(message, like: { message_id: message.id }), data: {turbo_method: :post} do %>
                         <i class="fa-solid fa-heart"></i>
@@ -251,6 +251,7 @@
 
                     <% end %>
                     <span class="like-count" id="like-count-<%= message.id %>"><%= message.likes.count %></span>
+                    <a class="accordion"><i class="fa-solid fa-comment"></i></a>
                   </div>
                 <% end %>
 
@@ -269,7 +270,6 @@
                 </script>
 
 
-                <a class="accordion"><i class="fa-solid fa-comment"></i></a>
                 <%# -------------LIKE-COMMENT BUTTON---------------- %>
                 <%# ----------------------•••----------------------- %>
 
