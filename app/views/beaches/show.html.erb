@@ -169,7 +169,14 @@
 
       <%# ---------------------REVIEWS SECTION------------------ %>
       <%# ------------------------------------------------------ %>
+      <div class="d-flex justify-content-between review-title">
       <h2 class="margin-20">Reviews</h2>
+      <div class="join-button-div">
+          <%= link_to new_beach_review_path(@beach), class:"join-button" do%>
+            <p> + REVIEW</p>
+          <% end %>
+        </div>
+      </div>
       <div class="two-column-section">
         <div class="row row-cols-2">
           <% if @beach.reviews %>
@@ -196,16 +203,12 @@
               <h2>Be the first to write a review!</h2>
             </div>
           <% end %>
-          <div class="join-button-div">
-            <%= link_to new_beach_review_path(@beach), class:"join-button" do%>
-              <p> + REVIEW</p>
-            <% end %>
-          </div>
         </div>
       </div>
       <%# ---------------------END REVIEWS SECTION------------------ %>
       <%# -----------------------------•••-------------------------- %>
       <hr>
+
       <%# -----------------------THREADS SECTION-------------------- %>
       <%# ---------------------------------------------------------- %>
       <div class="events-card">
