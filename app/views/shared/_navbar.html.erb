@@ -3,7 +3,14 @@
   <div class="navbar-expand-md">
     <div class="navbar-dark text-center ">
       <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span> <span class="align-middle">Menu</span>
+      <div class="basic-button">
+        <i class="fa-solid fa-bars menu-icon"></i>
+        <% if current_user.profile.photo.key %>
+          <%= cl_image_tag current_user.profile.photo.key, class: "button-avatar", alt: "dropdown menu" %>
+        <% else %>
+          <%= image_tag "default-photo.webp", class: "button-avatar", alt: "dropdown menu" %>
+        <% end %>
+      </div>
       </button>
     </div>
     <div class="text-center py-3 collapse navbar-collapse border-bottom" id="navbarNavDropdown">
