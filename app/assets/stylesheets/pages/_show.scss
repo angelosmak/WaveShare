@@ -179,6 +179,10 @@
 
 //---------------REVIEWS SECTION--------------------
 //--------------------------------------------------
+.margin-20{
+  margin: 20px;
+}
+
 #avatar-reviews{
   width: 50px;
   height: 50px;
@@ -191,8 +195,20 @@
   height: auto;
   display: flex;
   justify-content: space-between;
+
 }
 
+.two-column-section{
+  .join-button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .join-button{
+    width: 131px;
+  }
+}
 .review-user-info{
   width: 80%;
 }
