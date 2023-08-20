@@ -179,6 +179,10 @@
 
 //---------------REVIEWS SECTION--------------------
 //--------------------------------------------------
+.margin-20{
+  margin: 20px;
+}
+
 #avatar-reviews{
   width: 50px;
   height: 50px;
@@ -191,8 +195,26 @@
   height: auto;
   display: flex;
   justify-content: space-between;
+
 }
 
+.review-title{
+
+  padding: 20px;
+  .join-button-div{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .join-button{
+    width: 131px;
+
+    p{
+      margin-bottom: 0;
+    }
+  }
+}
 .review-user-info{
   width: 80%;
 }
@@ -292,6 +314,18 @@
   .two-column-section{
     display: block;
   }
+
+  .event-card{
+
+    h2{
+      font-size: small;
+    }
+
+    img{
+      width: 18%;
+      height: 40%;
+    }
+  }
   //-------------END BEACH INFO - EVENTS SECTION MOBILE--------
   //--------------------------------•••------------------------
 
@@ -311,7 +345,9 @@
 
   //----------------REVIEWS SECTION MOBILE--------------
   //----------------------------------------------------
-
+  .review-card{
+    width: 100%;
+  }
   //----------------END REVIEWS SECTION MOBILE----------
   //--------------------------•••-----------------------
 }
