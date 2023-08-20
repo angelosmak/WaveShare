@@ -314,7 +314,7 @@
                     <!----------COMMENT FORM -------->
                     <%# --------------------------- %>
                   <%= simple_form_for([message, Comment.new], url: create_comment_message_path(message)) do |form| %>
-                    <%= form.input :content, as: :text, label: "Add a comment...", input_html: { class: "form-comments-control" } %>
+                    <%= form.input :content, as: :text, label: "Add a comment...", input_html: { class: "form-comment-control" } %>
                     <%= form.button :submit, "Comment", class: "join-button" %>
                   <% end %>
                   <!----------COMMENT FORM -------->
