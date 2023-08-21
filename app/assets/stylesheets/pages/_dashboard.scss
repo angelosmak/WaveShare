@@ -16,20 +16,22 @@
 .tabcontent-dashboard {
   display: none;
   padding: 6px 12px;
-  background-color: #ffeebb;
+  background-color: #ffffff;
 
 }
 
 .tabcontent-dashboard.active {
   display: block;
   padding: 6px 12px;
-  background-color: #ffeebb;
+  background-color: #ffffff;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .tab {
   display: flex;
   background-color: #ffeebb;
-  border-bottom: 1px solid #ccc;
 }
 
 .tablinks {
@@ -41,8 +43,10 @@
   align-items: center;
   border: none;
   text-decoration: underline;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .active {
-  color: #1c75bc;
+  background-color: white;
 }
