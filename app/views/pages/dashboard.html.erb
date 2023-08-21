@@ -62,23 +62,23 @@
                   </p>
                   <ul class="list-unstyled d-flex justify-content-center">
                     <li>
-                      <p class="event-card-date event-card-text"><%= event.date.strftime("%B %d %Y") %></p>
+                      <p class="event-card-date event-card-text opacity-6"><%= event.date.strftime("%B %d %Y") %></p>
                     </li>
                   </ul>
                   <div class="attend-seemore py-2">
                     <div class="event-button-section">
-                      <button class="event-card-buttons">
+                      <button class="basic-button">
                         <% if UserEvent.where(event: event, user: current_user).empty? %>
-                          <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
+                          <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to participate on this event?" }, class: "basic-button" %>
                         <% else %>
                           <% user_event = UserEvent.find_by(user: current_user, event: event) %>
-                          <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
+                          <%= link_to "Cancel", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "AAre you sure you dont want to participate anymore?" }, class: "basic-button" if user_event %>
                         <% end %>
                       </button>
                     </div>
                     <a href="/events/<%= event.id %>">
                     <div class="event-button-section">
-                      <button class="event-card-buttons">See More</button>
+                      <button class="basic-button">See More</button>
                     </div>
                     </a>
                   </div>
@@ -91,58 +91,9 @@
     </section>
   </div>
 
-  <div id="Attendances" class="tabcontent-dashboard">
-    <section>
-      <div class="container py-5">
-        <div class="row text-center">
-          <% @attendances.each do |user_event| %>
-            <div class="col-md-4 mb-4 mb-md-0">
-              <div class="card mb-1">
-                <div class="card-body py-4 mt-2">
-                  <div class="d-flex justify-content-center mb-4">
-                    <% if user_event.event.photo.key %>
-                      <%= cl_image_tag user_event.event.photo.key, class: 'header-image event-image' %>
-                    <% else %>
-                      <%# Put another picture from assets %>
-                      <%= image_tag "broken-beach.jpg", class: "header-image event-image dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                    <% end %>
-                  </div>
-                  <h5 class="event-card-title"><%= user_event.event.title %></h5>
-                  <p class="mb-2 event-card-description event-card-text"><%= user_event.event.description %></p>
-                  <ul class="list-unstyled d-flex justify-content-center">
-                    <li>
-                      <p class="event-card-date event-card-text" ><%= user_event.event.date.strftime("%B %d %Y") %></p>
-                    </li>
-                  </ul>
-                  <div class="attend-seemore py-2">
-                  <div class="event-button-section">
-                    <button class="event-card-buttons">
-                      <% if UserEvent.where(event: user_event.event, user: current_user).empty? %>
-                        <%= link_to "Attend", event_user_events_path(user_event.event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
-                      <% else %>
-                        <% user_event = UserEvent.find_by(user: current_user, event: user_event.event) %>
-                        <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
-                      <% end %>
-                    </button>
-                  </div>
-                  <a href="/events/<%= user_event.event.id %>">
-                  <div class="event-button-section">
-                    <button class="event-card-buttons">See More</button>
-                  </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </section>
-    </div>
-  </section>
-</div>
-
+<%# Attendances %>
 <div id="Attendances" class="tabcontent-dashboard">
-  <section style="color: #000; background-color: #f3f2f2;">
+  <section>
     <div class="container py-5">
       <div class="row text-center">
         <% @attendances.each do |user_event| %>
@@ -161,23 +112,23 @@
                 <p class="mb-2 event-card-description event-card-text"><%= user_event.event.description %></p>
                 <ul class="list-unstyled d-flex justify-content-center">
                   <li>
-                    <p class="event-card-date event-card-text" ><%= user_event.event.date.strftime("%B %d %Y") %></p>
+                    <p class="event-card-date event-card-text opacity-6" ><%= user_event.event.date.strftime("%B %d %Y") %></p>
                   </li>
                 </ul>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
-                    <button class="event-card-buttons">
+                    <button class="basic-button">
                       <% if UserEvent.where(event: user_event.event, user: current_user).empty? %>
-                        <%= link_to "Attend", event_user_events_path(user_event.event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
+                        <%= link_to "Attend", event_user_events_path(user_event.event), data: { turbo_method: :post, turbo_confirm: "Do you want to participate on this event?" }, class: "basic-button" %>
                       <% else %>
                         <% user_event = UserEvent.find_by(user: current_user, event: user_event.event) %>
-                        <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
+                        <%= link_to "Cancel", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure you dont want to participate anymore?" }, class: "basic-button" if user_event %>
                       <% end %>
                     </button>
                   </div>
                   <a href="/events/<%= user_event.event.id %>">
                   <div class="event-button-section">
-                    <button class="event-card-buttons">See More</button>
+                    <button class="basic-button">See More</button>
                   </div>
                   </a>
                 </div>
