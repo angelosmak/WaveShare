@@ -1,4 +1,4 @@
-<h2>Add info to your Profile</h2>
+<h2 class="form-fitting">Add info to your Profile</h2>
 <%= simple_form_for(@profile) do |f| %>
   <%= f.input :username, input_html: { value: current_user.email.to_s.split('@')[0] } %>
   <%= f.input :photo, as: :file %>

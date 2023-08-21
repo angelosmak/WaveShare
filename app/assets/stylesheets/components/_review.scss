@@ -26,7 +26,7 @@
   ;
 }
 
-.review-card-dashboard .avatar-large {
+.review-card-dashboard .review-avatar {
   grid-area: review-avatar;
 }
 
@@ -65,12 +65,7 @@
   margin: 20px;
 }
 
-#avatar-reviews{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
+
 
 .review-card{
   width: 50%;

@@ -13,9 +13,9 @@
     <div id="Reviews" class="tabcontent-dashboard active">
             <% @reviews.each do |review| %>
           <div class="review-card-dashboard">
-            <div class="avatar-large">
+            <div class="review-avatar">
               <% if review.user.profile.photo.key %>
-                <%= cl_image_tag review.user.profile.photo.key%>
+                <%= cl_image_tag review.user.profile.photo.key, id:'avatar-reviews'%>
               <% else %>
                 <%= image_tag "default-photo.webp", id:'avatar-reviews', class: "dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
@@ -39,10 +39,10 @@
     </div>
   <%# Eventstab %>
     <div id="Events" class="tabcontent-dashboard">
-      <div class="container py-5">
+      <div class="container py-4">
         <div class="row text-center">
           <% @events.each do |event| %>
-            <div class="col-md-4 mb-4 mb-md-0">
+            <div class="col-lg-4 mb-4 mb-md-0">
               <div class="card mb-1">
                 <div class="card-body py-4 mt-2">
                   <div class="d-flex justify-content-center mb-4">
@@ -89,10 +89,10 @@
 
 <%# Attendances %>
 <div id="Attendances" class="tabcontent-dashboard">
-    <div class="container py-5">
+    <div class="container py-4">
       <div class="row text-center">
         <% @attendances.each do |user_event| %>
-          <div class="col-md-4 mb-4 mb-md-0">
+          <div class="col-lg-4 mb-4 mb-md-0">
             <div class="card mb-1">
               <div class="card-body py-4 mt-2">
                 <div class="d-flex justify-content-center mb-4">
