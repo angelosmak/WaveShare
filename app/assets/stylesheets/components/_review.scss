@@ -4,52 +4,96 @@
   align-items: center;
 }
 
-//Rating showpage
 
 
-
-// beach showpage reviewcards
-
-// Reviews
-// avatar
-#avatar-reviews{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-bottom: 10px;
+//---------------REVIEWS SECTION--------------------
+//--------------------------------------------------
+// Dashboard Reviews
+.review-card-dashboard {
+  background-color: #ffeebb;
+  border-radius: 16px;
+  padding: 10px;
+  margin: 1.1em;
+  border: 1px solid #1c75bc;
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  justify-content: center;
+  align-items: center;
+  grid-template-areas:
+  'review-avatar review-header review-rating'
+  'review-user review-content .'
+  'review-date review-content deletion'
+  ;
 }
 
-.users-stars{
-  width: 80%;
+.review-card-dashboard .review-avatar {
+  grid-area: review-avatar;
 }
+
+.review-card-dashboard .review-header {
+  grid-area: review-header;
+}
+
+.review-card-dashboard .review-rating {
+  display: flex;
+  padding: 16px;
+  justify-content: end;
+  grid-area: review-rating;
+}
+
+.review-card-dashboard .review-date {
+  grid-area: review-date;
+  opacity: 0.5;
+}
+
+.review-card-dashboard .review-user {
+  grid-area: review-user;
+}
+
+.review-card-dashboard .review-deletion {
+  display: flex;
+  padding: 16px;
+  justify-content: end;
+  grid-area: deletion;
+}
+
+.review-card-dashboard .review-content {
+  grid-area: review-content;
+}
+
+.margin-20{
+  margin: 20px;
+}
+
+
 
 .review-card{
   width: 50%;
   height: auto;
   display: flex;
   justify-content: space-between;
-}
-
-.title-review {
-  width: 60%;
-}
-
-// Dashboard Reviews
-.review-card-dashboard {
-  text-align: center;
-  width: 600px;
-  height: 300px;
-  border: 1px solid #1c75bc;
-  display: grid;
-  grid-template-rows: 100px 300px 100px;
-  grid-template-areas: 1fr 3fr 1fr;
-  grid-template-areas:
-  'avatar-large' 'title-review' 'users-stars'
-  'text-secondary' 'review-content' 'review-delete'
-  ;
 
 }
 
-.review-card-dashboard h5, h6 {
-  margin: 10px;
+.review-title{
+
+  padding: 20px;
+  .join-button-div{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .join-button{
+    width: 131px;
+
+    p{
+      margin-bottom: 0;
+    }
+  }
 }
+.review-user-info{
+  width: 80%;
+}
+//---------------END REVIEWS SECTION----------------
+//--------------------------•••---------------------

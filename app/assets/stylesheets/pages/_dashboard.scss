@@ -1,24 +1,25 @@
-.dashboard-header {
-  margin: 15px;
-}
-
 .dashboard-container {
   padding: 15px;
-  margin-top: 300px;
+  margin-top: 200px;
   position: relative;
   bottom: 100px;
   background-color:#ffeebb;
   height: auto;
   border-radius: 20px 20px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .tabcontent-dashboard {
   display: none;
   padding: 6px 12px;
   background-color: #ffffff;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
-.tabcontent-dashboard.active {
+.tabcontent-dashboard .active {
   display: block;
   padding: 6px 12px;
   background-color: #ffffff;
@@ -46,7 +47,11 @@
 }
 
 .active {
+  display: block;
   background-color: white;
   text-decoration-color: #1c75bc;
   text-decoration-thickness: 4px;
 }
+
+
+// eventstab

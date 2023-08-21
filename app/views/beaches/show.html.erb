@@ -69,7 +69,7 @@
                           </div>
                           <div class="join-button-div">
                             <div>
-                              <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                              <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to join this Event?" }, class: "join-button" %>
                               <p><%= event.user_events.count %>
                                 <% if event.user_events.count == 1 %>
                                   <%= "person attending" %>
@@ -105,7 +105,7 @@
                   </div>
                   <div class="join-button-div">
                     <div>
-                      <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to go to this Event?" }, class: "join-button" %>
+                      <%= link_to "Join", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to join this Event?" }, class: "join-button" %>
                       <p><%= event.user_events.count %>
                         <% if event.user_events.count == 1 %>
                           <%= "person attending" %>

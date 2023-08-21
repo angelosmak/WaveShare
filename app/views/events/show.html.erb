@@ -21,7 +21,7 @@
         <div class="right-content">
           <button class="basic-button">
             <% if UserEvent.where(event: @event, user: current_user).empty?%>
-              <%= link_to "Join", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
+              <%= link_to "Join", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to join this Event?"} %>
             <% end %>
             <% unless @event.user_events.empty? %>
               <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
