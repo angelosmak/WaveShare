@@ -11,37 +11,34 @@
     </div>
     <%# Reviewstab %>
     <div id="Reviews" class="tabcontent-dashboard active">
-      <section>
             <% @reviews.each do |review| %>
           <div class="review-card-dashboard">
             <div class="avatar-large">
               <% if review.user.profile.photo.key %>
-                <%= cl_image_tag review.user.profile.photo.key, id:'avatar-reviews' %>
+                <%= cl_image_tag review.user.profile.photo.key%>
               <% else %>
                 <%= image_tag "default-photo.webp", id:'avatar-reviews', class: "dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
             </div>
+              <h6 class="review-user"><%= review.user.profile.username %></h6>
 
-              <h6><%= review.user.profile.username %></h6>
-              <span><% review.rating.times do %>
+              <span class="review-rating"><% review.rating.times do %>
                 <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
               <% end %>
               </span>
-              <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
-              <h5><%= review.title %></h5>
+              <p class="review-date"><%= review.created_at.strftime("%B %d %Y") %></p>
+              <h5 class="review-header"><%= review.title %></h5>
               <p class='review-content'><%= review.content %></p>
               <% if policy(review).destroy? %>
-                <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
-                  <i class="review-delete fa-solid fa-trash" style="color: #000000;"></i>
+                <%= link_to review_path(review), class:"review-deletion", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
+                  <i class="fa-solid fa-trash" style="color: #000000;"></i>
                 <% end %>
               <% end %>
           </div>
             <% end %>
-      </section>
     </div>
   <%# Eventstab %>
     <div id="Events" class="tabcontent-dashboard">
-    <section>
       <div class="container py-5">
         <div class="row text-center">
           <% @events.each do |event| %>
@@ -88,12 +85,10 @@
           <% end %>
         </div>
       </div>
-    </section>
   </div>
 
 <%# Attendances %>
 <div id="Attendances" class="tabcontent-dashboard">
-  <section>
     <div class="container py-5">
       <div class="row text-center">
         <% @attendances.each do |user_event| %>
