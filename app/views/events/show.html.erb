@@ -1,166 +1,52 @@
-<head>
-<body>
-<div class="navbar-home inFront">
-    <%# <button class="buttontext"></button> %>
-    <%= link_to :back do%>
-      <i class="fa-solid fa-left-long" style="color: #fafafa;"></i>
+<div class="container">
+  <div class="background-panel-show">
+    <% if @event.photo.key %>
+      <%= cl_image_tag @event.photo.key, class:"background-panel-image"%>
+    <% else %>
+      <%= image_tag "surf-friends.png", class:"background-panel-image" %>
     <% end %>
-</div>
 
-
-
-
-<div id="wrapper">
-  <div id="a" class="panels">
-    <div class="function-imagemap">
-      <div class="imagemap-button-container">
-        <div >
-          <button class="button" onclick="openCity(event, 'map1')">pictures</button>
-          <button class="button" onclick="openCity(event, 'map2')">map</button>
+    <div class="foreground-panel">
+      <div class="two-column-section">
+        <div class="left-content">
+          <div class="beach-info">
+            <h2><%= @event.title %></h2>
+            <p><i class="fa-solid fa-location-dot"></i> <%= @event.beach.address %></p>
+            <br>
+            <hr>
+            <p class="opacity-6"><%= @event.description %></p>
+          </div>
         </div>
-      </div>
-      <!-- Tab content -->
-      <div id="map1" class="tabcontent">
-        <div class="header-image-container">
-          <div class="header-image" id="hideimage">
-            <% if @event.photo.key %>
-              <%= cl_image_tag @event.photo.key, class: 'event-image-OFF header-image' %>
-            <% else %>
-              <%= image_tag "broken-beach.jpg",class:"event-image-OFF header-image" %>
+
+        <div class="right-content">
+          <button class="basic-button">
+            <% if UserEvent.where(event: @event, user: current_user).empty?%>
+              <%= link_to "Join", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
             <% end %>
-          </div>
+            <% unless @event.user_events.empty? %>
+              <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
+              <%= link_to "Cancel", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
+            <% end %>
+            </div>
+          </button>
+
+          <% @event.user_events.each do |attendance| %>
+            <% if attendance.user.profile.photo.key %>
+              <%= cl_image_tag attendance.user.profile.photo.key , class:"avatar" %>
+            <% else %>
+              <%= image_tag "default-photo.webp", class:"avatar" %>
+            <% end %>
+          <% end %>
+
+          <p><%= @event.user_events.count %>
+            <% if @event.user_events.count == 1 %>
+              <%= "person attending" %>
+            <% else %>
+              <%= "people attending" %>
+            <% end %>
+          </p>
         </div>
       </div>
-
-
-      <div id="map2" class="tabcontent" style="display: none;">
-        <div class="map-container">
-          <div style="width: 100vw; height: 32vh; margin: 0 auto;"
-            data-controller="map"
-            data-tabs-target="hideable"
-            data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-          </div>
-        </div>
-      </div>
-
-
-
     </div>
   </div>
-</div>
-
-<script>
-  function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-
-    // Remove the "active" class from all buttons
-    tablinks = document.getElementsByClassName("button");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
-    }
-
-    // Show the current tab
-    document.getElementById(cityName).style.display = "block";
-
-    // Add the "active" class to the clicked button
-    evt.currentTarget.classList.add("active");
-
-    // Hide the other button
-    var otherButtonId = (cityName === 'map1') ? 'map2' : 'map1';
-    var otherButton = document.getElementById(otherButtonId);
-    otherButton.style.display = "none";
-  }
-</script>
-
-
-        <div class="header-footer-links">
-          <%# <button class="buttontext"></button> %>
-          <% if policy(@event).edit? %>
-            <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pen header-footer-button" %>
-          <% end %>
-          <% if policy(@event).destroy? %>
-            <%= link_to "", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa-solid fa-trash header-footer-button" %>
-          <% end %>
-          <%# <button class="fa-solid fa-pen header-footer-button"></button> %>
-          <%# <button class="fa-solid fa-trash header-footer-button"></button> %>
-        </div>
-        <%# <div class="header-map-container">
-          <div class="header-map">map</div>
-        </div> %>
-      </div>
-    </div>
-    <div id="c" class="panels">
-      <div class="section-header-text">
-        <div class="header-text-container">
-            <div class="header-title-container">
-              <h2> <%= @event.title %>
-              </h2>
-            </div>
-            <div class="header-description-container">
-              <p class="display-2" id="header-description"> <%= @event.description %>
-              </p>
-            </div>
-            <div class="header-address-container">
-              <p class="display-3" id="header-address">
-              <span style="padding-right:10px;"><i class="fa-solid fa-map-location-dot fa-fw" style="color: #000000;"></i></span><%= @beach.address %>
-              </p>
-            </div>
-            <div class="header-address-container">
-              <p class="display-3" id="header-date"><%= @event.date.strftime("%B %d %Y") %></p>
-            </div>
-            <button class="event-show-buttons">
-                  <% if UserEvent.where(event: @event, user: current_user).empty?%>
-                    <%= link_to "Attend", event_user_events_path(@event), data: {turbo_method: :post, turbo_confirm: "Do you want to go to this Event?"} %>
-                  <% end %>
-                  <% unless @event.user_events.empty? %>
-                    <% user_event = UserEvent.find_by(user: current_user, event: @event) %>
-                    <%= link_to "Cancel attend", user_event_path(user_event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if user_event %>
-                  <% end %>
-                  </div>
-                </button>
-            <div class="header-attendees-container">
-              <div class="attendees-avatar-container">
-                <% @event.user_events.each do |attendance| %>
-                  <% if attendance.user.profile.photo.key %>
-                    <%= cl_image_tag attendance.user.profile.photo.key , class:"attendees-avatar avatar-OFF" %>
-                  <% else %>
-                    <%= image_tag "default-photo.webp", class:"attendees-avatar avatar-OFF" %>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="attendees-counter-container">
-                <p><%= @event.user_events.count %>
-                  <% if @event.user_events.count == 1 %>
-                    <%= "person attending" %>
-                  <% else %>
-                    <%= "people attending" %>
-                  <% end %>
-                </p>
-              </div>
-            </div>
-              <div class="event-actions">
-                <%# end of user_events loop %>
-                <%# end of user_events loop %>
-                  <% if policy(@event).edit? %>
-                <button class="event-show-action-buttons">
-                    <%= link_to "Edit", edit_event_path(@event), class: 'event-card-buttons' %>
-                </button>
-                  <% end %>
-                  <% if policy(@event).destroy? %>
-                <button class="event-show-action-buttons">
-                    <%= link_to "Delete", @event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'event-show-action-buttons' %>
-                </button>
-                  <% end %>
-              </div>
-        </div>
-      </div>
-    </div>
 </div>

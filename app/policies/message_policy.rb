@@ -9,15 +9,11 @@ class MessagePolicy < ApplicationPolicy
     end
 
     def update?
-      record.user == user
+      true
     end
 
-    def edit?
-      record.user == user
-    end
-
-    def destroy?
-      record.user == user
+    def create_comment?
+      true
     end
 
     def resolve

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   # root to: "beaches#index"
-  resources :messages, only: [:create]
+  resources :messages do
+    member do
+      post :like
+      post :unlike
+    end
+    post 'create_comment', on: :member
+  end
 
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"

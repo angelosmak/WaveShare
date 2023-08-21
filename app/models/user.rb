@@ -6,7 +6,12 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :user_events, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :likes
+  has_many :liked_messages, through: :likes, source: :message
 
+  def liked?(message)
+    liked_messages.include?(message)
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

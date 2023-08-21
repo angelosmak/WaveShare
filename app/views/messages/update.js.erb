@@ -1,0 +1,6 @@
+const messageId = <%= @message.id %>;
+const likeButton = document.getElementById(`like-button-${messageId}`);
+const likeCounter = likeButton.nextElementSibling;
+
+likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i> Unlike';
+likeCounter.innerHTML = '<%= pluralize(@message.likes + 1, "like") %>';

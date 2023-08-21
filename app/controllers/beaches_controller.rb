@@ -1,6 +1,7 @@
 require 'httparty'
 
 class BeachesController < ApplicationController
+  
   def index
     # pundit
     @beaches = policy_scope(Beach)

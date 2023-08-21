@@ -4,7 +4,8 @@
 
 .background-panel-show{
   border-radius: 20px 20px;
-  img{
+
+  .background-panel-image{
     height: 70vh;
     width: 100%;
     object-fit: cover;
@@ -34,7 +35,7 @@
 //-----------------BEACH INFO - EVENTS SECTION-----------------
 //-------------------------------------------------------------
 
-.info-events-section{
+.two-column-section{
   height: auto;
   width: inherit;
   display: flex;
@@ -177,6 +178,51 @@
 //--------------------------•••--------------------------------
 
 
+//---------------REVIEWS SECTION--------------------
+//--------------------------------------------------
+.margin-20{
+  margin: 20px;
+}
+
+#avatar-reviews{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.review-card{
+  width: 50%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.review-title{
+
+  padding: 20px;
+  .join-button-div{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .join-button{
+    width: 131px;
+
+    p{
+      margin-bottom: 0;
+    }
+  }
+}
+.review-user-info{
+  width: 80%;
+}
+//---------------END REVIEWS SECTION----------------
+//--------------------------•••---------------------
+
+
 //----------------- THREADS SECTION-----------------
 //--------------------------•••---------------------
 .form-control-threads{
@@ -214,10 +260,43 @@
   border-radius: 18px;
 }
 
-.reply {
-  margin-left: 20px; /* Increase margin-left for each level of reply */
+.comment{
+  background-color: #ffffff;
+  border: 1px solid #5e94c1 ;
+  padding: 10px;
+  border-radius: 18px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
+.comments .panel {
+  display: none;
+}
+
+.accordion i {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Display the panel and rotate the accordion icon when active */
+.comments.active .panel {
+  display: block;
+}
+
+.comments.active .accordion i {
+  transform: rotate(360deg);
+}
+
+.form-comments-control {
+  height: 50px;
+  width: 100%;
+  background-color: #ffc83a;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  position: relative;
+}
 //---------------END THREADS SECTION----------------
 //--------------------------•••---------------------
 
@@ -233,8 +312,20 @@
 
   //------------BEACH INFO - EVENTS SECTION MOBILE-------------
   //-----------------------------------------------------------
-  .info-events-section{
+  .two-column-section{
     display: block;
+  }
+
+  .event-card{
+
+    h2{
+      font-size: small;
+    }
+
+    img{
+      width: 18%;
+      height: 40%;
+    }
   }
   //-------------END BEACH INFO - EVENTS SECTION MOBILE--------
   //--------------------------------•••------------------------
@@ -255,7 +346,9 @@
 
   //----------------REVIEWS SECTION MOBILE--------------
   //----------------------------------------------------
-
+  .review-card{
+    width: 100%;
+  }
   //----------------END REVIEWS SECTION MOBILE----------
   //--------------------------•••-----------------------
 }
@@ -267,7 +360,7 @@
 
   //------------BEACH INFO - EVENTS SECTION MOBILE-------------
   //-----------------------------------------------------------
-  .info-events-section{
+  .two-column-section{
     display: block;
   }
   //-------------END BEACH INFO - EVENTS SECTION MOBILE--------
