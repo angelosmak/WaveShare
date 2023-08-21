@@ -1,102 +1,99 @@
-<div class="dashboard-header">Bookmarked
-</div>
 
-<div class="tab">
-  <button class="tablinks active primary-text" onclick="openCity(event, 'Reviews')">Reviews</button>
-  <button class="tablinks primary-text" onclick="openCity(event, 'Events')">Events</button>
-  <button class="tablinks primary-text" onclick="openCity(event, 'Attendances')">Attendances</button>
-</div>
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+    <h1>Your Activity</h1>
+    </div>
+  <%# Tabs %>
+    <div class="tab">
+      <button class="tablinks active primary-text" onclick="openCity(event, 'Reviews')">Reviews</button>
+      <button class="tablinks primary-text" onclick="openCity(event, 'Events')">Events</button>
+      <button class="tablinks primary-text" onclick="openCity(event, 'Attendances')">Attendances</button>
+    </div>
+    <%# Reviewstab %>
+    <div id="Reviews" class="tabcontent-dashboard active">
+      <section>
+            <% @reviews.each do |review| %>
+          <div class="review-card-dashboard">
+            <div class="avatar-large">
+              <% if review.user.profile.photo.key %>
+                <%= cl_image_tag review.user.profile.photo.key, id:'avatar-reviews' %>
+              <% else %>
+                <%= image_tag "default-photo.webp", id:'avatar-reviews', class: "dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
+            </div>
 
-<div id="Reviews" class="tabcontent-dashboard active">
-<% @reviews.each do |review| %>
-  <div class="container mb-2 p-0">
-      <div class="card p-2">
-          <div class="row">
-              <div class="col-md-1 d-flex align-items-center">
-                  <% if review.user.profile.photo.key %>
-                        <%= cl_image_tag review.user.profile.photo.key, class: 'review-avatar' %>
-                        <% else %>
-                        <%# else put another picture from assets %>
-                          <%= image_tag "default-photo.webp", class: "review-avatar dropdown-toggle", alt: "dropdown menu" , data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                      <% end %>
-              <h6 style="margin-left:10px;"><%= review.user.profile.username %></h6>
-              </div>
-                <h5 class="mr-5" style="margin-right:10px;"><strong><%= review.title %></strong></h5>
-              <div class="col-md-10">
-                <div class="d-flex">
-                <div class="title-review">
-                  <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
-                </div>
-                    <span><% review.rating.times do %> <i class="fa-solid fa-star" style="color: #ffe71e;"></i> <% end %></span>
-                </div>
-                  <p><%= review.content %></p>
-                  <% if policy(review).destroy? %>
-                    <div class="w-100 text-end">
-                      <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
-                        <i class="fa-solid fa-trash" style="color: #000000;"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-              </div>
+              <h6><%= review.user.profile.username %></h6>
+              <span><% review.rating.times do %>
+                <i class="fa-solid fa-star" style="color: #ffe71e;"></i>
+              <% end %>
+              </span>
+              <p class="text-secondary"><%= review.created_at.strftime("%B %d %Y") %></p>
+              <h5><%= review.title %></h5>
+              <p class='review-content'><%= review.content %></p>
+              <% if policy(review).destroy? %>
+                <%= link_to review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }  do %>
+                  <i class="review-delete fa-solid fa-trash" style="color: #000000;"></i>
+                <% end %>
+              <% end %>
           </div>
-      </div>
-  </div>
-          <% end %>
-  </div>
-
-<div id="Events" class="tabcontent-dashboard">
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-5">
-      <div class="row text-center">
-        <% @events.each do |event| %>
-          <div class="col-md-4 mb-4 mb-md-0">
-            <div class="card mb-1">
-              <div class="card-body py-4 mt-2">
-                <div class="d-flex justify-content-center mb-4">
-                  <% if event.photo.key %>
-                    <%= cl_image_tag event.photo.key, class: 'header-image event-image-rounded' %>
-                  <% else %>
-                    <%# Put another picture from assets %>
-                    <%= image_tag "broken-beach.jpg", class: "header-image event-image-rounded", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                  <% end %>
-                </div>
-                <h5 class="event-card-title"><%= event.title %></h5>
-                <p class="mb-2 event-card-description event-card-text">
-                  <%= event.description %>
-                </p>
-                <ul class="list-unstyled d-flex justify-content-center">
-                  <li>
-                    <p class="event-card-date event-card-text"><%= event.date.strftime("%B %d %Y") %></p>
-                  </li>
-                </ul>
-                <div class="attend-seemore py-2">
-                  <div class="event-button-section">
-                    <button class="event-card-buttons">
-                      <% if UserEvent.where(event: event, user: current_user).empty? %>
-                        <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
-                      <% else %>
-                        <% user_event = UserEvent.find_by(user: current_user, event: event) %>
-                        <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
-                      <% end %>
-                    </button>
+            <% end %>
+      </section>
+    </div>
+  <%# Eventstab %>
+    <div id="Events" class="tabcontent-dashboard">
+    <section>
+      <div class="container py-5">
+        <div class="row text-center">
+          <% @events.each do |event| %>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="card mb-1">
+                <div class="card-body py-4 mt-2">
+                  <div class="d-flex justify-content-center mb-4">
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'header-image event-image' %>
+                    <% else %>
+                      <%# Put another picture from assets %>
+                      <%= image_tag "broken-beach.jpg", class: "header-image event-image", alt: "dropdown menu", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                    <% end %>
                   </div>
-                  <a href="/events/<%= event.id %>">
-                  <div class="event-button-section">
-                    <button class="event-card-buttons">See More</button>
+                  <h5 class="event-card-title"><%= event.title %></h5>
+                  <p class="mb-2 event-card-description event-card-text">
+                    <%= event.description %>
+                  </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li>
+                      <p class="event-card-date event-card-text opacity-6"><%= event.date.strftime("%B %d %Y") %></p>
+                    </li>
+                  </ul>
+                  <div class="attend-seemore py-2">
+                    <div class="event-button-section">
+                      <button class="basic-button">
+                        <% if UserEvent.where(event: event, user: current_user).empty? %>
+                          <%= link_to "Attend", event_user_events_path(event), data: { turbo_method: :post, turbo_confirm: "Do you want to participate on this event?" }, class: "basic-button" %>
+                        <% else %>
+                          <% user_event = UserEvent.find_by(user: current_user, event: event) %>
+                          <%= link_to "Cancel", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "AAre you sure you dont want to participate anymore?" }, class: "basic-button" if user_event %>
+                        <% end %>
+                      </button>
+                    </div>
+                    <a href="/events/<%= event.id %>">
+                    <div class="event-button-section">
+                      <button class="basic-button">See More</button>
+                    </div>
+                    </a>
                   </div>
-                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 
+<%# Attendances %>
 <div id="Attendances" class="tabcontent-dashboard">
-  <section style="color: #000; background-color: #f3f2f2;">
+  <section>
     <div class="container py-5">
       <div class="row text-center">
         <% @attendances.each do |user_event| %>
@@ -115,23 +112,23 @@
                 <p class="mb-2 event-card-description event-card-text"><%= user_event.event.description %></p>
                 <ul class="list-unstyled d-flex justify-content-center">
                   <li>
-                    <p class="event-card-date event-card-text" ><%= user_event.event.date.strftime("%B %d %Y") %></p>
+                    <p class="event-card-date event-card-text opacity-6" ><%= user_event.event.date.strftime("%B %d %Y") %></p>
                   </li>
                 </ul>
                 <div class="attend-seemore py-2">
                   <div class="event-button-section">
-                    <button class="event-card-buttons">
+                    <button class="basic-button">
                       <% if UserEvent.where(event: user_event.event, user: current_user).empty? %>
-                        <%= link_to "Attend", event_user_events_path(user_event.event), data: { turbo_method: :post, turbo_confirm: "Are you ready to parteyyyyyyyyyyyyyy?" }, class: "event-card-buttons" %>
+                        <%= link_to "Attend", event_user_events_path(user_event.event), data: { turbo_method: :post, turbo_confirm: "Do you want to participate on this event?" }, class: "basic-button" %>
                       <% else %>
                         <% user_event = UserEvent.find_by(user: current_user, event: user_event.event) %>
-                        <%= link_to "Cancel Attend", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "event-card-buttons" if user_event %>
+                        <%= link_to "Cancel", user_event_path(user_event), data: { turbo_method: :delete, turbo_confirm: "Are you sure you dont want to participate anymore?" }, class: "basic-button" if user_event %>
                       <% end %>
                     </button>
                   </div>
                   <a href="/events/<%= user_event.event.id %>">
                   <div class="event-button-section">
-                    <button class="event-card-buttons">See More</button>
+                    <button class="basic-button">See More</button>
                   </div>
                   </a>
                 </div>
@@ -141,28 +138,25 @@
         <% end %>
       </div>
     </div>
-  </section>
-</div>
-
-<script>
-  function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent-dashboard");
-    if (cityName == "Events") {
-      document.getElementById("Events").style.display = "block";
-      document.getElementById("Reviews").style.display = "none";
-    } else {
-        document.getElementById("Events").style.display = "none";
-        document.getElementById("Reviews").style.display = "block";
-    }
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
-</script>
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent-dashboard");
+        if (cityName == "Events") {
+          document.getElementById("Events").style.display = "block";
+          document.getElementById("Reviews").style.display = "none";
+        } else {
+            document.getElementById("Events").style.display = "none";
+            document.getElementById("Reviews").style.display = "block";
+        }
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
