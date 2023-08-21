@@ -94,10 +94,12 @@
             <% else %>
               <% upcoming_events.each do |event| %>
                 <div class="event-card">
-                  <% if event.photo.key %>
-                    <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
-                  <% else %>
-                    <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                  <%= link_to event_path(event) do%>
+                    <% if event.photo.key %>
+                      <%= cl_image_tag event.photo.key, class: 'event-image-OFF header-image' %>
+                    <% else %>
+                      <%= image_tag "broken-beach.jpg", class: "event-image-OFF header-image" %>
+                    <% end %>
                   <% end %>
                   <div class="event-card-infos">
                     <h2><%= event.title %></h2>
