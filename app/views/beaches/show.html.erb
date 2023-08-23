@@ -256,10 +256,12 @@
                 <% if user_signed_in? %>
                   <div class="like-section ">
                     <% if current_user.liked?(message) %>
-                      <%= link_to 'Unlike', unlike_message_path(message), data: {turbo_method: :postga} %>
+                      <%= link_to unlike_message_path(message), data: {turbo_method: :post} do%>
+                        <i class="fa-solid fa-thumbs-down"></i>
+                      <% end %>
                     <% else %>
                       <%= link_to like_message_path(message, like: { message_id: message.id }), data: {turbo_method: :post} do %>
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-thumbs-up"></i>
                       <% end %>
 
                     <% end %>
@@ -287,7 +289,6 @@
                 <%# ----------------------•••----------------------- %>
 
 
-                <div class="panel">
                   <!-- Loop through comments for this message -->
                   <% message.comments.each do |comment| %>
                     <div class="comment">
@@ -324,7 +325,6 @@
                   <!----------COMMENT FORM -------->
                   <%# --------------------------- %>
 
-                </div>
               </div>
             </div>
             <hr>
